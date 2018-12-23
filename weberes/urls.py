@@ -12,10 +12,36 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path
+
+
+
+from django.urls import include, re_path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    re_path(r'^index/$', views.index, name='index'),
+    re_path(r'^bio/(?P<username>\w+)/$', views.bio, name='bio'),
+    re_path(r'^weblog/', include('blog.urls')),
+    ...
+]
+https://docs.djangoproject.com/en/2.1/ref/urls/#path
+
+
+"""
+from django.conf.urls import include, url
+from django.contrib.auth.decorators import login_required, permission_required
+from django.conf import settings
+from django.contrib import admin
+from eres.views import *
+
+from django.urls import path,re_path
+
+
+
+urlpatterns = [
+    path('admin/',admin.site.urls),
+    re_path(r'^ingresar/$', LogInView.as_view(), name='login'),
+    re_path(r'^logOut', logOut, name='logOut'),
+    re_path(r'^registrar/$', UserRegisterView.as_view(), name='registrarme'),
+    #path('',home),
+    re_path(r'^$', home, name='home'),
 ]

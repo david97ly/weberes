@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{variable}}</title>
+
+
+    <meta name="viewport" content="initial-scale=1">
+
+{% load static from staticfiles %}
+
+    <link rel="stylesheet" href="{% static "css/eventos.css" %}">
+    <link rel="stylesheet" href="{% static "css/menu.css"%}">
+    <link rel="stylesheet" href="{% static "css/fontawesome/fontawesome-all.min.css" %}">
+
+
+  </head>
+  <body>
+      <header id="header">
+        <nav class="menu">
+          <div class="logodiv">
+            <a href="#"><img class="logo" src="imagenes/logoeres.png" alt=""></a>
+            <a href="#" class="btn-menu" id="btn-menu"><i class="icono fa fa-1x fa-bars" aria-hidden="true"></i></a>
+          </div>
+          <div class="elements">
+          <ul id="enlaces">
+            {% if not user.is_authenticated %}
+            <li id="li"><a href="{% url "login" %}" id="efecto">Iniciar Secion</a></li>
+
+            {% else %}
+              <li id="li"><a href="#" id="efecto"> {{ user.username }} <a></li>
+              <li><a href="{% url "logOut" %}">Cerrar Sesion</a></li>
+            {% endif %}
+
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Cosita</a></li>
+            <li><a href="#">Otros</a></li>
+          </ul>
+          </div>
+        </nav>
+      </header>
+      <div class="espacio"></div>
+    <div class="todo">
+      <div class="contenido">
+        <div class="eventos">
+          <div class="evento-texto">
+            <div class="user">
+              <p class="time">Hace 1 min.</p>
+              <div class="inforusuario">
+                <p class="nombre">Eduardo Granados</p>
+                <div class="fotoperfil" style="background-image: url(imagenes/foto-txt.jpg)"></div>
+              </div>
+            </div>
+            <div class="publicacion">
+              <p class="publitxt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div class="coment">
+              <div class="iconos">
+                <a class="a-iconos" href="#"><i class="icon fa-lg fas fa-star" style="color:#f5d22e;"></i><p class="nums">12940</p></a>
+                <a class="a-iconos" href="#"><i class="icon fa-lg far fa-comment"></i><p class="nums">4230</p></a>
+              </div>
+              <div class="caja-coment">
+                <input class="comentario" placeholder="Agregar comentario..." name="coment">
+              </div>
+            </div>
+          </div>
+          <div class="evento-texto">
+            <div class="user">
+              <p class="time">Hace 1 min.</p>
+              <div class="inforusuario">
+                <p class="nombre">Eduardo Granados</p>
+                <div class="fotoperfil" style="background-image: url(imagenes/foto-txt.jpg)"></div>
+              </div>
+            </div>
+            <div class="publicacion">
+              <p class="publitxt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div class="coment">
+              <div class="iconos">
+                <a class="a-iconos" href="#"><i class="icon fa-lg fas fa-star" style="color:#f5d22e;"></i><p class="nums">12940</p></a>
+                <a class="a-iconos" href="#"><i class="icon fa-lg far fa-comment"></i><p class="nums">4230</p></a>
+              </div>
+              <div class="caja-coment">
+                <input class="comentario" placeholder="Agregar comentario..." name="coment">
+              </div>
+            </div>
+          </div>
+          <div class="evento-foto">
+            <div class="user">
+              <p class="time">Hace 1 min.</p>
+              <div class="inforusuario">
+                <p class="nombre">Eduardo Granados</p>
+                <div class="fotoperfil" style="background-image: url(imagenes/foto-txt.jpg)"></div>
+              </div>
+            </div>
+            <div class="publicacion">
+              <img class="publifoto" src="imagenes/riguito.jpg" alt="">
+            </div>
+            <div class="coment">
+              <div class="iconos">
+                <a class="a-iconos" href="#"><i class="icon fa-lg fas fa-star" style="color:#f5d22e;"></i><p class="nums">12940</p></a>
+                <a class="a-iconos" href="#"><i class="icon fa-lg far fa-comment"></i><p class="nums">4230</p></a>
+              </div>
+              <div class="caja-coment">
+                <input class="comentario" placeholder="Agregar comentario..." name="coment">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="publicidad">
+
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script src="js/headroom.min.js"></script>
+    <script src="js/menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+
+
+.contenedor{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+
+.datosgnrls{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1000px;
+  height: auto;
+  background-color: #8EC5FC;
+  background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  background: -webkit-linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)!important;
+  background: -o-linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)!important;
+  background: -moz-linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)!important;
+  background: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)!important;
+  border-radius: 10px 10px 0px 0px / 10px 10px 0px 0px;
+}
+
+h3{
+font-weight: 400;
+text-transform: uppercase;
+}
+
+div.fotoperfil{
+  display: flex;
+  height: 120px;
+  width: 120px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 120% auto;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  margin: 5px 0px 0px 0px;
+
+}
+
+.basic{
+color: white;
+font-weight: 600;
+font-size: 20px;
+}
+
+.contenido{
+  width: 990px;
+  height: 1200px;
+  background: white;
+  border-radius: 0px 0px 10px 10px / 0px 0px 10px 10px;
+  border: 5px solid transparent;
+      -moz-border-image: -moz-linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+      -webkit-border-image: -webkit-linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+      border-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+      border-image-slice: 1;
+}
+
+.edit{
+  background: white;
+  border: none;
+  border-radius: 5px;
+}

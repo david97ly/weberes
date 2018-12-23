@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign_Up</title>
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="css/Sign_Up.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <form class="Sign_Up" action="index.html" method="post">
+        <div class="head">
+          <i class="fa fa-4x fa-user-plus" aria-hidden="true"></i>
+        </div>
+        <div class="input">
+          <label class="titulosinput">Nombres</label>
+          <input class="entrada" name="names" required>
+        </div>
+        <div class="input">
+          <label class="titulosinput">Apellidos</label>
+          <input class="entrada" name="names" required>
+        </div>
+        <div class="input-naci">
+  <legend class="titulosinput">Fecha de Nacimiento </legend>
+  <div class="fecanaci">
+  <select id="mes"name="mes"/>
+    <option>Enero</option>
+    <option>Febrero</option>
+    <option>Marzo</option>
+    <option>Abril</option>
+    <option>Mayo</option>
+    <option>Junio</option>
+    <option>Julio</option>
+    <option>Agosto</option>
+    <option>Septiembre</option>
+    <option>Octubre</option>
+    <option>Noviembre</option>
+    <option>Diciembre</option>
+  </select>
+  <select id="dia" name="dia"/>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+    <option>11</option>
+    <option>12</option>
+    <option>13</option>
+    <option>14</option>
+    <option>15</option>
+    <option>16</option>
+    <option>17</option>
+    <option>18</option>
+    <option>19</option>
+    <option>20</option>
+    <option>21</option>
+    <option>22</option>
+    <option>23</option>
+    <option>24</option>
+    <option>25</option>
+    <option>26</option>
+    <option>27</option>
+    <option>28</option>
+    <option>29</option>
+    <option>30</option>
+    <option>31</option>
+  </select>
+  <select id="año" name="año"/>
+    <option>2008</option>
+    <option>2009</option>
+    <option>2010</option>
+    <option>2011</option>
+    <option>2012</option>
+    <option>2013</option>
+    <option>2014</option>
+    <option>2015</option>
+    <option>2016</option>
+    <option>2017</option>
+    <option>2018</option>
+  </select>
+  </div>
+</fieldset>
+        </div>
+        <div class="input">
+          <label class="titulosinput">Email</label>
+          <input class="entrada" type="email" value='' required>
+        </div>
+        <div class="input">
+          <label class="titulosinput">Numero de telefono</label>
+          <input class="entrada" name="names" required>
+        </div>
+        <div class="inputs">
+        <div class="input-radio">
+          <div class="sexo">
+          <label class="titulosinput">Sexo</label>
+          </div>
+          <input type="radio" name="sexo" id="hombre" value="Hombre">
+          <label class="radios" for="hombre">Hombre</label>
+          <input type="radio" name="sexo" id="mujer" value="Mujer">
+          <label class="radios" for="mujer">Mujer</label>
+        </div>
+        </div>
+        <div class="input-cheque">
+          <input type="checkbox" name="terminos" id="Terminos" value="true">
+          <label id="termins" class="termins" for="Terminos"><b class="titulosinput">Acepto los terminos y condiciones</b></label>
+        </div>
+
+        <button class="guardar" type="submit" name="button"><p class="textbtn">Guardar</p></button>
+    </form>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+
+    $('#date').combodate({
+    minYear: 1940,
+    maxYear: 2013,
+    minuteStep: 10
+});
+
+    });
+
+    </script>
+  </body>
+</html>

@@ -25,7 +25,7 @@ SECRET_KEY = 'waqu@y=v+ycx=qgo!-&xi_#)a43lr0n$h6d8+l2$zab#f@)+av'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'eres',
+    'djrill',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +79,7 @@ WSGI_APPLICATION = 'weberes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'eresbd',
+        'NAME':'eresbd1',
         'USER': 'davidcr',
         'PASSWORD': 'dcr1276512',
         'HOST': 'localhost',
@@ -107,10 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ni'
+DATE_FORMAT = 'd-m-Y'
 
-TIME_ZONE = 'UTC'
-
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/El_Salvador'
 USE_I18N = True
 
 USE_L10N = True
@@ -121,4 +125,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'carasuciadigital@gmail.com'
+#EMAIL_HOST_PASSWORD = 'dcr1276512'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATIC_ROOT = os.sep.join(os.path.abspath(__file__).split(os.sep)[:-2]+['static'])
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+AUTH_USER_MODEL = 'eres.User'
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, "templates"),)
+
+
+
+#from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+#TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+#          'django.core.context_processors.request',
+#)
