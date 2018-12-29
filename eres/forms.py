@@ -27,6 +27,10 @@ class loginForm(forms.Form):
     'onkeypress':'javascript: return ValidarNumero(event,this)'
     } ) )
 
+
+
+
+
     def clean(self):
 
 
@@ -39,8 +43,64 @@ class loginForm(forms.Form):
         user_exist = User.objects.filter(username = s)
 
         if not user_exist:
-            self.add_error('username','El nombre de Usuario no exiiste!')
+            self.add_error('username','El usuario no existe \n asegurese de no tener espacios a los lados!')
         else:
             user = User.objects.get(username = s)
             if not user.check_password(p):
                 self.add_error('password','La contraseña es incorrecta')
+
+
+class UserCreateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ( 'username', 'email', 'password')
+        widgets = {
+           'username' : forms.TextInput( attrs = {    'type': 'text',
+               'name' : 'username',
+               'required' : 'True',
+                'placeholder':' (ejemplo: david45)',
+               'id': 'nombre',
+               'value' : '',
+               'class': 'codi',
+               'onkeypress':'javascript: return ValidarNumero(event,this)'} ),
+
+             'email' : forms.TextInput(attrs = {
+                     'type': 'email',
+                     'name' : 'username',
+                     'required' : 'True',
+                     'id': 'correo',
+                     'value' : '',
+                     'class': 'codi',
+                     'placeholder':'ejemplo@gmail.com',
+                     'onkeypress':'javascript: return ValidarNumero(event,this)'
+             }),
+
+              'password' : forms.TextInput(attrs = {
+                  'type' : 'password',
+                  'id' : 'p1',
+                  'name' : 'password',
+                  'required' : 'True',
+                  'value' : '',
+                  'class': 'codi',
+                  'placeholder': 'Contraseña',
+                  'onkeypress':'javascript: return ValidarNumero(event,this)'
+              }),
+
+
+
+        }
+
+class CodigoForm(forms.ModelForm):
+    class Meta:
+        model = Codigo
+        exclude = ('user',)
+        widgets = {
+           'codigo' : forms.TextInput( attrs = {'name' : 'codigo',
+           'required' : 'True',
+           'id': 'nombres',
+           'class': 'codi',
+           'value' : '',
+           'placeholder': 'Ejemplo:ahb7dcr569 '
+             } ),
+
+        }

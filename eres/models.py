@@ -53,3 +53,73 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def get_short_name(self):
         return self.username
+
+class Codigo(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    codigo = models.CharField(max_length=500,null=True,blank=True)
+
+    def __unicode__(self):
+        return self.user.username
+
+class Cargos(models.Model):
+    nombre = models.CharField(max_length=500,null=True,blank=True)
+    codigo = models.IntegerField(blank=True,null=True)
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class Perfil(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    cargo = models.ForeignKey(Cargos,null=True,blank=True,on_delete=models.SET_NULL)
+    codigo = models.CharField(max_length=500,null=True,blank=True)
+    primer_nombre = models.CharField(max_length=500,null=True,blank=True)
+    segundo_nombre = models.CharField(max_length=500,null=True,blank=True)
+    primer_apellido = models.CharField(max_length=500,null=True,blank=True)
+    segundo_apellido = models.CharField(max_length=500,null=True,blank=True)
+    sexo = models.CharField(max_length=500,blank=True, null=True)
+    telefono = models.CharField(max_length=500,null=True,blank=True)
+    direccion = models.CharField(max_length=500,null=True,blank=True)
+    direccion_GPS = models.CharField(max_length=500,null=True,blank=True)
+    dia = models.IntegerField(blank=True, null=True)
+    mes = models.CharField(max_length=500,blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+    creado = models.DateField(auto_now_add=True)
+    foto = models.ImageField(max_length=1000,blank=True, null=True)
+
+    def __unicode__(self):
+        return self.primer_nombre
+
+class ImagenPerfil(models.Model):
+    imagen = models.ImageField(upload_to='avatares',default="avatares/usuario.png")
+    perfil = models.ForeignKey(Perfil,null=False,on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return self.perfil.primer_nombre
+
+class Zona(models.Model):
+    nombre = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    numero = models.IntegerField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.nombre
+
+class Destacamento(models.Model):
+    nombre = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    codigo = models.IntegerField(blank=True, null=True)
+    iglesia = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    pastor = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    direccion = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    direccion_GPS = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    foto = models.ImageField(max_length=1000,blank=True, null=True)
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class ImagenDestacamento(models.Model):
+    imagen = models.ImageField(upload_to='avatares',default="avatares/usuario.png")
+    destacamento = models.ForeignKey(Destacamento,null=False,on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return self.destacamento.nombre

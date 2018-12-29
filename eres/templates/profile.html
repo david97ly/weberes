@@ -3,29 +3,108 @@
   <head>
     <meta charset="utf-8">
     <title>Perfil</title>
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <meta name="viewport" content="initial-scale=1">
+
+      {% load static from staticfiles %}
+    <link rel="stylesheet" href="{% static "css/profile.css" %}">
+    <link rel="stylesheet" href="{% static "css/menu1.css" %}">
+    <script src="{% static "js/all.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.2.1.min.js" %}" charset="utf-8"></script>
   </head>
   <body>
-    <div class="contenedor">
-      <h3>Explorador</h3>
-      <div class="datosgnrls">
-        <div class="fotoperfil" style="background-image: url(imagenes/fotoperfil.jpg)"></div>
-        <div class="basic">
-          <p>Ronaldo Gomez Bolaños</p>
-        </div>
-        <button class="edit" type="button" name="button">Editar</button>
-      </div>
-      <div class="contenido">
-        <div class="">
-          <nav>
-            <a href="#">Información</a>
-            <a href="#">Logros</a>
-          </nav>
-        </div>
-      </div>
+
+   <div class="todo">
+
+    <div class="div-menu" >
+          <header>
+              <nav>
+                  <ul>
+                      <li><a href="#"><span class="primero"><i class="icon fas fa-user"></i></span> Mis Datos</a></li>
+                      <li><a href="{% url "destacamento" %}"><span class="segundo"><i class="icon fas fa-campground"></i></span> Adm. Dest.</a></li>
+                      <li><a href="#"><span class="tercero"><i class="icon fas fa-star"></i></span> Favoritos</a></li>
+                      <li><a href="#"><span class="cuarto"><i class="icon fas fa-edit"></i></span> Publicaciones</a></li>
+                  </ul>
+              </nav>
+          </header>
     </div>
 
-    <script src="jquery-3.2.1.min.js" charset="utf-8"></script>
+      <div class="div-perfil">
+        <div class="div-basicos">
+          <div class="foto-nombre">
+          <div style="background-image: url(static/imagenes/fotoperfil.jpg)" class="foto-perfil"></div>
+          <p>Ronaldo Nombre Largo Gomez FullHD</p>
+          </div>
+            <div class="div-datos">
+              <div class="datos"><p>E-mail: Ronaldito@gmail.com</p></div>
+              <div class="datos"><p>Telefono: 70425360</p></div>
+              <div class="datos"><p>Destacamento: Búfalos 7</p></div>
+          </div>
+        </div>
+        <div class="div-logros" >
+          <div class="imagen-departamento">
+            <img src="static/imagenes/1.png" alt="">
+          </div>
+          <hr/>
+          <div class="logros">
+            <div class="premios">
+              <img src="static/imagenes/premio1.png" alt="">
+            </div>
+            <div class="premios">
+                <img src="static/imagenes/premio2.png" alt="">
+            </div>
+            <div class="premios">
+                <img src="static/imagenes/premio1.png" alt="">
+            </div>
+            <div class="premios">
+                <img src="static/imagenes/premio2.png" alt="">
+            </div>
+            <div class="premios">
+              <img src="static/imagenes/premio1.png" alt="">
+            </div>
+            <div class="premios">
+                <img src="static/imagenes/premio2.png" alt="">
+              </div>
+              <div class="premios">
+                  <img src="static/imagenes/premio1.png" alt="">
+                </div>
+                <div class="premios">
+                    <img src="static/imagenes/premio2.png" alt="">
+                  </div>
+                  <div class="premios">
+                      <img src="static/imagenes/premio1.png" alt="">
+                    </div>
+                    <div class="premios">
+                        <img src="static/imagenes/premio2.png" alt="">
+                      </div>
+                      <div class="premios">
+                          <img src="static/imagenes/premio1.png" alt="">
+                        </div>
+                        <div class="premios">
+                            <img src="static/imagenes/premio2.png" alt="">
+                          </div>
+                          <div class="premios">
+                              <img src="static/imagenes/premio1.png" alt="">
+                            </div>
+                            <div class="premios">
+                                <img src="static/imagenes/premio2.png" alt="">
+                              </div>
+                              <div class="premios no-ganado">
+                                  <img src="static/imagenes/premio1.png" alt="">
+                                </div>
+                                <div class="premios no-ganado">
+                                    <img src="static/imagenes/premio2.png" alt="">
+                                  </div>
+                                  <div class="premios no-ganado">
+                                      <img src="static/imagenes/premio1.png" alt="">
+                                    </div>
+                                    <div class="premios no-ganado">
+                                        <img src="static/imagenes/premio2.png" alt="">
+                                      </div>
+          </div>
+        </div>
+      </div>
+   </div>
+
+
   </body>
 </html>

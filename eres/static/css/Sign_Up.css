@@ -13,6 +13,8 @@ h3{
 .container{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -22,7 +24,7 @@ h3{
   align-items: center;
   flex-direction: column;
   width: 500px;
-  height: 650px;
+  height: auto;
   color: white;
   background-color: #9face6;
   background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
@@ -31,17 +33,19 @@ h3{
   background: -moz-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
   background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
   border-radius: 5px;
-
+  padding: 10px 5px;
 }
 
 .input{
 display: flex;
 flex-direction: column;
+padding: 5px 0px;
 }
 
 .inputs{
   display: flex;
-width: 410px;
+  width: 410px;
+  padding: 5px 0px;
 }
 
 
@@ -83,6 +87,59 @@ width: 410px;
   width: 200px;
   padding: 8px ;
   cursor: pointer;
+  margin: 5px 0px;
+  -webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+
+.guardar:hover{
+  -moz-transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.subir{
+  background: white;
+  border-radius: 5px;
+  border: none;
+  width: 100px;
+  padding: 2px ;
+  cursor: pointer;
+  margin: 5px 0px;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.subir:hover{
+  -moz-transform: scale(1.03);
+-webkit-transform: scale(1.03);
+-o-transform: scale(1.03);
+-ms-transform: scale(1.03);
+transform: scale(1.03);
+}
+
+.textbtn-subir{
+  margin: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #9face6;
+}
+
+.div-subir{
+  display: flex;
+  flex-direction: column;
+  width: 410px;
 }
 
 [type="checkbox"]{display:none;}
@@ -94,6 +151,11 @@ width: 410px;
   position: relative;
   cursor: pointer;
   border-radius: 3px;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
 }
 
 .termins:hover{
@@ -202,10 +264,54 @@ option{
   color: #9face6;
 }
 
+#map {
+  width: 100%;
+  height: 400px;
+}
+#coords{
+  width: 250px;
+  border: solid #7486eb 2px;
+  color: #7486eb;
+  font-size: 12px;
+  border-radius: 3px;
+  text-align: center;
+  padding: 5px 5px;
+  margin: 5px 0px;
+}
+
+.div-mapa{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 0px 0px;
+}
+
+.texto-mapa{
+  color: white;
+  font-weight: 500;
+  margin: 60px 20px 20px 20px;
+  background-color: #7486eb;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 5px;
+  border-radius: 3px;
+}
+
+.texto-mapa-posicion{
+  color: #7486eb;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.logito{
+  width: 120px;
+  height: auto;
+}
+
 @media all and (max-width: 600px){
   .Sign_Up{
     width: 450px;
-    height: 650px;
+    height: auto;
   }
 
   .entrada{
@@ -214,6 +320,10 @@ option{
   }
 
   .inputs{
+    width: 363px;
+  }
+
+  .div-subir{
     width: 363px;
   }
 
@@ -229,7 +339,7 @@ option{
 
     .Sign_Up{
       width: 350px;
-      height: 650px;
+      height: auto;
     }
 
     .entrada{
@@ -238,6 +348,10 @@ option{
     }
 
     .inputs{
+      width: 312px;
+    }
+
+    .div-subir{
       width: 312px;
     }
 
@@ -261,6 +375,11 @@ option{
       font-size: 14px;
     }
 
+    .logito{
+      width: 100px;
+      height: auto;
+    }
+
     @media all and (max-width: 390px){
       .Sign_Up{
         width: 280px;
@@ -272,6 +391,10 @@ option{
       }
 
       .inputs{
+        width: 242px;
+      }
+
+      .div-subir{
         width: 242px;
       }
 
@@ -289,6 +412,20 @@ option{
         font-size: 14px;
       }
 
-.termins{
-  font-size: 12px;
+  .termins{
+     font-size: 12px;
+  }
+
+  #coords{
+    width: 230px;
+    font-size: 11px;
+  }
+  
+  .texto-mapa{
+    font-size: 12px;
+  }
+
+  .texto-mapa-posicion{
+    font-size: 12px;
+  }
 }

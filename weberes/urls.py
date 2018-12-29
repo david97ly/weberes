@@ -41,7 +41,11 @@ urlpatterns = [
     path('admin/',admin.site.urls),
     re_path(r'^ingresar/$', LogInView.as_view(), name='login'),
     re_path(r'^logOut', logOut, name='logOut'),
-    re_path(r'^registrar/$', UserRegisterView.as_view(), name='registrarme'),
+    re_path(r'^registro/$', UserRegisterView.as_view(), name='registro'),
+    re_path(r'^corregir', corregir, name='corregir'),
+    re_path(r'^perfil',perfil, name='perfil'),
+    re_path(r'^codigo',codigo, name='codigo'),
+    re_path(r'^destacamento',destacamento, name='destacamento'),
     #path('',home),
     re_path(r'^$', home, name='home'),
 ]

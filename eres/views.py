@@ -62,26 +62,120 @@ class UserRegisterView(CreateView):
 
     form_class = UserCreateForm
     template_name = "registro.html"
-    success_url = reverse_lazy('corregir')
+    success_url = '/ingresar'
 
     def form_valid(self,form):
-
-
         user = form.save()
         user.set_password(form.cleaned_data['password'])
-
-
         #enviar_email()
+        cod = Codigo()
+        cod.user = user
+        cod.save()
 
         return super(UserRegisterView,self).form_valid(form)
+
+
+def corregir(request):
+    try:
+        print ("antes de hacer todo *-*--*-*-*-*-*-* ")
+        user = User.objects.all()
+        for u in user:
+            try:
+                u.username = u.username.strip()
+                u.save()
+            except Exception as e:
+                pass
+
+        return redirect('login')
+    except Exception as e:
+        return redirect("home")
 
 def home(request):
 
     titulo = "Pagina principal"
-    template = 'eventos.html'
+    template = 'landing2.html'
     varible = "Exploradores"
 
 
     context = {'variable':varible}
 
     return render(request,template,context)
+
+@login_required(login_url='ingresar')
+def codigo(request):
+    try:
+        us  = User.objects.get(pk = request.user.id)
+        coduse = Codigo.objects.get(user = us)
+        if not coduse.codigo == None:
+            return redirect("home")
+
+        if request.POST:
+            form = CodigoForm(request.POST,instance = us)
+            if form.is_valid():
+                #codigo = form.save(commit=False)
+                #codigo.save()
+                print("veamos que imprime")
+                print("Significa que si es valido " + str(form.cleaned_data['codigo']))
+                print("ya imprimio")
+                try:
+                    cod = form.cleaned_data['codigo']
+                    coduser = Codigo.objects.get(user = us)
+                    coduser.codigo = cod
+                    coduser.save()
+                    form.save()
+                except Exception as e:
+                    print("NO GUARDO PORQUE: " + str(e))
+
+                return redirect("perfil")
+            else:
+                print("El formulario no es valido")
+                return redirect("home")
+        else:
+            form = CodigoForm(instance=us)
+            template = "acceso.html"
+            context = {'form':form}
+            return render(request,template,context)
+
+
+        context = {'us':us}
+        template ="acceso.html"
+        return render(request,template,context)
+    except Exception as e:
+        print("Este es el error " + str(e))
+        return redirect("home")
+
+@login_required(login_url='ingresar')
+def perfil(request):
+    try:
+        us = User.objects.get(pk = request.user.id)
+        cod = Codigo.objects.get(user=us)
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+
+
+        context = {'us':us}
+        template ="profile.html"
+        print("apunto de llegar a profiles")
+        return render(request,template,context)
+    except Exception as e:
+        print (e)
+        return redirect("home")
+
+
+@login_required(login_url='ingresar')
+def destacamento(request):
+    try:
+        us = User.objects.get(pk = request.user.id)
+        cod = Codigo.objects.get(user=us)
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+        else:
+            context = {'us':us}
+            template ="destacamento.html"
+            print("apunto de llegar a profiles")
+
+            return render(request,template,context)
+    except Exception as e:
+        print (e)

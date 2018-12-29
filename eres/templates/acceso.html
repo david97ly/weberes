@@ -16,27 +16,22 @@
       <img class="emblema" src="{% static "imagenes/eres.png" %}" alt="">
 
       <div class="coding">
-          <!--  <label for="psw"><b class="codigo">Codigo de acceso</b></label> -->
-        {{ form.username }}
-        {{ form.username.errors }}
+         <label for="psw"><b class="codigo">Ingrese el codigo de acceso</b></label>
+        {{ form.codigo }}
+        {{ form.codigo.errors }}
+        <br><br><br>
+<label for="psw"><b class="codigo">El codigo de acceso se obtiene con su coodirnador</b></label> 
 
-
-      </div>
-
-      <div class="coding">
-
-        {{ form.password }}
-        {{ form.password.errors }}
       </div>
 
 
 
   <!--    <input class="session" type="submit" value="Iniciar Sesion">-->
- <button class="session" type="submit"><p class="textbtn">Iniciar Sesion</p></button>
+ <button class="session" type="submit"><p class="textbtn">Ingresar</p></button>
 
       <div class="opciones">
 
-        <label class="opcions1"><a href="{% url "registro" %}">Registrarme</a></label>
+        <label class="opcions1"><a href="#">Registrarme</a></label>
 
         <label class="opcions1"><a href="#">¿Olvide mi contraseña?</a></label>
       </div>

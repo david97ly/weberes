@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#7486eb"/>
+
+      {% load static from staticfiles %}
+
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
+
+    <script src="{% static "js/all.min.js" %}"></script>
+
+    <style media="screen">
+    #seccion1{
+        background-image: url("static/imagenes/bosque1.jpg");
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #seccion2{
+      background-color:white;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-flow:wrap;
+      height: 300px;
+    }
+
+    #seccion3{
+        background-image: url("static/imagenes/bosque1.jpg");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #seccion4{
+        background-color:white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+    }
+
+    #seccion5{
+        background-image: url("static/imagenes/bosque1.jpg");
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        height: 200px;
+    }
+    </style>
+
+        <link rel="stylesheet" href="{% static "css/landing2.css" %}">
+</head>
+<body>
+<div class="menuContainer">
+    {% include "menu.html" %}
+</div>
+<br>
+<br>
+    <section class="parallax" id="seccion1">
+        <div class="padre">
+            <div class="hijo1">
+                <h1>Exploradores del Rey</h1>
+                <hr>
+                <h2>El Salvador</h2>
+            </div>
+            <div class="hijo2">
+                <img class="logoblanco" src=" static/imagenes/Royal_Rangers.svg.png" alt="">
+            </div>
+        </div>
+        <div>
+            <button class="info-boton"><a href="#"><p class="info-texto-boton">Iniciar Sesión</p></a></button>
+        </div>
+    </section>
+    <section class="parallax" id="seccion2">
+        <div class="iconos-div">
+            <i class="iconos fas fa-globe-americas"></i>
+            <p class="iconos-titulo">Evangelizar:</p>
+            <p class="iconos-texto">El mundo</p>
+        </div>
+        <div class="iconos-div">
+            <i class="iconos fas fa-bible"></i>
+            <p class="iconos-titulo">Equipar:</p>
+            <p class="iconos-texto">La próxima generación de hombres de Dios</p>
+        </div>
+        <div class="iconos-div">
+            <i class="iconos fas fa-dove"></i>
+            <p class="iconos-titulo">Empoderar:</p>
+            <p class="iconos-texto">Líderes servidores comprometidos de por vida</p>
+        </div>
+    </section>
+    <section class="parallax" id="seccion3">
+        <div class="noseque">
+        <img class="jesus" src="static/imagenes/jesus.png" alt="">
+        <p class="texto" >Exploradores del Rey es una herramienta que pueden usar los hombres y muchachos,
+            y que los une para evangelizar al mundo, equipar a la próxima generación de hombres de Dios,
+            y empoderarlos para que sean líderes siervos de por vida.
+        </p>
+        </div>
+    </section>
+    <section class="parallax" id="seccion4">
+        <div class="informacion">
+                <div class="div-info-texto">
+                        <img class="logoazul" src="static/imagenes/logoazul1.png" alt="">
+                    <p class="info-texto">¿Cómo iniciar el ministerio en tu iglesia?</p>
+                    <p class="info-texto1">¿Qué necesitas? ¿Ya estás preparado?</p>
+                    <button class="info-boton"><a href="#"><p class="info-texto-boton">CONTACTANOS</p></a></button>
+                </div>
+                <div class="div-info-icon"></div>
+
+                </div>
+        </div>
+    </section>
+    <section class="parallax" id="seccion5">
+        <div class="footer">
+            <p class="power">Power by: <br>LOS PROS</p>
+        </div>
+    </section>
+
+
+
+
+<script>
+        $(document).ready(function () {
+
+
+        });
+</script>
+</body>
+</html>
