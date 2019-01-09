@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static from staticfiles %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static "/css/errorcodigo.css" %}" />
+
+</head>
+<body>
+
+    <div class="contenedor">
+        <img src="static/imagenes/eres.png" alt="">
+        <p>Su código ya esta siendo utilizado</p>
+      <a href="{% url "codigo" %}">  <button><p class="textbtn">Volver a Intentar</p></button></a>
+    </div>
+
+    <div class="informacion">
+        El código que esta intentado ingresar ya esta siendo utilizado por otro usuario.
+    </div>
+
+</body>
+</html>

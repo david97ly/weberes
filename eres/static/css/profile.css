@@ -1,8 +1,9 @@
 *{
   margin:0;
   padding:0;
-  font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
 }
+
 
 .todo{
   display: flex;
@@ -20,7 +21,7 @@
   justify-content: center;
   width: 80%;
   height: auto;
-  
+
 }
 
 .div-perfil{
@@ -30,7 +31,7 @@
   justify-content: center;
   width: 80%;
   height: auto;
-  
+
 }
 
 .div-basicos{
@@ -57,25 +58,9 @@
 
 }
 
-.foto-nombre{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  color: white;
-  font-weight: 600;
-  background-color: #9face6;
-  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
-  background: -webkit-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-  background: -o-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-  background: -moz-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  text-align: center;
-   
+
+.foto-nombre p{
+  padding-bottom:10px;
 }
 
 .datos{
@@ -86,35 +71,22 @@
   width: 100%;
 }
 
-.div-datos{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 0px;
-  width: 99%;
-  border: solid #74ebd5 2px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.datos p{
-  color: #74ebd5;
-  font-size: 14px;
+.cosa{
+  color: #0081c6;
+  font-size: 16px;
   font-weight: 500;
+  text-shadow: 0.5px 0.5px 1px #000000;
+  margin: 0px 4px;
 }
 
-.div-logros{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 60%;
-  height: auto;
-  border-radius: 5px;
-  margin: 5px 0px 5px 5px;
-  background-color: rgba(159, 172, 230, 0.5);
+.cosita{
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  text-shadow: 0.5px 0.5px 1px #000000;
 }
+
+
 
 .logros{
   display: flex;
@@ -123,9 +95,22 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 400px;
   margin: 20px 0px;
-  background-color: ;
+  overflow-y: scroll;
+
+}
+
+.logros::-webkit-scrollbar{
+  width: 4px;
+  background: rgb(0,0,0,0.2);
+  border-radius: 5px;
+
+}
+
+.logros::-webkit-scrollbar-thumb{
+  background: rgb(70,205,207,1);
+  border-radius: 5px;
 }
 
 .logros .premios img{
@@ -144,9 +129,10 @@
 
 hr{
   width: 90%;
-  height: 5px;
-  background-color: #7486eb;
+  height: 2px;
+  background-color: #46cdcf;
   border: 0px;
+  border-radius: 5px;
 }
 
 .no-ganado{
@@ -163,7 +149,7 @@ hr{
   .div-menu{
     width: 100%;
     height: auto;
-    
+
   }
 
   .div-perfil{
@@ -171,15 +157,39 @@ hr{
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     height: auto;
   }
-  
+
+  .div-datos{
+    background-color: rgb(0, 0, 0, 0.5);
+    background-image:none;
+
+  }
+  .div-logros{
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image:none;
+  }
+
+  .cosa{
+    color: #0081c6;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0.5px 0.5px 1px #000000;
+    margin: 0px 4px;
+  }
+
+  .cosita{
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0.5px 0.5px 1px #000000;
+  }
+
   }
 
   @media all and (max-width: 600px){
 
-    
   .div-perfil{
     display: flex;
     flex-direction: column;
@@ -194,7 +204,7 @@ hr{
     height: auto;
   }
 
-  
+
 .div-logros{
   width: 95%;
   height: auto;
@@ -202,10 +212,36 @@ hr{
   margin: 5px 0px;
 }
 
+.div-datos{
+  display: flex;
+  background-color: rgb(0, 0, 0, 0.5);
+  background-image:none;
+
+}
+
+.div-logros{
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image:none;
+}
+
   }
 
   @media all and (max-width: 400px){
 
+    .cosa{
+      color: #0081c6;
+      font-size: 13px;
+      font-weight: 500;
+      text-shadow: 0.5px 0.5px 1px #000000;
+      margin: 0px 4px;
+    }
+
+    .cosita{
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      text-shadow: 0.5px 0.5px 1px #000000;
+    }
     .foto-perfil{
       height: 100px;
       width: 100px;
@@ -218,7 +254,7 @@ hr{
     .logros .premios img{
       width: 80px;
     }
-    
+
     .logros .premios{
       width: 80px;
       margin: 5px 5px;

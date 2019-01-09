@@ -1,0 +1,142 @@
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+    -webkit-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 8px 0px;
+    margin: 10px;
+}
+
+img{
+    width: 150px;
+    height: auto;
+}
+
+p{
+    font-size: 18px;
+    color: #0081c6;
+    margin: 10px;
+}
+
+button{
+    background: #0081c6;
+    border-radius: 5px;
+    border: none;
+    width: auto;
+    padding: 10px;
+    cursor: pointer;
+    -webkit-transition: all .1.5s ease-In;
+    -moz-transition: all .1.5s ease-In;
+    -ms-transition: all .1.5s ease-In;
+    -o-transition: all .1.5s ease-In;
+    transition: all .1.5s ease-In;
+}
+
+button:hover{
+    padding: 10px 12px;
+}
+
+.textbtn{
+    margin: 5px;
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+    -webkit-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 8px 0px;
+    margin: 10px;
+}
+
+.informacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+    /*-webkit-box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 0 1px 2px rgba(0,0,0,0.2);*/
+    border-radius: 8px;
+    border:solid 2px #0081c6;
+    padding: 20px 0px;
+    margin: 10px;
+    color: #0081c6;
+}
+
+@media all and (max-width: 600px){
+
+    img{
+    width: 120px;
+    height: auto;
+    }
+
+    .contenedor{
+    width: 70%;
+    padding: 8px 0px;
+    margin: 10px;
+    }
+
+    .informacion{
+    width: 85%;
+    padding: 20px 10px;
+    font-size: 14px;
+    }
+
+    .textbtn{
+    margin: 5px;
+    font-size: 14px;
+    }
+
+}
+
+@media all and (max-width: 300px){
+    
+    button{
+        padding: 8px;
+    }
+
+    .textbtn{
+        font-size: 13px;
+    }
+
+    img{
+        width: 110px;
+    }
+
+    p{
+    font-size: 16px;
+    color: #0081c6;
+    margin: 20px 10px;
+}
+}
+

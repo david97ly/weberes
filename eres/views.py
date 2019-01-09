@@ -103,9 +103,43 @@ def home(request):
     return render(request,template,context)
 
 @login_required(login_url='login')
+def errorcodigo(request):
+    try:
+        variable = 0
+        context = {'variable':variable}
+        template = "errorcodigo.html"
+        return render(request,template,context)
+    except Exception as e:
+        pass
+
+@login_required(login_url='login')
+def utilierrorcodigo(request):
+    try:
+        variable = 0
+        context = {'variable':variable}
+        template = "errorcodigo1.html"
+        return render(request,template,context)
+    except Exception as e:
+        pass
+
+@login_required(login_url='login')
 def codigo(request):
     try:
+        print("Almenos entre aqui al codigo")
         us  = User.objects.get(pk = request.user.id)
+        print("y todavia pase aqui")
+        try:
+            print("apunto de hacer el pedidio del perfil")
+            per = Perfil.objects.get(user = us)
+            print("este es el perfil " + str(per.primer_nombre) )
+            if per:
+                print("Significa que tiene perfil")
+                return redirect("/perfil")
+            else:
+                print("paso al else")
+        except Exception as e:
+            print("que paso en este error: " + str(e))
+
 
         if request.POST:
             form = CodigoForm(request.POST,instance = us)
@@ -119,19 +153,37 @@ def codigo(request):
                     cod = form.cleaned_data['codigo']
 
                     try:
+                        c = Codigo.objects.get(codigo = cod)
+                        if c:
+                            print("ESTE PERFIL ESTA SIENDO UTILIZADO")
+                            return redirect("/utilierrorcodigo")
+                    except Exception as e:
+                        pass
+
+                    try:
                         per = Perfil.objects.get(codigo = cod)
+                        print("Este es el usuario: " + str(us))
+                        print("Este es el perfil: " + str(per))
+
+                        print("Termino de Guardar")
+
+                    except Exception as e:
+                        print("ERROR PARA EL CODIGO: " + str(e))
+                        return redirect("/errorcodigo")
+                    else:
                         per.user = us
                         per.save()
 
-                    except Exception as e:
-                        return redirect("home")
-                    else:
                         codn = Codigo()
                         codn.codigo = cod
                         codn.user = us
                         codn.save()
-
                         form.save()
+
+                        return redirect("perfil")
+                        print("lo guarde el CODIGO")
+
+
                 except Exception as e:
                     print("NO GUARDO PORQUE: " + str(e))
 
@@ -167,7 +219,20 @@ def perfil(request):
             return redirect("codigo")
         else:
             per = Perfil.objects.get(user = us)
-            context = {'us':us,'per':per}
+            nombre = ""
+            if per.primer_nombre != None:
+                nombre += str(per.primer_nombre)
+            if per.segundo_nombre != None:
+                nombre += " " + str(per.segundo_nombre)
+            if per.primer_apellido != None:
+                nombre += " " + str(per.primer_apellido)
+            if per.segundo_apellido != None:
+                nombre += " " + str(per.segundo_apellido)
+            print("Este es el nombre")
+            print(nombre)
+            edad = calculedad(per.dia,per.mes,per.year)
+            print(edad)
+            context = {'us':us,'per':per,'nombre':nombre,'edad':edad}
             template ="profile.html"
             print("apunto de llegar a profiles")
             return render(request,template,context)
@@ -314,6 +379,10 @@ def registroexplorador(request,iddesta):
                 des = str(siglas( str(str(desta.nombre))))
                 codigo = minus(str(codigo))
                 ncodigo = generarnumeros(str(str(siglasz) + str(des) + str(codigo)))
+
+                #fl = True
+                #while(fl):
+
 
                 fo.codigo = str(siglasz) + str(des) + str(desta.codigo) + str(codigo) + str(ncodigo)
 
