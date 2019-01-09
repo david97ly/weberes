@@ -4,37 +4,225 @@
     <meta charset="utf-8">
     <title>Sign_Up</title>
     <meta name="viewport" content="initial-scale=1">
-    <link rel="stylesheet" href="css/Sign_Up.css">
-    <script src="js/all.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
+    {% load static from staticfiles %}
+
+
+    <link rel="stylesheet" href="{% static "css/Sign_Up.css" %}">
+    <script src="{% static "js/all.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.2.1.min.js" %}" charset="utf-8"></script>
+    <style>
+
+      body{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-image: url("{% static "/imagenes/bosque8.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-color:white;
+    background-size: cover;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    width: 100%;
+}
+
+.Sign_Up{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+  height: auto;
+  color: white;
+  background-color: #9face6;
+  background-image: url("{% static "/imagenes/bosque8.1.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-color:white;
+    background-size: cover;
+   border-radius: 5px;
+   padding: 10px 5px;
+}
+
+@media all and (max-width: 600px){
+  .Sign_Up{
+    width: 450px;
+    height: auto;
+  }
+
+  .entrada{
+    height: 40px;
+    width: 350px;
+  }
+
+  .inputs{
+    width: 363px;
+  }
+
+  .div-subir{
+    width: 363px;
+  }
+
+  .input-naci{
+    width: 363px;
+  }
+
+  .guardar{
+    width: 150px;
+  }
+
+}
+
+  @media all and (max-width: 480px){
+
+    .Sign_Up{
+      width: 350px;
+      height: auto;
+    background-color: rgb(0, 0, 0,0.5);
+    background-image: none;
+    }
+
+    .entrada{
+      height: 40px;
+      width: 300px;
+    }
+
+    .inputs{
+      width: 312px;
+    }
+
+    .div-subir{
+      width: 312px;
+    }
+
+    .input-naci{
+      width: 312px;
+    }
+
+    select{
+      width: 70px;
+    }
+
+    .guardar{
+      width: 100px;
+    }
+
+    .textbtn{
+      font-size: 14px;
+    }
+
+    .termins{
+      font-size: 14px;
+    }
+
+    .logito{
+      width: 100px;
+      height: auto;
+    }
+  }
+
+    @media all and (max-width: 390px){
+      .Sign_Up{
+        width: 280px;
+        height: auto;
+      background-color: rgb(0, 0, 0,0.5);
+      background-image: none;
+      }
+
+      .entrada{
+        height: 40px;
+        width: 230px;
+      }
+
+      .inputs{
+        width: 242px;
+      }
+
+      .div-subir{
+        width: 242px;
+      }
+
+      select{
+        width: 60px;
+        margin: 5px 10px 0px 0px;
+        font-size: 12px;
+      }
+
+      .input-naci{
+        width: 242px;
+      }
+
+      .textbtn{
+        font-size: 14px;
+      }
+
+  .termins{
+     font-size: 12px;
+  }
+
+  #coords{
+    width: 230px;
+    font-size: 11px;
+  }
+
+  .texto-mapa{
+    font-size: 12px;
+  }
+
+  .texto-mapa-posicion{
+    font-size: 12px;
+  }
+}
+
+</style>
 
   </head>
   <body>
     <div class="container">
-      <form class="Sign_Up" action="index.html" method="post">
+      <form class="Sign_Up" enctype="multipart/form-data"  method="post">
+        {% csrf_token %}
         <div class="head">
-          <img class="logito" src="/imagenes/eres.png" alt="">
+          <img class="logito" src="static/imagenes/eres.png" alt="">
+        </div>
+
+
+
+        <div class="input">
+          <!--<label class="titulosinput">Primer Nombre</label>-->
+          {{form.primer_nombre}}
+          {{form.primer_nombre.error}}
         </div>
         <div class="input">
-          <label class="titulosinput">Primer Nombre</label>
-          <input class="entrada" name="names" required>
+          <!--<label class="titulosinput">Segundo Nombre</label>-->
+          {{form.segundo_nombre}}
+          {{form.segundo_nombre.error}}
         </div>
         <div class="input">
-          <label class="titulosinput">Segundo Nombre</label>
-          <input class="entrada" name="names" required>
+          <!--<label class="titulosinput">Primero Apellido</label>-->
+          {{form.primer_apellido}}
+          {{form.primer_apellido.error}}
         </div>
         <div class="input">
-          <label class="titulosinput">Primero Apellido</label>
-          <input class="entrada" name="names" required>
-        </div>
-        <div class="input">
-          <label class="titulosinput">Segundo Apellido</label>
-          <input class="entrada" name="names" required>
+          <!--<label class="titulosinput">Segundo Apellido</label>-->
+          {{form.segundo_apellido}}
+          {{form.segundo_apellido.error}}
         </div>
         <div class="input-naci">
   <legend class="titulosinput">Fecha de Nacimiento </legend>
-  <div class="fecanaci">
-  <select id="mes"name="mes"/>
+  <div class="fechanaci">
+
+    <select id="dia" name="dia">
+
+    </select>
+
+  <select id="mes"name="mes">
+    <option value="enero" selected='selected'>Mes</option>
     <option>Enero</option>
     <option>Febrero</option>
     <option>Marzo</option>
@@ -48,88 +236,33 @@
     <option>Noviembre</option>
     <option>Diciembre</option>
   </select>
-  <select id="dia" name="dia"/>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-    <option>10</option>
-    <option>11</option>
-    <option>12</option>
-    <option>13</option>
-    <option>14</option>
-    <option>15</option>
-    <option>16</option>
-    <option>17</option>
-    <option>18</option>
-    <option>19</option>
-    <option>20</option>
-    <option>21</option>
-    <option>22</option>
-    <option>23</option>
-    <option>24</option>
-    <option>25</option>
-    <option>26</option>
-    <option>27</option>
-    <option>28</option>
-    <option>29</option>
-    <option>30</option>
-    <option>31</option>
-  </select>
-  <select id="año" name="año"/>
-    <option>2008</option>
-    <option>2009</option>
-    <option>2010</option>
-    <option>2011</option>
-    <option>2012</option>
-    <option>2013</option>
-    <option>2014</option>
-    <option>2015</option>
-    <option>2016</option>
-    <option>2017</option>
-    <option>2018</option>
+
+  <select id="year" name="año">
+
   </select>
   </div>
 </fieldset>
         </div>
+
         <div class="input">
-            <label class="titulosinput">E-mail</label>
-            <input class="entrada" type="email" value='' required>
-        </div>
-        <div class="input">
-            <label class="titulosinput">Telefono</label>
-            <input class="entrada" type="tel" value='' required>
+           <!-- <label class="titulosinput">Telefono</label>-->
+           {{form.telefono}}
+           {{form.telefono.error}}
           </div>
+
+
         <div class="input">
-          <label class="titulosinput">Usuario</label>
-          <input class="entrada" type="text" value='' required>
+          <!--<label class="titulosinput">Dirección Física</label>-->
+          {{form.direccion}}
+          {{form.direccion.error}}
         </div>
+
         <div class="input">
-          <label class="titulosinput">Destacamento</label>
-          <input class="entrada" type="text" value='' required>
+          <label class="titulosinput">Añadir foto</label>
+          {{form.foto}}
+          {{form.foto.error}}
         </div>
-        <div class="input">
-          <label class="titulosinput">Codigo</label>
-          <input class="entrada" type="text" value='' required>
-        </div>
-        <div class="input">
-          <label class="titulosinput">Dirección Física</label>
-          <input class="entrada" type="text" value='' required>
-        </div>
-        <div class="input">
-          <label class="titulosinput">Dirección Gps</label>
-          <input class="entrada" name="names" required>
-          <button class="subir" type="submit" name="button"><p class="textbtn-subir">Obtener</p></button>
-        </div>
-          <div class="div-subir">
-            <label class="titulosinput">Agregar Foto</label>
-            <button class="subir" type="submit" name="button"><p class="textbtn-subir">Subir</p></button>
-        </div>
+
         <div class="inputs">
         <div class="input-radio">
           <div class="sexo">
@@ -141,14 +274,14 @@
           <label class="radios" for="mujer">Mujer</label>
         </div>
         </div>
-        <div class="input-cheque">
+        <!--<div class="input-cheque">
           <input type="checkbox" name="terminos" id="Terminos" value="true">
           <label id="termins" class="termins" for="Terminos"><b class="titulosinput">Acepto los terminos y condiciones</b></label>
-        </div>
+        </div>-->
 
         <button class="guardar" type="submit" name="button"><p class="textbtn">Guardar</p></button>
     </form>
-        <p class="texto-mapa">Mueva la gotita roja hasta su ubicacion GPS deseada</p>
+       <!-- <p class="texto-mapa">Mueva la gotita roja hasta su ubicacion GPS deseada</p>
     <div class="div-mapa">
       <label class="texto-mapa-posicion">Posicion GPS actual</label>
       <input type="text" id="coords" />
@@ -156,18 +289,80 @@
     </div>
   </div>
     <script src="js/Sign_Up.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyC77Se0ay0lUjPVp-k6YP-APAMp9M03F7o&sensor=false&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyC77Se0ay0lUjPVp-k6YP-APAMp9M03F7o&sensor=false&callback=initMap"></script> -->
     <script type="text/javascript">
 
-    /*$(document).ready(function(){
+    $(document).ready(function(){
 
-    $('#date').combodate({
-    minYear: 1940,
-    maxYear: 2013,
-    minuteStep: 10
+      $("#year").change(function(){
+
+                  setearfecha('year',$("#year").val());
+
+           })
+
+           $("#dia").change(function(){
+               setearfecha('dia',$("#dia").val());
+
+           })
+
+           $("#mes").change(function(){
+               setearfecha('mes',$("#mes").val());
+
+           })
+
+           $("#hombre").click(function(){
+                setearfecha('hombre','si');
+           })
+
+          $("#mujer").click(function(){
+               setearfecha('mujer','si');
+          })
+
+          function setearfecha(indi,valor){
+        $.ajax({
+            data:{'fecha':String(valor),'indicador':String(indi),'iduser':String({{perf.id}})},
+            url:'/setfechajax/',
+            type:'get',
+            success:function(json){
+            var html = JSON.parse(json);
+            console.log("FUNCIONO");
+
+        }, error:function(xhr,errmsg,err){
+            console.log("ocurio un  error ");
+
+        }
+
+      });
+
+      }
+
+      var n = parseInt(1909);
+        var n1 = parseInt(2006);
+        var tp = '<option value="" selected="selected">Año</option>';
+        while(n1 > n){
+          console.log(n1);
+           tp += String('<option value="') + String(n1) + String('">') + String(n1) + String('</option>');
+
+           n1-=1;
+
+        }
+
+        $("#year").html(tp).fadeIn();
+         n = parseInt(0);
+         n1 = parseInt(31);
+         tp = '<option value="" selected="selected">Dia</option>';
+        while(n1 > n){
+
+           tp += String('<option value="') + String(n1) + String('">') + String(n1) + String('</option>');
+
+           n1-=1;
+
+        }
+
+         $("#dia").html(tp).fadeIn();
+
+
     });
-
-    });*/
 
     </script>
   </body>

@@ -1,0 +1,328 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+.textbtn{
+    margin: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .guardar{
+    background: #0081c6;
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+    padding: 8px ;
+    cursor: pointer;
+    margin: 10px 0px;
+    -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+  }
+
+  .guardar:hover{
+    -moz-transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    -o-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+
+.contenedor-tarjeta::-webkit-scrollbar{
+    width: 4px;
+    background: rgb(0,0,0,0.2);
+    border-radius: 5px;
+
+  }
+
+.contenedor-tarjeta::-webkit-scrollbar-thumb{
+    background: rgb(70,205,207,1);
+    border-radius: 5px;
+  }
+
+.tarjeta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    width: 95%;
+    height: 120px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.tarjeta-navegante{
+    background-color:rgb(235, 177, 19, .4);
+}
+
+.tarjeta-pionero{
+    background-color:rgb(241, 35, 20, .4);
+}
+
+.tarjeta-seguidor{
+    background-color:rgb(70,205,207,.4);
+}
+
+.tarjeta-explorador{
+    background-color:rgb(78,149,37,.4);
+}
+
+.div-foto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.div-datos{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 60%;
+}
+
+.nombre{
+    margin: 5px 0px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.otros{
+    margin: 5px 0px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.div-grupo{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 20%;
+    height: 100%;
+}
+
+.foto-perfil{
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 110% auto;
+    margin-right: 10px;
+    border: solid 3px white;
+}
+
+.foto-grupo{
+    width: 50px;
+}
+
+@media all and (max-width: 950px){
+
+
+}
+
+@media all and (max-width: 850px){
+
+    .contenedor-tarjeta{
+        width: 90%;
+        height: 450px;
+        overflow-y: scroll;
+    }
+
+}
+
+@media all and (max-width: 750px){
+
+    .contenedor-tarjeta{
+        width: 95%;
+        height: 450px;
+        overflow-y: scroll;
+    }
+
+    .foto-perfil{
+        width: 100px;
+        height: 100px;
+    }
+
+}
+
+@media all and (max-width: 650px){
+
+
+    .div-foto{
+        width: 20%;
+    }
+
+    .div-datos{
+        width: 70%;
+    }
+
+
+    .div-grupo{
+        width: 10%;
+        height: 100%;
+    }
+
+    .nombre{
+        margin: 5px 0px;
+        font-size: 13px;
+    }
+
+    .otros{
+        margin: 5px 0px;
+        font-size: 13px;
+    }
+
+    .foto-perfil{
+        width: 80px;
+        height: 80px;
+    }
+
+    .foto-grupo{
+        width: 50px;
+    }
+
+}
+
+@media all and (max-width: 550px){
+
+    .contenedor-tarjeta{
+        height: 550px;
+        overflow-y: scroll;
+        margin: 10px 0px;
+    }
+
+    .tarjeta{
+        width: 90%;
+    }
+
+    .div-foto{
+        width: 20%;
+    }
+
+    .div-datos{
+        width: 75%;
+    }
+
+
+    .div-grupo{
+        width: 5%;
+        height: 100%;
+    }
+
+    .nombre{
+        margin: 5px 0px;
+        font-size: 12px;
+    }
+
+    .otros{
+        margin: 5px 0px;
+        font-size: 12px;
+    }
+
+    .foto-perfil{
+        width: 70px;
+        height: 70px;
+        border: solid 3px white;
+    }
+
+    .foto-grupo{
+        width: 30px;
+    }
+
+
+}
+
+@media all and (max-width: 470px){
+
+  .foto-perfil{
+      width: 60px;
+      height: 60px;
+      border: solid 2px white;
+  }
+
+}
+
+@media all and (max-width: 450px){
+
+    .div-foto{
+        width: 25%;
+    }
+
+    .div-datos{
+        width: 70%;
+    }
+
+
+    .div-grupo{
+        width: 5%;
+        height: 100%;
+    }
+
+    .foto-perfil{
+        width: 60px;
+        height: 60px;
+        border: solid 2px white;
+    }
+
+    .foto-grupo{
+        width: 30px;
+    }
+
+
+}
+
+@media all and (max-width: 350px){
+
+    .nombre{
+        margin: 5px 0px;
+        font-size: 11px;
+    }
+
+    .otros{
+        margin: 5px 0px;
+        font-size: 11px;
+    }
+
+    .foto-perfil{
+        width: 50px;
+        height: 50px;
+        border: solid 2px white;
+    }
+
+    .foto-grupo{
+        width: 30px;
+    }
+
+
+
+}
+
+@media all and (max-width: 280px){
+
+  .foto-perfil{
+      width: 40px;
+      height: 40px;
+      border: solid 2px white;
+  }
+
+}

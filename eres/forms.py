@@ -104,3 +104,113 @@ class CodigoForm(forms.ModelForm):
              } ),
 
         }
+
+class DestacamentoForm(forms.ModelForm):
+    class Meta:
+        model = Destacamento
+        exclude = ("user","direccion_GPS",)
+        widgets = {
+            'nombre' : forms.TextInput( attrs = {'name' : 'nombre',
+            'required' : 'True',
+            'id': 'nombre',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Nombre'
+              } ),
+
+            'codigo' : forms.TextInput( attrs = {'name' : 'codigo',
+            'required' : 'True',
+            'id': 'codigo',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Codigo de destacamento'
+              } ),
+
+            'iglesia' : forms.TextInput( attrs = {'name' : 'Iglesia',
+            'required' : 'True',
+            'id': 'iglesia',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Iglesia'
+              } ),
+
+            'pastor' : forms.TextInput( attrs = {'name' : 'pastor',
+            'required' : 'True',
+            'id': 'pastor',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Pastor'
+              } ),
+
+            'direccion' : forms.TextInput( attrs = {'name' : 'direccion',
+            'required' : 'True',
+            'id': 'direccion',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Dirección'
+              } ),
+
+            'zona' : forms.Select( attrs = {'name' : 'mes',
+            'required' : 'True',
+            'id': 'mes',
+              } ),
+
+
+        }
+
+
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        exclude = ("user",'destacamento','cargo','codigo',"direccion_GPS",'year','mes','dia','sexo',)
+        widgets = {
+            'primer_nombre' : forms.TextInput( attrs = {'name' : 'nombrep',
+            'required' : 'True',
+            'id': 'nombre1',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Primer Nombre'
+              } ),
+
+            'segundo_nombre' : forms.TextInput( attrs = {'name' : 'nombres',
+            'id': 'nombre2',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Segundo Nombre'
+              } ),
+
+            'primer_apellido' : forms.TextInput( attrs = {'name' : 'apellidop',
+            'required' : 'True',
+            'id': 'ape1',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Primer Apellido'
+              } ),
+
+            'segundo_apellido' : forms.TextInput( attrs = {'name' : 'apellidos',
+            'id': 'ape2',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Segundo Apellido'
+              } ),
+
+            'telefono' : forms.TextInput( attrs = {'name' : 'telefono',
+            'id': 'telefono',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Telefono'
+              } ),
+
+            'direccion' : forms.TextInput( attrs = {'name' : 'direccion',
+            'id': 'direccion',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Direccion'
+              } ),
+
+             'foto' : forms.ClearableFileInput( attrs = { 'class': 'mybutton perusuario',
+            'style' : 'cursor:pointer;'
+             } ),
+
+
+        }

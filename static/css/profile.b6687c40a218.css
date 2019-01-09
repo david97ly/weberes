@@ -1,0 +1,227 @@
+*{
+  margin:0;
+  padding:0;
+  font-family: 'Montserrat', sans-serif; 
+}
+
+.todo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.div-menu{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  height: auto;
+  
+}
+
+.div-perfil{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  height: auto;
+  
+}
+
+.div-basicos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: auto;
+  border-radius: 5px;
+  margin: 5px 0px;
+}
+
+.foto-perfil{
+  display: flex;
+  height: 120px;
+  width: 120px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 110% auto;
+  margin: 10px 0px;
+  border: 4px solid white;
+
+}
+
+.foto-nombre{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  color: white;
+  font-weight: 600;
+  background-color: #9face6;
+  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
+  background: -webkit-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
+  background: -o-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
+  background: -moz-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
+  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: center;
+   
+}
+
+.datos{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0px;
+  width: 100%;
+}
+
+.div-datos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
+  width: 99%;
+  border: solid #74ebd5 2px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.datos p{
+  color: #74ebd5;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.div-logros{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+  height: auto;
+  border-radius: 5px;
+  margin: 5px 0px 5px 5px;
+  background-color: rgba(159, 172, 230, 0.5);
+}
+
+.logros{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 20px 0px;
+  background-color: ;
+}
+
+.logros .premios img{
+  width: 100px;
+}
+
+.logros .premios{
+  width: 100px;
+  margin: 5px 5px;
+}
+
+.imagen-departamento img{
+  width: 120px;
+  height: auto;
+}
+
+hr{
+  width: 90%;
+  height: 5px;
+  background-color: #7486eb;
+  border: 0px;
+}
+
+.no-ganado{
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+@media all and (max-width: 800px){
+
+  .div-menu{
+    width: 100%;
+    height: auto;
+    
+  }
+
+  .div-perfil{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+  }
+  
+  }
+
+  @media all and (max-width: 600px){
+
+    
+  .div-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+  }
+
+  .div-basicos{
+    width: 95%;
+    height: auto;
+  }
+
+  
+.div-logros{
+  width: 95%;
+  height: auto;
+  border-radius: 5px;
+  margin: 5px 0px;
+}
+
+  }
+
+  @media all and (max-width: 400px){
+
+    .foto-perfil{
+      height: 100px;
+      width: 100px;
+    }
+
+    .foto-nombre {
+      font-weight: 500;
+    }
+
+    .logros .premios img{
+      width: 80px;
+    }
+    
+    .logros .premios{
+      width: 80px;
+      margin: 5px 5px;
+    }
+
+  }

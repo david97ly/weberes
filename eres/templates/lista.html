@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      {% load static from staticfiles %}
+
+
+<style>
+    body{
+    background-image: url("{% static "/imagenes/bosque7.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-size: cover;
+}
+    .contenedor-tarjeta{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-flow: wrap;
+    padding: 10px 0px;
+    background: rgb(0,0,0,0.5);
+    background-image: url("/imagenes/bosque7.1.jpg");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-size: cover;
+    width: 80%;
+    height: 450px;
+    overflow-y: scroll;
+    margin: 10px 0px;
+
+
+}
+</style>
+
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/lista.css" %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/titular.css" %}" />
+
+</head>
+<body>
+    <div class="contenedor">
+
+        <div class="titular">
+            <div class="nombre-destacamento">
+                <p class="nombresito">{{destacamento.nombre}} {{destacamento.codigo}}</p>
+            </div>
+            <div class="foto-destacamento">
+                <img class="fotito" src="static/imagenes/destacamento.jpg" alt="">
+            </div>
+        </div>
+
+      <a href="{% url "registroexplorador" destacamento.id %}"> <button class="guardar" type="submit" name="button"><p class="textbtn">Agregar Explorador</p></button></a>
+
+
+
+       {% if lisexplo %}
+       <div class="contenedor-tarjeta">
+
+          {% for ex in lisexplo %}
+
+          {% if ex.edad > 0 and ex.edad <= 7  %}
+          <div class="tarjeta tarjeta-navegante">
+              <div class="div-foto">
+              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              </div>
+              <div class="div-datos">
+                  <p class="nombre">{{ex.nombre}}</p>
+                  <p class="otros">{{ex.direc}}</p>
+                  <p class="otros">{{ex.edad}} años</p>
+                  <p class="otros">{{ex.codigo}}</p>
+              </div>
+              <div class="div-grupo">
+                  <img class="foto-grupo" src="static/imagenes/1.png" alt="">
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+          {% for ex in lisexplo %}
+          {% if ex.edad > 7 and ex.edad <= 11  %}
+          <div class="tarjeta tarjeta-pionero">
+              <div class="div-foto">
+              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              </div>
+              <div class="div-datos">
+                  <p class="nombre">{{ex.nombre}}</p>
+                  <p class="otros">{{ex.direc}}</p>
+                  <p class="otros">{{ex.edad}} años</p>
+                  <p class="otros">{{ex.codigo}}</p>
+              </div>
+              <div class="div-grupo">
+                  <img class="foto-grupo" src="static/imagenes/2.png" alt="">
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+          {% for ex in lisexplo %}
+          {% if ex.edad > 11 and ex.edad <= 13  %}
+          <div class="tarjeta tarjeta-seguidor">
+              <div class="div-foto">
+              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              </div>
+              <div class="div-datos">
+                  <p class="nombre">{{ex.nombre}}</p>
+                  <p class="otros">{{ex.direc}}</p>
+                  <p class="otros">{{ex.edad}} años</p>
+                  <p class="otros">{{ex.codigo}}</p>
+              </div>
+              <div class="div-grupo">
+                  <img class="foto-grupo" src="static/imagenes/3.png" alt="">
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+          {% for ex in lisexplo %}
+          {% if ex.edad > 13 and ex.edad <= 17  %}
+          <div class="tarjeta tarjeta-explorador">
+              <div class="div-foto">
+              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              </div>
+              <div class="div-datos">
+                  <p class="nombre">{{ex.nombre}}</p>
+                  <p class="otros">{{ex.direc}}</p>
+                  <p class="otros">{{ex.edad}} años</p>
+                  <p class="otros">{{ex.codigo}}</p>
+              </div>
+              <div class="div-grupo">
+                  <img class="foto-grupo" src="static/imagenes/4.png" alt="">
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+          {% for ex in lisexplo %}
+          {% if ex.edad > 17  %}
+          <div class="tarjeta tarjeta-explorador">
+              <div class="div-foto">
+              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              </div>
+              <div class="div-datos">
+                  <p class="nombre">{{ex.nombre}}</p>
+                  <p class="otros">{{ex.direc}}</p>
+                  <p class="otros">{{ex.edad}} años</p>
+                  <p class="otros">{{ex.codigo}}</p>
+              </div>
+              <div class="div-grupo">
+                  <img class="foto-grupo" src="static/imagenes/Royal_Rangers.svg.png" alt="">
+              </div>
+          </div>
+          {% endif %}
+
+
+       {% endfor %}
+
+
+                         </div>
+
+       {% endif %}
+
+
+
+
+</div>
+</body>
+</html>
