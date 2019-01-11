@@ -26,7 +26,7 @@
     flex-flow: wrap;
     padding: 10px 0px;
     background: rgb(0,0,0,0.5);
-    background-image: url("/imagenes/bosque7.1.jpg");
+    background-image: url("{% static "/imagenes/bosque7.1.jpg" %}");
     background-attachment:fixed;
     background-repeat: no-repeat;
     background-position:50% 50%;
@@ -42,6 +42,7 @@
 
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/lista.css" %}" />
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/titular.css" %}" />
+<script src="{% static "js/all.min.js" %}"></script>
 
 </head>
 <body>
@@ -77,6 +78,10 @@
                   <p class="otros">{{ex.codigo}}</p>
               </div>
               <div class="div-grupo">
+                <div class="div-botones">
+                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
+                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-lock"></i></button>
+                </div>
                   <img class="foto-grupo" src="static/imagenes/1.png" alt="">
               </div>
           </div>
@@ -96,6 +101,10 @@
                   <p class="otros">{{ex.codigo}}</p>
               </div>
               <div class="div-grupo">
+                <div class="div-botones">
+                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
+                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-lock-open"></i></button>
+                </div>
                   <img class="foto-grupo" src="static/imagenes/2.png" alt="">
               </div>
           </div>
@@ -115,6 +124,10 @@
                   <p class="otros">{{ex.codigo}}</p>
               </div>
               <div class="div-grupo">
+                <div class="div-botones">
+                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
+                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-user-lock"></i></button>
+                </div>
                   <img class="foto-grupo" src="static/imagenes/3.png" alt="">
               </div>
           </div>
@@ -134,6 +147,10 @@
                   <p class="otros">{{ex.codigo}}</p>
               </div>
               <div class="div-grupo">
+                <div class="div-botones">
+                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
+                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-user-lock"></i></button>
+                </div>
                   <img class="foto-grupo" src="static/imagenes/4.png" alt="">
               </div>
           </div>
@@ -143,6 +160,7 @@
           {% for ex in lisexplo %}
           {% if ex.edad > 17  %}
           <div class="tarjeta tarjeta-explorador">
+
               <div class="div-foto">
               <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
               </div>
@@ -153,8 +171,13 @@
                   <p class="otros">{{ex.codigo}}</p>
               </div>
               <div class="div-grupo">
+                  <div class="div-botones">
+                    <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
+                    <button class="boton-suspender" type="button" name="button"><i class="fas fa-user-lock"></i></button>
+                  </div>
                   <img class="foto-grupo" src="static/imagenes/Royal_Rangers.svg.png" alt="">
               </div>
+
           </div>
           {% endif %}
 

@@ -125,18 +125,17 @@ def utilierrorcodigo(request):
 @login_required(login_url='login')
 def codigo(request):
     try:
-        print("Almenos entre aqui al codigo")
+
         us  = User.objects.get(pk = request.user.id)
-        print("y todavia pase aqui")
+
         try:
-            print("apunto de hacer el pedidio del perfil")
+
             per = Perfil.objects.get(user = us)
-            print("este es el perfil " + str(per.primer_nombre) )
+
             if per:
-                print("Significa que tiene perfil")
                 return redirect("/perfil")
             else:
-                print("paso al else")
+                pass
         except Exception as e:
             print("que paso en este error: " + str(e))
 
@@ -144,19 +143,17 @@ def codigo(request):
         if request.POST:
             form = CodigoForm(request.POST,instance = us)
             if form.is_valid():
-                #codigo = form.save(commit=False)
-                #codigo.save()
-                print("veamos que imprime")
-                print("Significa que si es valido " + str(form.cleaned_data['codigo']))
-                print("ya imprimio")
+                codigo = form.save(commit=False)
+
+
                 try:
-                    cod = form.cleaned_data['codigo']
+                    cod = form.cleaned_data['codigo']#capturo el codigo
 
                     try:
-                        c = Codigo.objects.get(codigo = cod)
+                        c = Codigo.objects.get(codigo = cod) #verifico si ese codigo ya este en el sistema
                         if c:
                             print("ESTE PERFIL ESTA SIENDO UTILIZADO")
-                            return redirect("/utilierrorcodigo")
+                            return redirect("/utilierrorcodigo") # si esta lo mando a la pagina de error
                     except Exception as e:
                         pass
 
@@ -178,6 +175,7 @@ def codigo(request):
                         codn.codigo = cod
                         codn.user = us
                         codn.save()
+                        
                         form.save()
 
                         return redirect("perfil")
@@ -378,13 +376,23 @@ def registroexplorador(request,iddesta):
                 siglasz = siglas(desta.zona.nombre)
                 des = str(siglas( str(str(desta.nombre))))
                 codigo = minus(str(codigo))
-                ncodigo = generarnumeros(str(str(siglasz) + str(des) + str(codigo)))
-
-                #fl = True
-                #while(fl):
 
 
-                fo.codigo = str(siglasz) + str(des) + str(desta.codigo) + str(codigo) + str(ncodigo)
+                perfiles = Perfil.objects.all()
+                supercod = ""
+                fl = True
+
+                while(fl==True):
+                    ncodigo = generarnumeros(str(str(siglasz) + str(des) + str(codigo)))
+                    supercod  = str(siglasz) + str(des) + str(desta.codigo) + str(codigo) + str(ncodigo)
+                    fl = False
+                    for p in perfiles:
+                        if str(p.codigo).strip() == str(supercod).strip():
+                            fl = True
+
+
+
+                fo.codigo = supercod
 
                 fo.save()
                 return redirect("/admindestacamento")

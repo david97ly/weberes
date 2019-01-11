@@ -44,6 +44,7 @@
   }
 
 .contenedor-tarjeta::-webkit-scrollbar{
+    height: 4px;
     width: 4px;
     background: rgb(0,0,0,0.2);
     border-radius: 5px;
@@ -114,10 +115,40 @@
 
 .div-grupo{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-end;
+    flex-direction: column;
     width: 20%;
     height: 100%;
+}
+
+.div-botones{
+  display: flex;
+}
+
+
+.boton-suspender{
+    color: white;
+    background: #f12314;
+    border-radius: 5px;
+    border: none;
+    width: auto;
+    padding: 8px ;
+    cursor: pointer;
+    margin: 0px 4px;
+    font-size: 16px;
+  }
+
+.boton-editar{
+    color: white;
+    background: #0081c6;
+    border-radius: 5px;
+    border: none;
+    width: auto;
+    padding: 8px ;
+    cursor: pointer;
+    margin: 0px 4px;
+    font-size: 16px;
 }
 
 .foto-perfil{
@@ -135,10 +166,55 @@
     width: 50px;
 }
 
-@media all and (max-width: 950px){
 
+/* comienzan medias para los botones de editar y suspender*/
+
+@media all and (max-width: 550px){
+
+  .div-botones{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boton-suspender{
+      padding: 4px ;
+      margin: 2px 0px;
+      font-size: 13px;
+    }
+
+  .boton-editar{
+      padding: 4px ;
+      margin: 2px 0px;
+      font-size: 13px;
+  }
 
 }
+
+@media all and (max-width: 450px){
+
+  .div-botones{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boton-suspender{
+      padding: 3px ;
+      margin: 2px 0px;
+      font-size: 12px;
+    }
+
+  .boton-editar{
+      padding: 3px ;
+      margin: 2px 0px;
+      font-size: 12px;
+  }
+
+}
+
+/* terminan medias para los botones de editar y suspender*/
+
+
+
 
 @media all and (max-width: 850px){
 
@@ -251,6 +327,17 @@
 
 
 }
+
+
+@media all and (max-width: 500px){
+
+  .foto-perfil{
+      width: 65px;
+      height: 65px;
+      border: solid 3px white;
+  }
+}
+
 
 @media all and (max-width: 470px){
 
