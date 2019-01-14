@@ -84,6 +84,10 @@
     background-color:rgb(78,149,37,.4);
 }
 
+.tarjeta-lider{
+    background-color:rgba(5, 111, 168, 0.4);
+}
+
 .div-foto{
     display: flex;
     justify-content: center;
@@ -110,7 +114,7 @@
     margin: 5px 0px;
     color: white;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .div-grupo{
@@ -128,8 +132,8 @@
 
 
 .boton-suspender{
+    background: #4E9525;
     color: white;
-    background: #f12314;
     border-radius: 5px;
     border: none;
     width: auto;
@@ -137,6 +141,11 @@
     cursor: pointer;
     margin: 0px 4px;
     font-size: 16px;
+    -webkit-transition: all 3.0s ease;
+    -moz-transition: all .3.0s ease;
+    -ms-transition: all .3.0s ease;
+    -o-transition: all .3.0s ease;
+    transition: all .3.0s ease;
   }
 
 .boton-editar{
@@ -166,6 +175,46 @@
     width: 50px;
 }
 
+.div-buscador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    /*background: wheat;*/
+}
+
+.buscador{
+    width: 90%;
+    height: auto;
+    padding: 8px 4px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.boton-buscador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0081c6;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin: 0px 0px;
+    width: 10%;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.bloqueado{
+  filter: grayscale(90%);
+}
 
 /* comienzan medias para los botones de editar y suspender*/
 
@@ -213,7 +262,15 @@
 
 /* terminan medias para los botones de editar y suspender*/
 
+@media all and (max-width: 1020px){
 
+    .buscador{
+        width: 85%;
+    }
+
+    .boton-buscador{
+        width: 15%;
+    }
 
 
 @media all and (max-width: 850px){
@@ -222,6 +279,10 @@
         width: 90%;
         height: 450px;
         overflow-y: scroll;
+    }
+
+    .div-buscador{
+        width: 90%;
     }
 
 }
@@ -237,6 +298,10 @@
     .foto-perfil{
         width: 100px;
         height: 100px;
+    }
+
+    .div-buscador{
+        width: 95%;
     }
 
 }
@@ -275,6 +340,19 @@
 
     .foto-grupo{
         width: 50px;
+    }
+
+    .buscador{
+        width: 80%;
+    }
+
+    .boton-buscador{
+        padding: 9px;
+        width: 20%;
+    }
+
+    .boton-buscador p{
+        display: none;
     }
 
 }

@@ -59,7 +59,10 @@
 
       <a href="{% url "registroexplorador" destacamento.id %}"> <button class="guardar" type="submit" name="button"><p class="textbtn">Agregar Explorador</p></button></a>
 
-
+      <div class="div-buscador">
+          <input results="3" placeholder="Buscar un integrante del destacamento..." class="buscador" type="search">
+          <button class="boton-buscador"><p>Buscar</p><i style="padding-left:4px; " class="fas fa-search"></i></button>
+     </div>
 
        {% if lisexplo %}
        <div class="contenedor-tarjeta">
@@ -67,7 +70,14 @@
           {% for ex in lisexplo %}
 
           {% if ex.edad > 0 and ex.edad <= 7  %}
-          <div class="tarjeta tarjeta-navegante">
+
+                {% if ex.activo %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-navegante">
+            {% else %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-navegante bloqueado">
+                {% endif %}
+
+          
               <div class="div-foto">
               <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
               </div>
@@ -80,7 +90,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-lock"></i></button>
+                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
                 </div>
                   <img class="foto-grupo" src="static/imagenes/1.png" alt="">
               </div>
@@ -90,7 +100,14 @@
 
           {% for ex in lisexplo %}
           {% if ex.edad > 7 and ex.edad <= 11  %}
-          <div class="tarjeta tarjeta-pionero">
+
+
+            {% if ex.activo %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-pionero">
+            {% else %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-pionero bloqueado">
+                {% endif %}
+
               <div class="div-foto">
               <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
               </div>
@@ -103,7 +120,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-lock-open"></i></button>
+                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
                 </div>
                   <img class="foto-grupo" src="static/imagenes/2.png" alt="">
               </div>
@@ -113,7 +130,15 @@
 
           {% for ex in lisexplo %}
           {% if ex.edad > 11 and ex.edad <= 13  %}
-          <div class="tarjeta tarjeta-seguidor">
+
+
+
+            {% if ex.activo %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-seguidor">
+            {% else %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-seguidor bloqueado">
+                {% endif %}
+
               <div class="div-foto">
               <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
               </div>
@@ -126,7 +151,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-user-lock"></i></button>
+                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
                 </div>
                   <img class="foto-grupo" src="static/imagenes/3.png" alt="">
               </div>
@@ -134,9 +159,18 @@
           {% endif %}
           {% endfor %}
 
+          
+
           {% for ex in lisexplo %}
           {% if ex.edad > 13 and ex.edad <= 17  %}
-          <div class="tarjeta tarjeta-explorador">
+
+
+            {% if ex.activo %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-explorador">
+            {% else %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-explorador bloqueado">
+                {% endif %}
+
               <div class="div-foto">
               <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
               </div>
@@ -149,7 +183,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button class="boton-suspender" type="button" name="button"><i class="fas fa-user-lock"></i></button>
+                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas  fa-lock-open"></i></button>
                 </div>
                   <img class="foto-grupo" src="static/imagenes/4.png" alt="">
               </div>
@@ -159,7 +193,12 @@
 
           {% for ex in lisexplo %}
           {% if ex.edad > 17  %}
-          <div class="tarjeta tarjeta-explorador">
+
+          {% if ex.activo %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-lider">
+            {% else %}
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-lider bloqueado">
+                {% endif %}
 
               <div class="div-foto">
               <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
@@ -173,7 +212,7 @@
               <div class="div-grupo">
                   <div class="div-botones">
                     <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                    <button class="boton-suspender" type="button" name="button"><i class="fas fa-user-lock"></i></button>
+                    <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
                   </div>
                   <img class="foto-grupo" src="static/imagenes/Royal_Rangers.svg.png" alt="">
               </div>
@@ -193,5 +232,62 @@
 
 
 </div>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-3.2.1.min.js"><\/script>')</script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+            {% for ex in lisexplo %}
+
+            $("#block{{ex.id}}").on('click',Bloquear{{ex.id}});
+
+        
+
+
+       
+      
+       
+       function Bloquear{{ex.id}}(){
+       
+        
+
+
+   $.ajax({
+        data:{'idexp':{{ex.id}}},
+        url:'/block/',
+        type:'get',
+        success:function(json){
+        var html = JSON.parse(json);
+         var fl = html.fl;
+         var ide = html.id;
+
+            if(fl){
+                
+                $("#{{ex.id}}").removeClass('bloqueado');
+
+                $("#candado{{ex.id}}").removeClass('fa-lock');
+                $("#candado{{ex.id}}").addClass('fa-lock-open');
+
+                console.log("Esta bloqueado " );
+                
+            }else{
+                 $("#{{ex.id}}").addClass('bloqueado');
+
+                $("#candado{{ex.id}}").removeClass('fa-lock-open');
+                $("#candado{{ex.id}}").addClass('fa-lock');
+                 
+                console.log("Esta desbloqueado " );
+            }
+    
+
+        }
+    });
+}
+
+    {% endfor %}
+    });
+
+    </script>
+
 </body>
 </html>

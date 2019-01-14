@@ -38,7 +38,6 @@ from django.urls import path,re_path
 from django.views.static import serve
 
 
-
 urlpatterns = [
     path('admin/',admin.site.urls),
     re_path(r'^ingresar/$', LogInView.as_view(), name='login'),
@@ -54,6 +53,8 @@ urlpatterns = [
     re_path(r'^admindestacamento',admindestacamento, name='admindestacamento'),
     re_path(r'^creardestacamento',login_required(CrearDestacamentoView.as_view(),login_url='login'), name='creardestacamento'),
     re_path(r'^setfechajax/$',login_required(SetFecha.as_view(),login_url='login'),name='setearfecha'),
+    re_path(r'^block/$',login_required(Block.as_view(),login_url='login'),name='block'),
+
     #path('',home),
     re_path(r'^$', home, name='home'),
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT,}),

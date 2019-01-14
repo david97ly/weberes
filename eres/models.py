@@ -121,6 +121,8 @@ class Perfil(models.Model):
     year = models.IntegerField(blank=True, null=True)
     creado = models.DateField(auto_now_add=True)
     foto = models.ImageField(upload_to='avatares',default="static/imagenes/usuario.png",blank=True, null=True)
+    activo = models.BooleanField(default=True)
+
 
     def __str__(self):
         return str(self.primer_nombre)

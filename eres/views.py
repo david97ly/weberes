@@ -287,11 +287,13 @@ def admindestacamento(request):
                 except Exception as e:
                     return redirect("/creardestacamento")
                 else:
-                    explo = Perfil.objects.filter(destacamento=destacamento).exclude(primer_nombre=' ')
+                    explo = Perfil.objects.filter(destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
 
                     lisexplo = []
                     class Exp():
-                        nombre =""
+                        id = 0
+                        activo = 0
+                        nombre = ""
                         direc = ""
                         foto = ""
                         edad = 0
@@ -314,6 +316,8 @@ def admindestacamento(request):
 
 
                         l.direc = ex.direccion
+                        l.id = ex.id
+                        l.activo = ex.activo
                         l.foto = ex.foto.url
                         l.codigo = ex.codigo
                         l.edad = calculedad(ex.dia,ex.mes,ex.year)
@@ -454,6 +458,43 @@ class SetFecha(TemplateView):
 
 
             response = JsonResponse({'fl':fl})
+            return HttpResponse(response.content)
+    except Exception as e:
+        print ("OCURRIO UN SUPER ERROR Y NO SE PORQUE PERO AQUI ESTA EL MENSAJE DE ERROR")
+        print (e.message)
+
+
+
+class Block(TemplateView):
+    print ("SIQUIERA ENTRE AQUI AL AJAX")
+    try:
+        def get(self,request,*args,**kwargs):
+           
+        
+            id = request.GET['idexp']
+            print("El id es: " + str(id))
+
+            per = Perfil.objects.get(pk = id)
+
+            print("El perfil es: " + str(per.primer_nombre))
+            fl = False
+
+            if per.activo == True:
+                per.activo = False
+                per.save()
+                fl =  False
+            else:
+                per.activo = True
+                per.save()
+                fl = True
+
+            print("FL es: " + str(fl))
+          
+
+         
+
+
+            response = JsonResponse({'fl':fl, 'id':id})
             return HttpResponse(response.content)
     except Exception as e:
         print ("OCURRIO UN SUPER ERROR Y NO SE PORQUE PERO AQUI ESTA EL MENSAJE DE ERROR")
