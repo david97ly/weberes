@@ -1,0 +1,229 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    background-color:rgba(223, 221, 221, 0.2);
+}
+
+.titulo-solicitud{
+    color: #0081c6;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding-top: 10px;
+}
+
+.info-destacamento{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    /*border: solid 2px #0081c6;*/
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px 0px;
+}
+
+.info-destacamento .div-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    height: auto;
+    border-radius: 8px;
+    border:solid 2px #0081c6;
+    margin: 20px;
+    padding: 20px 0px;
+}
+
+.div-datos{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    background: white;
+    border-bottom:solid 1px #0081c6;
+    border-radius: 0px;
+    margin: 4px 0px;
+}
+
+.titulo-dato{
+    color: #0081c6;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 4px 4px;
+}
+
+.dato{
+    color: #46cdcf;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 4px 4px;
+    padding-left: 10px;
+}
+
+.datos-inscripcion{
+    color: #0081c6;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 10px;
+    text-transform: uppercase;
+}
+
+.div-lideres{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    background: white;
+    border-bottom:solid 1px #0081c6;
+    border-radius: 0px;
+    margin: 4px 0px;
+}
+
+.datos-lideres{
+    display: flex;
+}
+
+.datos-departamentos{
+    display: flex;
+    flex-direction: row;
+}
+
+.igual{
+    color: #0081c6;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 4px;
+    padding-left: 10px;
+}
+
+.otrodiv{
+    display: flex;
+}
+
+@media all and (max-width: 850px){
+
+    .info-destacamento{
+        width: 90%;
+        height: 100%;
+    }
+
+    .info-destacamento .div-info {
+        width: 80%;
+    }
+
+
+}
+
+@media all and (max-width: 750px){
+
+    .info-destacamento{
+        width: 95%;
+    }
+
+    .info-destacamento .div-info {
+        width: 90%;
+    }
+
+}
+
+@media all and (max-width: 650px){
+
+    .info-destacamento{
+        width: 95%;
+    }
+
+    .titulo-dato{
+        font-size: 14px;
+        padding: 4px 4px;
+    }
+    
+    .dato{
+        font-size: 14px;
+        padding: 4px 4px;
+        padding-left: 0px;
+    }
+
+    .igual{
+        font-size: 16px;
+        padding: 4px;
+        padding-left: 0px;
+    }
+
+    .datos-inscripcion{
+        font-size: 14px;
+        margin: 10px;
+    }    
+
+}
+
+@media all and (max-width: 550px){
+
+    .titulo-dato{
+        font-size: 13px;
+        padding: 4px 4px;
+    }
+    
+    .dato{
+        font-size: 13px;
+        padding: 4px 4px;
+    }
+
+}
+
+@media all and (max-width: 500px){
+
+    .datos-lideres{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+
+@media all and (max-width: 450px){
+
+    .datos-lideres{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .div-datos{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .datos-departamentos{
+        display: flex;
+    }
+}
+
+@media all and (max-width: 300px){
+
+    .datos-departamentos{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .datos-inscripcion{
+        font-size: 13px;
+        text-align: center;
+    }    
+
+}

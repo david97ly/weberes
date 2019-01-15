@@ -12,7 +12,10 @@
   <style>
 
 body{
-  background-image:url("static/imagenes/bosque0.jpg") ;
+ 
+
+  background-image:url("{% static "imagenes/bosque0.jpg" %}") ;
+
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-position:50% 50%;
@@ -28,7 +31,7 @@ body{
   padding: 5px 0px;
   width: 100%;
   background-color: rgb(0, 0, 0, 0.5);
-  background-image:url("static/imagenes/bosque0.1.jpg") ;
+  background-image:url("{% static "imagenes/bosque0.1.jpg" %}") ;
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-position:50% 50%;
@@ -47,7 +50,7 @@ body{
   border-radius: 5px;
   margin: 5px 0px 5px 5px;
   background-color: rgba(0, 0, 0, 0.5);
-  background-image:url("static/imagenes/bosque0.1.jpg") ;
+  background-image:url("{% static "imagenes/bosque0.1.jpg" %}") ;
   background-attachment:fixed;
   background-repeat: no-repeat;
   background-position:50% 50%;
@@ -63,7 +66,7 @@ body{
   height: auto;
   color: white;
   font-weight: 600;
-  background-image:url("static/imagenes/camuflaje.jpg");
+  background-image:url("{% static "imagenes/camuflaje.jpg" %}");
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   text-align: center;
@@ -79,18 +82,7 @@ body{
 
    <div class="todo">
 
-    <div class="div-menu" >
-          <header>
-              <nav>
-                  <ul>
-                      <li><a href="#"><span class="primero"><i class="icon fas fa-user"></i></span> Mis Datos</a></li>
-                      <li><a href="{% url "destacamento" %}"><span class="segundo"><i class="icon fas fa-campground"></i></span> Adm. Dest.</a></li>
-                      <li><a href="#"><span class="tercero"><i class="icon fas fa-star"></i></span> Favoritos</a></li>
-                      <li><a href="#"><span class="cuarto"><i class="icon fas fa-edit"></i></span> Publicaciones</a></li>
-                  </ul>
-              </nav>
-          </header>
-    </div>
+          {% include "menuperfil.html" %}
 
       <div class="div-perfil">
         <div class="div-basicos">
@@ -100,7 +92,9 @@ body{
           </div>
             <div class="div-datos">
               <div class="datos"> <p class="cosa">Cargo: </p> <p class="cosita"> Soon</p></div>
-              <div class="datos"> <p class="cosa">E-mail: </p> <p class="cosita"> {{us.email}}</p></div>
+              {% if not email  == 0 %}
+              <div class="datos"> <p class="cosa">E-mail: </p> <p class="cosita"> {{email}}</p></div>
+              {% endif %}
               <div class="datos"> <p class="cosa">Telefono: </p> <p class="cosita"> {{per.telefono}}</p></div>
               <div class="datos"> <p class="cosa">Destacamento: </p> <p class="cosita"> {{per.destacamento}} {{per.destacamento.codigo}}</p></div>
               <div class="datos"> <p class="cosa">Edad: </p> <p class="cosita"> {{edad}} años</p></div>

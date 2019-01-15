@@ -162,7 +162,7 @@ class DestacamentoForm(forms.ModelForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        exclude = ("user",'destacamento','cargo','codigo',"direccion_GPS",'year','mes','dia','sexo',)
+        exclude = ("departamento","user","activo",'destacamento','cargo','codigo',"direccion_GPS",'year','mes','dia','sexo',)
         widgets = {
             'primer_nombre' : forms.TextInput( attrs = {'name' : 'nombrep',
             'required' : 'True',

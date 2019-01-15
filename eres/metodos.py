@@ -68,6 +68,7 @@ def calculedad(dia,mes,year):
 
         return edad
     except Exception as e:
+        print("Ocurrio un error al calcular la edad: " + str(e))
         return 0
 
 

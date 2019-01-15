@@ -112,6 +112,17 @@ def errorcodigo(request):
     except Exception as e:
         pass
 
+
+@login_required(login_url='login')
+def eventos(request):
+    try:
+        variable = 0
+        context = {'variable':variable}
+        template = "landing1.html"
+        return render(request,template,context)
+    except Exception as e:
+        pass
+
 @login_required(login_url='login')
 def utilierrorcodigo(request):
     try:
@@ -230,13 +241,55 @@ def perfil(request):
             print(nombre)
             edad = calculedad(per.dia,per.mes,per.year)
             print(edad)
-            context = {'us':us,'per':per,'nombre':nombre,'edad':edad}
+            email = us.email
+            context = {'email':email,'per':per,'nombre':nombre,'edad':edad}
             template ="profile.html"
             print("apunto de llegar a profiles")
             return render(request,template,context)
     except Exception as e:
         print (e)
         return redirect("home")
+
+@login_required(login_url='login')
+def infoperfil(request,idperfil):
+    try:
+        per = Perfil.objects.get(pk = idperfil)
+        email = 0
+        context = {}
+        try:
+            us = User.objects.get(pk = per.user.id)
+            email = us.email
+            context['email'] = email
+
+        except Exception as e:
+            print("Esto es lo que paso:  " + str(e))
+            
+
+        nombre = ""
+        if per.primer_nombre != None:
+             nombre += str(per.primer_nombre)
+        if per.segundo_nombre != None:
+            nombre += " " + str(per.segundo_nombre)
+        if per.primer_apellido != None:
+            nombre += " " + str(per.primer_apellido)
+        if per.segundo_apellido != None:
+            nombre += " " + str(per.segundo_apellido)
+        print("Este es el nombre")
+        print(nombre)
+        edad = calculedad(per.dia,per.mes,per.year)
+        print(edad)
+        
+        
+        template ="profile.html"
+
+        context['edad'] = edad
+        context['per'] = per
+        context['nombre'] = nombre
+
+        print("apunto de llegar a profiles")
+        return render(request,template,context)
+    except Exception as e:
+        print("Este fue el error en ver el perfil: "+ str (e))
 
 
 @login_required(login_url='login')
@@ -251,6 +304,25 @@ def destacamento(request):
             context = {'us':us}
             template ="crear-destacamento.html"
             print("apunto de llegar a profiles")
+
+            return render(request,template,context)
+    except Exception as e:
+        print (e)
+
+@login_required(login_url='login')
+def inscripcion(request):
+    try:
+        print("Entre a inscripcion")
+        us = User.objects.get(pk = request.user.id)
+        print("El usuario es: " + str(us))
+        cod = Codigo.objects.get(user=us)
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+        else:
+            context = {'us':us}
+            template ="inscripcion.html"
+            
 
             return render(request,template,context)
     except Exception as e:
@@ -271,9 +343,11 @@ class CrearDestacamentoView(CreateView):
         return super(CrearDestacamentoView,self).form_valid(form)
 
 
+
 @login_required(login_url='login')
 def admindestacamento(request):
     try:
+        print("entre a admin destacamento")
         us = User.objects.get(pk = request.user.id)
         cod = Codigo.objects.get(user=us)
         explo = False
@@ -281,7 +355,26 @@ def admindestacamento(request):
         if cod.codigo == None:
             return redirect("codigo")
         else:
-            try:
+
+            if request.POST:
+                
+                abuscar = request.POST['tex']
+                
+                try:
+                    destacamento = Destacamento.objects.get(user = request.user)
+                except Exception as e:
+                    return redirect("/creardestacamento")
+                else:
+                    explo = Perfil.objects.filter(Q(primer_nombre__icontains=abuscar)
+                    | Q(segundo_nombre__icontains=abuscar) | Q(primer_apellido__icontains=abuscar) 
+                    | Q(segundo_apellido__icontains=abuscar) | Q(direccion__icontains=abuscar) 
+                    | Q(telefono__icontains=abuscar) 
+                    | Q(codigo__icontains=abuscar) 
+                    | Q(departamento__icontains=abuscar),destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
+
+              
+            else:
+
                 try:
                     destacamento = Destacamento.objects.get(user = request.user)
                 except Exception as e:
@@ -289,56 +382,75 @@ def admindestacamento(request):
                 else:
                     explo = Perfil.objects.filter(destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
 
-                    lisexplo = []
-                    class Exp():
-                        id = 0
-                        activo = 0
-                        nombre = ""
-                        direc = ""
-                        foto = ""
-                        edad = 0
-                        cargo = ""
-                        codigo = ""
-                    print ("atnes de llegar a la carga a ala lista")
-                    for ex in explo:
-                        l = Exp()
-                        if ex.primer_nombre != None:
-                            l.nombre += ex.primer_nombre
+                   
+            try:
+                lisexplo = []
+                class Exp():
+                    id = 0
+                    activo = 0
+                    nombre = ""
+                    direc = ""
+                    foto = ""
+                    edad = 0
+                    cargo = ""
+                    codigo = ""
+                print ("atnes de llegar a la carga a ala lista")
+                for ex in explo:
+                    l = Exp()
+                    if ex.primer_nombre != None:
+                        l.nombre += ex.primer_nombre
 
-                        if ex.segundo_nombre != None:
-                            l.nombre += str(" ") + str(ex.segundo_nombre)
+                    if ex.segundo_nombre != None:
+                        l.nombre += str(" ") + str(ex.segundo_nombre)
 
-                        if ex.primer_apellido != None:
-                            l.nombre += str(" ") + str(ex.primer_apellido)
+                    if ex.primer_apellido != None:
+                        l.nombre += str(" ") + str(ex.primer_apellido)
 
-                        if ex.segundo_apellido != None:
-                            l.nombre += str(" ") + str(ex.segundo_apellido)
-
-
-                        l.direc = ex.direccion
-                        l.id = ex.id
-                        l.activo = ex.activo
-                        l.foto = ex.foto.url
-                        l.codigo = ex.codigo
-                        l.edad = calculedad(ex.dia,ex.mes,ex.year)
-
-                        lisexplo.append(l)
-
-                    print (lisexplo)
+                    if ex.segundo_apellido != None:
+                        l.nombre += str(" ") + str(ex.segundo_apellido)
 
 
+                    l.direc = ex.direccion
+                    l.id = ex.id
+                    l.activo = ex.activo
+                    l.foto = ex.foto.url
+                    l.codigo = ex.codigo
+                    ed = calculedad(ex.dia,ex.mes,ex.year)
+                    l.edad = ed
+                    print("VEAMOS LA EDAD: " + str(ed))
+
+                    
+                    if ed > 0 and ed <= 7:
+                        ex.departamento = "Navegantes"
+                        ex.save()
+                    elif ed > 7 and ed <= 10:
+                        ex.departamento = "Pioneros"
+                        ex.save()
+                    elif ed > 10 and ed <= 13:
+                        ex.departamento = "Seguidores de la senda"
+                        ex.save()
+                    elif ed > 13 and ed <= 17:
+                        ex.departamento = "Exploradores"
+                        ex.save()
+                    else:
+                        ex.departamento = "Lideres"
+                        ex.save()
+
+
+                    lisexplo.append(l) 
 
             except Exception as e:
-                print("No tiene destacamento " + str(e) )
+                pass
 
 
-            context = {'us':us,'destacamento':destacamento,'lisexplo':lisexplo}
+            context = {'us':us,'destacamento':destacamento,'lisexplo':lisexplo,'iddesta':destacamento.id}
             template ="lista.html"
             print("apunto de llegar a profiles")
 
             return render(request,template,context)
     except Exception as e:
-        print (e)
+        print ("El error al entrar al admindestacamento es: " + str(e))
+        return redirect("/")
 
 
 @login_required(login_url='login')
@@ -411,6 +523,106 @@ def registroexplorador(request,iddesta):
         return render(request,template,context)
     except Exception as e:
         raise
+
+
+@login_required(login_url='login')
+def editarexplorador(request,iddesta,idexplo):
+    try:
+        desta = Destacamento.objects.get(pk=iddesta)
+        perf = Perfil.objects.get(pk=idexplo)
+
+    except Exception as e:
+        print(e)
+        return redirect("home")
+
+
+    try:
+        if request.POST:
+            form = PerfilForm(request.POST,request.FILES,instance=perf)
+            if form.is_valid():
+                fo = form.save(commit=False)
+                codigo = ""
+                if fo.primer_nombre != None:
+                    codigo += fo.primer_nombre[0]
+
+                if fo.segundo_nombre != None:
+                    codigo += fo.segundo_nombre[0]
+
+                if fo.primer_apellido != None:
+                    codigo += fo.primer_apellido[0]
+
+                if fo.segundo_apellido != None:
+                    codigo += fo.segundo_apellido[0]
+
+                print("ESTE ES EL CODIGO: " + str(codigo))
+
+                siglasz = siglas(desta.zona.nombre)
+                des = str(siglas( str(str(desta.nombre))))
+                codigo = minus(str(codigo))
+
+
+                perfiles = Perfil.objects.all()
+                supercod = ""
+                fl = True
+
+                while(fl==True):
+                    ncodigo = generarnumeros(str(str(siglasz) + str(des) + str(codigo)))
+                    supercod  = str(siglasz) + str(des) + str(desta.codigo) + str(codigo) + str(ncodigo)
+                    fl = False
+                    for p in perfiles:
+                        if str(p.codigo).strip() == str(supercod).strip():
+                            fl = True
+
+
+
+                fo.codigo = supercod
+
+                fo.save()
+                return redirect("/admindestacamento")
+        else:
+            tp = ''
+            n = 1910
+            form = PerfilForm(instance=perf)
+            template = 'Sign_Up.html'
+
+            context = {'form':form,'n':n,'tp':tp,'perf':perf,'idexplo': idexplo,'iddesta':iddesta}
+
+        return render(request,template,context)
+    except Exception as e:
+        raise
+
+
+
+
+@login_required(login_url='login')
+def editardestacamento(request,iddesta):
+    try:
+        desta = Destacamento.objects.get(pk=iddesta)
+        
+
+    except Exception as e:
+        print(e)
+        return redirect("home")
+
+
+    try:
+        if request.POST:
+            form = DestacamentoForm(request.POST,request.FILES,instance=desta)
+            if form.is_valid():
+
+                form.save()
+                return redirect("/admindestacamento")
+        else:
+           
+            form = DestacamentoForm(instance=desta)
+            template = "registrar-destacamento.html"
+
+            context = {'form':form}
+
+        return render(request,template,context)
+    except Exception as e:
+        raise
+
 
 class SetFecha(TemplateView):
     print ("SIQUIERA ENTRE AQUI AL AJAX")

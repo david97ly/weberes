@@ -141,11 +141,11 @@
     cursor: pointer;
     margin: 0px 4px;
     font-size: 16px;
-    -webkit-transition: all 3.0s ease;
-    -moz-transition: all .3.0s ease;
-    -ms-transition: all .3.0s ease;
-    -o-transition: all .3.0s ease;
-    transition: all .3.0s ease;
+    -webkit-transition: all 6s ease;
+    -moz-transition: all .6s ease;
+    -ms-transition: all .6s ease;
+    -o-transition: all .6s ease;
+    transition: all .6s ease;
   }
 
 .boton-editar{
@@ -214,6 +214,13 @@
 
 .bloqueado{
   filter: grayscale(90%);
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 /* comienzan medias para los botones de editar y suspender*/

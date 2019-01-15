@@ -38,6 +38,15 @@
 
 
 }
+
+.tuerquita{
+   position:absolute;
+   z-index:2;
+   color:white;
+   font-size:22px;
+   margin:8px;
+}
+
 </style>
 
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/lista.css" %}" />
@@ -49,20 +58,29 @@
     <div class="contenedor">
 
         <div class="titular">
+            <a href="{% url "editardestacamento" destacamento.id %}" >    <i class="fas fa-cog tuerquita"></i></a>
             <div class="nombre-destacamento">
                 <p class="nombresito">{{destacamento.nombre}} {{destacamento.codigo}}</p>
             </div>
             <div class="foto-destacamento">
-                <img class="fotito" src="static/imagenes/destacamento.jpg" alt="">
+
+                {% if destacamento.foto.url != none %}
+                <img class="fotito" src="{{destacamento.foto.url}}" alt="">
+                {% endif %}
             </div>
         </div>
 
       <a href="{% url "registroexplorador" destacamento.id %}"> <button class="guardar" type="submit" name="button"><p class="textbtn">Agregar Explorador</p></button></a>
-
+   
+     <form method="post" action="{% url "admindestacamento" %}">
+    {% csrf_token %}
       <div class="div-buscador">
-          <input results="3" placeholder="Buscar un integrante del destacamento..." class="buscador" type="search">
-          <button class="boton-buscador"><p>Buscar</p><i style="padding-left:4px; " class="fas fa-search"></i></button>
+       
+         
+          <input name="tex" id="tex" results="3" placeholder="Buscar un integrante del destacamento..." class="buscador" type="search">
+          <button type="submit" class="boton-buscador"><p>Buscar</p><i style="padding-left:4px; " class="fas fa-search"></i></button>
      </div>
+     </form>
 
        {% if lisexplo %}
        <div class="contenedor-tarjeta">
@@ -78,9 +96,12 @@
                 {% endif %}
 
           
-              <div class="div-foto">
-              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
-              </div>
+         <div class="div-foto">
+
+             <a href="{% url "infoperfil" ex.id %}"> <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div></a> 
+             
+             </div>
+
               <div class="div-datos">
                   <p class="nombre">{{ex.nombre}}</p>
                   <p class="otros">{{ex.direc}}</p>
@@ -89,8 +110,18 @@
               </div>
               <div class="div-grupo">
                 <div class="div-botones">
-                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+                 <a href="{% url "editarexplorador" iddesta ex.id %}">   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a>
+
+                       {% if ex.activo %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+
+                        {% else %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock"></i></button>
+
+                        {% endif %}
+
+                  
+
                 </div>
                   <img class="foto-grupo" src="static/imagenes/1.png" alt="">
               </div>
@@ -109,7 +140,7 @@
                 {% endif %}
 
               <div class="div-foto">
-              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              <a href="{% url "infoperfil" ex.id %}"> <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div></a> 
               </div>
               <div class="div-datos">
                   <p class="nombre">{{ex.nombre}}</p>
@@ -119,8 +150,17 @@
               </div>
               <div class="div-grupo">
                 <div class="div-botones">
-                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+               <a href="{% url "editarexplorador" iddesta ex.id %}">    <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a> 
+                  
+                     {% if ex.activo %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+
+                        {% else %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock"></i></button>
+
+                        {% endif %}
+
+
                 </div>
                   <img class="foto-grupo" src="static/imagenes/2.png" alt="">
               </div>
@@ -140,7 +180,7 @@
                 {% endif %}
 
               <div class="div-foto">
-              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              <a href="{% url "infoperfil" ex.id %}"> <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div></a> 
               </div>
               <div class="div-datos">
                   <p class="nombre">{{ex.nombre}}</p>
@@ -150,8 +190,17 @@
               </div>
               <div class="div-grupo">
                 <div class="div-botones">
-                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+               <a href="{% url "editarexplorador" iddesta ex.id %}">   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button> </a> 
+                 
+                  {% if ex.activo %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+
+                        {% else %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock"></i></button>
+
+                        {% endif %}
+
+                
                 </div>
                   <img class="foto-grupo" src="static/imagenes/3.png" alt="">
               </div>
@@ -172,7 +221,7 @@
                 {% endif %}
 
               <div class="div-foto">
-              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+             <a href="{% url "infoperfil" ex.id %}"> <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div></a> 
               </div>
               <div class="div-datos">
                   <p class="nombre">{{ex.nombre}}</p>
@@ -182,8 +231,17 @@
               </div>
               <div class="div-grupo">
                 <div class="div-botones">
-                  <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                  <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas  fa-lock-open"></i></button>
+              <a href="{% url "editarexplorador" iddesta ex.id %}">     <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a> 
+                
+                   {% if ex.activo %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+
+                        {% else %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock"></i></button>
+
+                        {% endif %}
+
+                
                 </div>
                   <img class="foto-grupo" src="static/imagenes/4.png" alt="">
               </div>
@@ -201,7 +259,7 @@
                 {% endif %}
 
               <div class="div-foto">
-              <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div>
+              <a href="{% url "infoperfil" ex.id %}"> <div style="background-image: url({{ex.foto}})" class="foto-perfil"></div></a> 
               </div>
               <div class="div-datos">
                   <p class="nombre">{{ex.nombre}}</p>
@@ -211,8 +269,17 @@
               </div>
               <div class="div-grupo">
                   <div class="div-botones">
-                    <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button>
-                    <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+                  <a href="{% url "editarexplorador" iddesta ex.id %}">   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a> 
+                 
+                    {% if ex.activo %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
+
+                        {% else %}
+                         <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock"></i></button>
+
+                        {% endif %}
+
+                 
                   </div>
                   <img class="foto-grupo" src="static/imagenes/Royal_Rangers.svg.png" alt="">
               </div>

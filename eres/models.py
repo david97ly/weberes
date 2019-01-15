@@ -122,6 +122,32 @@ class Perfil(models.Model):
     creado = models.DateField(auto_now_add=True)
     foto = models.ImageField(upload_to='avatares',default="static/imagenes/usuario.png",blank=True, null=True)
     activo = models.BooleanField(default=True)
+    departamento = models.CharField(max_length=500,null=True,blank=True)
+
+
+    def __str__(self):
+        return str(self.primer_nombre)
+
+
+class Publicacion(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
+    
+    codigo = models.CharField(max_length=500,null=True,blank=True)
+    primer_nombre = models.CharField(max_length=500,null=True,blank=True)
+    segundo_nombre = models.CharField(max_length=500,null=True,blank=True)
+    primer_apellido = models.CharField(max_length=500,null=True,blank=True)
+    segundo_apellido = models.CharField(max_length=500,null=True,blank=True)
+    sexo = models.CharField(max_length=500,blank=True, null=True)
+    telefono = models.CharField(max_length=500,null=True,blank=True)
+    direccion = models.CharField(max_length=500,null=True,blank=True)
+    direccion_GPS = models.CharField(max_length=500,null=True,blank=True)
+    dia = models.IntegerField(blank=True, null=True)
+    mes = models.CharField(max_length=500,blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+    creado = models.DateField(auto_now_add=True)
+    foto = models.ImageField(upload_to='avatares',default="static/imagenes/usuario.png",blank=True, null=True)
+    activo = models.BooleanField(default=True)
+    departamento = models.CharField(max_length=500,null=True,blank=True)
 
 
     def __str__(self):

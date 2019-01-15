@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Eventos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      {% load static from staticfiles %}
+    <script src="{% static "js/all.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "js/landing1.js" %}"></script>
+
+    <style>
+        .encabezado{
+    width: 96%;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: #46cdcf;
+    /*margin-bottom: 10px;*/
+    color: white;
+    font-size: 18px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-image: url("{% static "imagenes/camuflaje.jpg"%}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-color:#0081c6;
+    background-size: cover;
+}
+    </style>
+
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/landing1.css" %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/modal.css" %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/nuevamodal.css" %}" />
+</head>
+<body>
+
+        <div class="todo">
+
+            <div class="modal1">
+                <div class="ventana1">
+                    <div class="cerrar1"><i style="cursor: pointer;" class="far fa-times-circle"></i></div>
+                    <div class="wrap">
+                        <ul class="tablas">
+                            <li><a class="tab1" href="#tab1"><span class="spanm"><i class="fas fa-edit"></i><p>Texto</p></span></a></li>
+                            <li><a class="tab2" href="#tab2"><span class="spanm"><i class="fas fa-image"></i><p>Foto</p></span></a></li>
+                        </ul>
+                        <div class="secciones">
+                            <article id="tab1">
+                                <textarea name="" id="inputpubli1" placeholder="Escribe cualquier evento o noticia de Exploradores del Rey..."></textarea>
+                            </article>
+                            <article id="tab2">
+                                    <textarea name="" id="inputpubli2" placeholder="Agrega un descripción a tu foto..."></textarea>
+                            </article>
+                        </div>
+                        <div class="divcito">
+                            <button class="botoncito">Publicar<i style="padding-left: 4px;" class="fab fa-telegram-plane"></i></button>
+                            <button class="botoncito">Fijar<i style="padding-left: 4px;" class="fas fa-thumbtack"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-publicaciones">
+                <div class="nuevapublicacion">
+                <button class="nueva">Nueva Publicación</button>
+                </div>
+                <div class="modal">
+                 
+                    <div class="ventana">
+                        <div id="cerrar" class="cerrar"><i style="cursor: pointer;" class="far fa-times-circle"></i></div>
+                            <!--<div class="modal-publicacion">
+                                <div class="modal-fotonombre">
+                                    <p class="modal-nombreperfil">Eduardo Enrique Granados Matamoros</p>
+                                    <img class="modal-fotoperfil" src="{% static "imagenes/foto-txt.jpg" %}" alt="">
+                                </div> 
+                                <div class="modal-contenidotexto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!    
+                                    </p>
+                                </div>  
+                            </div>-->
+                            <div class="modal-comentario">
+                                <div class="comentario-indi" >
+                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-texto">
+                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
+                                    </div>
+                                </div>
+                                <div class="comentario-indi" >
+                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-texto">
+                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
+                                    </div>
+                                </div>
+                                <div class="comentario-indi" >
+                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-texto">
+                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
+                                    </div>
+                                </div>
+                                <div class="comentario-indi" >
+                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-texto">
+                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
+                                    </div>
+                                </div>
+                                <div class="comentario-indi" >
+                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-texto">
+                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
+                                    </div>
+                                </div>
+                            </div> 
+                        <div class="agregar-comentario">
+                                <textarea placeholder="Agregar comentario..."></textarea>
+                                <div class="div-agregar"><button class="agregar"><i class="fab fa-telegram-plane"></i></button></div>
+                        </div> 
+                    </div>
+                    
+                </div>
+
+                <div class="publicacion">
+                    <div class="foto-nombre">
+                        <p class="nombreperfil">Eduardo Enrique Granados Matamoros</p>
+                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                    </div>
+                    <div class="contenido-texto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!</p>
+                    </div>
+                    <div class="div-comentarios">
+                        <div class="iconos-comentarios">
+                            <div class="div-iconos">
+                                <i id="estrella" class="fas fa-star iconos color-estrella"></i>
+                                <p>123</p>
+                            </div>
+                            <div class="div-iconos">
+                                    <a id="abrir" href="#"><i class="far fa-comment iconos color-comentario"></i></a> 
+                                    <p>123</p>
+                                </div>
+                        </div>
+                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
+                    </div>
+                </div>
+                <div class="publicacion">
+                    <div class="foto-nombre">
+                        <p class="nombreperfil">Eduardo Enrique Granados</p>
+                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                    </div>
+                    <div class="contenido-texto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis consectetur maiores voluptate repudiandae laudantium quibusdam dolores eum reprehenderit exercitationem magnam non veniam voluptatum aliquid, asperiores impedit tenetur necessitatibus beatae possimus?    
+                        </p>
+                    </div>
+                    <div class="div-comentarios">
+                        <div class="iconos-comentarios">
+                            <div class="div-iconos">
+                                <i class="far fa-star iconos color-estrella"></i>
+                                <p>123</p>
+                            </div>
+                            <div class="div-iconos">
+                                    <i class="far fa-comment iconos color-comentario"></i>
+                                    <p>123</p>
+                                </div>
+                        </div>
+                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
+                    </div>
+                </div>
+                <div class="publicacion">
+                    <div class="foto-nombre">
+                        <p class="nombreperfil">Eduardo Enrique Granados Matamoros</p>
+                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                    </div>
+                    <div class="contenido-foto">
+                        <img src="/imagenes/riguito.JPG" alt="">
+                    </div>
+                    <div class="descripcion-foto">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur blanditiis volupt. Deserunt impedit ducimus porro eum voluptatibus nemo maiores dignissimos et reprehenderit aliquam recusandae doloribus, provident voluptatum laborum! Excepturi quis veniam earum maiores.</p>
+                    </div>
+                    <div class="div-comentarios">
+                        <div class="iconos-comentarios">
+                            <div class="div-iconos">
+                                <i id="estrella" class="far fa-star iconos color-estrella"></i>
+                                <p>123</p>
+                            </div>
+                            <div class="div-iconos">
+                                    <a id="abrir" href="#"><i class="far fa-comment iconos color-comentario"></i></a> 
+                                    <p>123</p>
+                                </div>
+                        </div>
+                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="div-noticias">
+                <div class="encabezado" id="boton" >
+                    <p class="margenes"><i class="fas fa-newspaper margenes"></i>NOTICIAS</p>
+                    <i id="icono" class="fas fa-angle-down"></i>
+                </div>
+                <div class="temporal" id="noticias">
+                <div class="publicacion">
+                    <div class="foto-nombre">
+                        <p class="nombreperfil">Eduardo Enrique Granados</p>
+                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                    </div>
+                    <div class="contenido-texto">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!</p>
+                    </div>
+                    <div class="div-comentarios">
+                        <div class="iconos-comentarios">
+                            <div class="div-iconos">
+                                <i class="far fa-star iconos color-estrella"></i>
+                                <p>123</p>
+                            </div>
+                            <div class="div-iconos">
+                                    <i class="far fa-comment iconos color-comentario"></i>
+                                    <p>123</p>
+                                </div>
+                        </div>
+                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>    
+
+</body>
+</html>
