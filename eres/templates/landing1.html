@@ -31,17 +31,22 @@
     background-color:#0081c6;
     background-size: cover;
 }
+
+
     </style>
 
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/landing1.css" %}" />
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/modal.css" %}" />
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/nuevamodal.css" %}" />
+<link rel="stylesheet" href="{% static "css/menu1.css" %}">
+
 </head>
 <body>
-
+        {% include "menuperfil.html" %}
         <div class="todo">
 
-            <div class="modal1">
+            <form class="modal1" method = "post" enctype="multipart/form-data" >
+            {% csrf_token %}
                 <div class="ventana1">
                     <div class="cerrar1"><i style="cursor: pointer;" class="far fa-times-circle"></i></div>
                     <div class="wrap">
@@ -51,19 +56,28 @@
                         </ul>
                         <div class="secciones">
                             <article id="tab1">
-                                <textarea name="" id="inputpubli1" placeholder="Escribe cualquier evento o noticia de Exploradores del Rey..."></textarea>
+                              <!--  <textarea name="" id="inputpubli1" placeholder="Escribe cualquier evento o noticia de Exploradores del Rey..."></textarea>-->
+                              {{form.descripcion}}
                             </article>
                             <article id="tab2">
                                     <textarea name="" id="inputpubli2" placeholder="Agrega un descripción a tu foto..."></textarea>
                             </article>
                         </div>
                         <div class="divcito">
-                            <button class="botoncito">Publicar<i style="padding-left: 4px;" class="fab fa-telegram-plane"></i></button>
-                            <button class="botoncito">Fijar<i style="padding-left: 4px;" class="fas fa-thumbtack"></i></button>
+                         <!--  {{form.foto}}-->
+                            <form >
+                                <div class='div-file'>
+                                <p>Imagen<i class="fas fa-file-image"></i></p>
+                                <input type='file' id='subir-imagen'>
+                                </div>
+                            </form>
+                            <!--<button type="submit" class="botoncito">Imagen<i style="padding-left: 4px;" class="fas fa-file-image"></i></button>-->
+
+                            <button class="botoncito">Publicar<i style="padding-left: 4px;" class="fab fa-telegram-plane"></i>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
 
             <div class="div-publicaciones">
                 <div class="nuevapublicacion">
@@ -87,35 +101,35 @@
                             </div>-->
                             <div class="modal-comentario">
                                 <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
                                     <div class="comentario-texto">
                                         <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
                                     </div>
                                 </div>
                                 <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
                                     <div class="comentario-texto">
                                         <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
                                     </div>
                                 </div>
                                 <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
                                     <div class="comentario-texto">
                                         <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
                                     </div>
                                 </div>
                                 <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
                                     <div class="comentario-texto">
                                         <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
                                     </div>
                                 </div>
                                 <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
                                     <div class="comentario-texto">
                                         <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
@@ -130,62 +144,27 @@
                     
                 </div>
 
+                
+                
+                {% for e in eve %}
+
                 <div class="publicacion">
                     <div class="foto-nombre">
-                        <p class="nombreperfil">Eduardo Enrique Granados Matamoros</p>
-                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
-                    </div>
-                    <div class="contenido-texto">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!</p>
-                    </div>
-                    <div class="div-comentarios">
-                        <div class="iconos-comentarios">
-                            <div class="div-iconos">
-                                <i id="estrella" class="fas fa-star iconos color-estrella"></i>
-                                <p>123</p>
-                            </div>
-                            <div class="div-iconos">
-                                    <a id="abrir" href="#"><i class="far fa-comment iconos color-comentario"></i></a> 
-                                    <p>123</p>
-                                </div>
+                        <p class="fecha">hace 20h</p>
+                        <div class="necesario">
+                             <p class="nombreperfil">{{e.user}}</p> 
+                            <div class="fotoperfil" style="background-image:url({{e.user.foto.url}})"></div>
                         </div>
-                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
-                    </div>
-                </div>
-                <div class="publicacion">
-                    <div class="foto-nombre">
-                        <p class="nombreperfil">Eduardo Enrique Granados</p>
-                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
-                    </div>
-                    <div class="contenido-texto">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis consectetur maiores voluptate repudiandae laudantium quibusdam dolores eum reprehenderit exercitationem magnam non veniam voluptatum aliquid, asperiores impedit tenetur necessitatibus beatae possimus?    
-                        </p>
-                    </div>
-                    <div class="div-comentarios">
-                        <div class="iconos-comentarios">
-                            <div class="div-iconos">
-                                <i class="far fa-star iconos color-estrella"></i>
-                                <p>123</p>
-                            </div>
-                            <div class="div-iconos">
-                                    <i class="far fa-comment iconos color-comentario"></i>
-                                    <p>123</p>
-                                </div>
-                        </div>
-                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
-                    </div>
-                </div>
-                <div class="publicacion">
-                    <div class="foto-nombre">
-                        <p class="nombreperfil">Eduardo Enrique Granados Matamoros</p>
-                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
-                    </div>
-                    <div class="contenido-foto">
-                        <img src="/imagenes/riguito.JPG" alt="">
                     </div>
                     <div class="descripcion-foto">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur blanditiis volupt. Deserunt impedit ducimus porro eum voluptatibus nemo maiores dignissimos et reprehenderit aliquam recusandae doloribus, provident voluptatum laborum! Excepturi quis veniam earum maiores.</p>
+                            <p>{{e.descripcion | linebreaksbr }}</p>
+                        </div>
+                    <div class="contenido-foto">
+                     <!--   <img src="{% static "imagenes/bosque0.jpg" %}" alt="">-->
+                            {% if e.foto %}
+                                 <img  src ="{{ e.foto.url }}">
+                            {% endif %}
+
                     </div>
                     <div class="div-comentarios">
                         <div class="iconos-comentarios">
@@ -201,6 +180,10 @@
                         <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
                     </div>
                 </div>
+
+                {% endfor %}
+
+                
             </div>
             <div class="div-noticias">
                 <div class="encabezado" id="boton" >
@@ -211,7 +194,7 @@
                 <div class="publicacion">
                     <div class="foto-nombre">
                         <p class="nombreperfil">Eduardo Enrique Granados</p>
-                        <div class="fotoperfil" style="background-image:url(imagenes/foto-txt.jpg)"></div>
+                        <div class="fotoperfil" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
                     </div>
                     <div class="contenido-texto">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!</p>

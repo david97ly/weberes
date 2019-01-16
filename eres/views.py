@@ -93,7 +93,7 @@ def corregir(request):
 
 def home(request):
 
-    titulo = "Pagina principal"
+    
     template = 'landing2.html'
     varible = "Exploradores"
 
@@ -116,12 +116,34 @@ def errorcodigo(request):
 @login_required(login_url='login')
 def eventos(request):
     try:
-        variable = 0
-        context = {'variable':variable}
+        us  = User.objects.get(pk = request.user.id)
+        context = {}
+        if request.POST:
+            form = PublicacionForm(request.POST,request.FILES)
+            if form.is_valid():
+                print("PASE POR EL FORMUALRIO")
+                fo = form.save(commit=False)
+                fo.user = us
+                fo.save()
+
+   
+
+        try:
+            eve = Publicacion.objects.all()
+            context['eve'] = eve
+        except Exception as identifier:
+            print("Est es el error: " + str(identifier))
+            form = PublicacionForm()
+            context['form'] = form
+
+        else:
+            form = PublicacionForm()
+            context['form'] = form
+
         template = "landing1.html"
         return render(request,template,context)
     except Exception as e:
-        pass
+        print("Este es el error: "+ str(e))
 
 @login_required(login_url='login')
 def utilierrorcodigo(request):
@@ -180,6 +202,8 @@ def codigo(request):
                         return redirect("/errorcodigo")
                     else:
                         per.user = us
+                        us.foto = per.foto
+                        us.save()
                         per.save()
 
                         codn = Codigo()

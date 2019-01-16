@@ -214,3 +214,23 @@ class PerfilForm(forms.ModelForm):
 
 
         }
+
+
+class PublicacionForm(forms.ModelForm):
+    class Meta:
+        model = Publicacion
+        exclude = ("user",'fecha','tiempo','fechahora','titulo',)
+        widgets = {
+            'descripcion' : forms.Textarea( attrs = {
+            'name' : 'public',
+            'id': 'inputpubli1',
+            'placeholder': 'Escriba su publicación'
+              } ),
+
+
+             'foto' : forms.ClearableFileInput( attrs = { 
+             'class': 'invisible',
+             } ),
+
+
+        }

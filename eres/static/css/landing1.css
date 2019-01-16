@@ -1,7 +1,7 @@
 *{
     padding: 0px;
     margin: 0px;
-    font-family: 'Montserrat', sans-serif;
+    font-family:"Lucida Grande", arial, sans-serif;
 }
 
 a{
@@ -76,6 +76,21 @@ body{
     height: 50px;
 }
 
+.necesario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+}
+
+.fecha{
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0px 8px;
+    color: #0081c6;
+}
+
 .fotoperfil{
     display: flex;
     height: 40px;
@@ -88,7 +103,7 @@ body{
 }
 
 .nombreperfil{
-    margin: 0px 8px;
+    margin: 0px 0px;
     font-weight: 500;
     font-size: 14px;
     color: #0081c6;
@@ -119,7 +134,7 @@ body{
     height: auto;
     padding: 0px 0px;
     color: #0081c6;
-    background-color: #46cdcf;
+    background-color: none;
 }
 
 .contenido-foto img{
@@ -129,7 +144,7 @@ body{
 
 .descripcion-foto{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: auto;
@@ -141,7 +156,7 @@ body{
     padding: 0px 8px;
     text-align: left;
     font-weight: 300;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .iconos-comentarios{
@@ -256,7 +271,46 @@ body{
     justify-content: center;
 }
 
+.div-file{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0081c6;
+    border-radius: 5px;
+    border: none;
+    width: 100px;
+    height: auto;
+    padding: 6px 6px;
+    cursor: pointer;
+    margin: 5px 0px;
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+}
 
+#subir-imagen{
+    position: absolute; 
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;  
+    overflow:hidden;
+}
+
+@media all and (max-width: 1350px){
+
+    .descripcion-foto p{
+        padding: 0px 8px;
+        text-align: left;
+        font-weight: 300;
+        font-size: 15px;
+    }
+
+}
 
 @media all and (max-width: 1000px){
     
@@ -283,6 +337,14 @@ body{
     .div-iconos p{
         font-size: 14px;
     }
+
+    .descripcion-foto p{
+        padding: 0px 8px;
+        text-align: left;
+        font-weight: 300;
+        font-size: 14px;
+    }
+
 
 }
 
@@ -393,14 +455,20 @@ body{
     }
 
     .nombreperfil{
-        width: 80%;
-        margin: 0px 2px;
+        width: auto;
+        margin: 0px 0px;
         font-weight: 500;
         color: #0081c6;
     }
     
+    .descripcion-foto p{
+        padding: 0px 8px;
+        text-align: left;
+        font-weight: 300;
+        font-size: 13px;
+    }
+
     .fotoperfil{
-        display: flex;
         height: 30px;
         width: 30px;
     }

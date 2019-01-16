@@ -8,6 +8,7 @@ import time
 from django.utils import timezone
 import sys
 
+
 # sys.setdefaultencoding() does not exist, here!
 #reload(sys)  # Reload does the trick!
 #sys.setdefaultencoding('UTF8')
@@ -45,6 +46,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    foto = models.ImageField(upload_to='avatares',blank=True, null=True)
 
     objects = UserManager()
 
@@ -131,24 +133,15 @@ class Perfil(models.Model):
 
 class Publicacion(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
-    
-    codigo = models.CharField(max_length=500,null=True,blank=True)
-    primer_nombre = models.CharField(max_length=500,null=True,blank=True)
-    segundo_nombre = models.CharField(max_length=500,null=True,blank=True)
-    primer_apellido = models.CharField(max_length=500,null=True,blank=True)
-    segundo_apellido = models.CharField(max_length=500,null=True,blank=True)
-    sexo = models.CharField(max_length=500,blank=True, null=True)
-    telefono = models.CharField(max_length=500,null=True,blank=True)
-    direccion = models.CharField(max_length=500,null=True,blank=True)
-    direccion_GPS = models.CharField(max_length=500,null=True,blank=True)
-    dia = models.IntegerField(blank=True, null=True)
-    mes = models.CharField(max_length=500,blank=True, null=True)
-    year = models.IntegerField(blank=True, null=True)
-    creado = models.DateField(auto_now_add=True)
-    foto = models.ImageField(upload_to='avatares',default="static/imagenes/usuario.png",blank=True, null=True)
-    activo = models.BooleanField(default=True)
-    departamento = models.CharField(max_length=500,null=True,blank=True)
-
+    fecha = models.DateField(auto_now_add=True,null=True,blank=True)
+    tiempo = models.TimeField(auto_now_add=True,null=True,blank=True)
+    fechahora = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    titulo = models.CharField(max_length=500,null=True,blank=True)
+    descripcion = models.CharField(max_length=10000,null=True,blank=True)
+    vistas = models.IntegerField(blank=True, null=True)
+    comentarios = models.IntegerField(blank=True, null=True)
+    favoritos = models.IntegerField(blank=True, null=True)
+    foto = models.ImageField(upload_to='avatares',blank=True, null=True)
 
     def __str__(self):
-        return str(self.primer_nombre)
+        return str(self.descripcion)

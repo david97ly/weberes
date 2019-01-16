@@ -79,12 +79,12 @@ img.logoblanco{
 
 hr{
     height: 5px;
-    background-color: #9face6;
-  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
+    background: #46cdcf;
+  /*background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
   background: -webkit-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
   background: -o-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
   background: -moz-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
+  background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;*/
     border: none;
     border-radius: 15px;
 
@@ -95,8 +95,8 @@ h1{
     margin:0px;
     padding:0px;
     text-align: center;
-    color: #9face6;
-    background: -webkit-linear-gradient(#9face6,#74ebd5);
+    background: #46cdcf;
+    /*background: -webkit-linear-gradient(#9face6,#74ebd5);*/
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -108,7 +108,8 @@ h2{
     margin:0px;
     padding:0px;
     color: #9face6;
-    background: -webkit-linear-gradient(#9face6,#74ebd5);
+    background: #46cdcf;
+    /*background: -webkit-linear-gradient(#9face6,#74ebd5);*/
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -125,7 +126,7 @@ h2{
 
 .iconos{
     font-size: 100px;
-    color: #7486eb;
+    color: #0081c6;
 }
 
 .iconos-texto{
@@ -134,7 +135,7 @@ h2{
     font-size: 20px;
     margin: 0px;
     padding: 5px;
-    color: #7486eb;
+    color: #0081c6;
 }
 
 .iconos-titulo{
@@ -143,7 +144,7 @@ h2{
     font-size: 20px;
     margin: 0px;
     padding: 10px 0px 0px 0px;
-    color: #7486eb;
+    color: #0081c6;
 }
 
 p.texto{
@@ -178,12 +179,7 @@ p.texto{
 }
 
 button.info-boton{
-    background-color: #9face6;
-    background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%);
-    background: -webkit-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-    background: -o-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-    background: -moz-linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
-    background: linear-gradient(180deg, #9face6 0%, #74ebd5 100%)!important;
+    background-color: #0081c6;
     border-radius: 5px;
     border: none;
     width: 200px;
@@ -202,7 +198,7 @@ button.info-boton{
     margin: 0px;
     padding: 0px;
     font-size: 25px;
-    color: #7486eb;
+    color: #0081c6;
     font-weight: 500;
 }
 
@@ -210,7 +206,7 @@ button.info-boton{
     margin: 0px;
     padding: 0px 0px 20px 0px;
     font-size: 20px;
-    color: #7486eb;
+    color: #0081c6;
 }
 
 .div-info-texto{

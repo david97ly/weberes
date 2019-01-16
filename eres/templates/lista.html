@@ -51,10 +51,14 @@
 
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/lista.css" %}" />
 <link rel="stylesheet" type="text/css" media="screen" href="{% static "css/titular.css" %}" />
+<link rel="stylesheet" href="{% static "css/menu1.css" %}">
 <script src="{% static "js/all.min.js" %}"></script>
 
 </head>
 <body>
+
+        {% include "menuperfil.html" %}
+
     <div class="contenedor">
 
         <div class="titular">
@@ -303,6 +307,8 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
+
+        
 
             {% for ex in lisexplo %}
 

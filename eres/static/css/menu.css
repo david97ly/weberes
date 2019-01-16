@@ -71,6 +71,39 @@ a{
   font-weight: 400;
 }
 
+/*nuevo logo de menu*/
+
+/*.div-imagen-footer{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 35%;
+  height: 60px;
+}
+
+.imagen-footer{
+  height: 30px;
+  width: auto;
+}
+
+
+.rayita{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  margin: 0px 10px;
+  border-left: solid #7486eb 1px;
+  color: #0081c6;
+  font-size: 15px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+a{
+  text-decoration: none;
+}*/
+
 /*.line{
   border: solid grey 1px;
   border-top: 0px;
