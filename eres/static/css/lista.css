@@ -269,6 +269,15 @@ form{
 
 /* terminan medias para los botones de editar y suspender*/
 
+@media all and (max-width: 1350px){
+.contenedor-tarjeta{
+    height: 450px;
+    overflow-y: scroll;
+    margin: 10px 0px;
+}
+
+}
+
 @media all and (max-width: 1020px){
 
     .buscador{
@@ -278,6 +287,15 @@ form{
     .boton-buscador{
         width: 15%;
     }
+
+    .contenedor-tarjeta{
+        height: 450px;
+        overflow-y: scroll;
+        margin: 10px 0px;
+    }
+}
+
+    
 
 
 @media all and (max-width: 850px){

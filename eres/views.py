@@ -114,7 +114,7 @@ def errorcodigo(request):
 
 
 @login_required(login_url='login')
-def eventos(request):
+def exploblog(request):
     try:
         us  = User.objects.get(pk = request.user.id)
         context = {}
@@ -124,12 +124,20 @@ def eventos(request):
                 print("PASE POR EL FORMUALRIO")
                 fo = form.save(commit=False)
                 fo.user = us
-                fo.save()
+
+                if fo.descripcion == None and fo.foto == None:
+                    print("Significa que no tiene nada")
+                else:
+                    fo.save()
+                    
 
    
 
         try:
-            eve = Publicacion.objects.all()
+            eve = Publicacion.objects.all().order_by("-id")
+            
+
+
             context['eve'] = eve
         except Exception as identifier:
             print("Est es el error: " + str(identifier))

@@ -224,12 +224,13 @@ class PublicacionForm(forms.ModelForm):
             'descripcion' : forms.Textarea( attrs = {
             'name' : 'public',
             'id': 'inputpubli1',
-            'placeholder': 'Escriba su publicación'
+            'placeholder': 'Escriba su publicación...'
               } ),
 
 
              'foto' : forms.ClearableFileInput( attrs = { 
-             'class': 'invisible',
+             'id': 'subir-imagen',
+             'style': 'opacity:0;',
              } ),
 
 

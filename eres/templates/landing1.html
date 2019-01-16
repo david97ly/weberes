@@ -51,8 +51,7 @@
                     <div class="cerrar1"><i style="cursor: pointer;" class="far fa-times-circle"></i></div>
                     <div class="wrap">
                         <ul class="tablas">
-                            <li><a class="tab1" href="#tab1"><span class="spanm"><i class="fas fa-edit"></i><p>Texto</p></span></a></li>
-                            <li><a class="tab2" href="#tab2"><span class="spanm"><i class="fas fa-image"></i><p>Foto</p></span></a></li>
+                            <li><a class="tab1" href="#tab1"><span class="spanm"><i class="fas fa-edit"></i><p>Publicación</p></span></a></li>
                         </ul>
                         <div class="secciones">
                             <article id="tab1">
@@ -65,12 +64,14 @@
                         </div>
                         <div class="divcito">
                          <!--  {{form.foto}}-->
-                            <form >
+                        
+                                
                                 <div class='div-file'>
-                                <p>Imagen<i class="fas fa-file-image"></i></p>
-                                <input type='file' id='subir-imagen'>
+                                <p>Imagen<i style="padding-left: 4px;" class="fas fa-file-image"></i></p>
+                               <!-- <input style="opacity:0;" type='file' id='subir-imagen'>-->
+                               {{form.foto}}
                                 </div>
-                            </form>
+                        
                             <!--<button type="submit" class="botoncito">Imagen<i style="padding-left: 4px;" class="fas fa-file-image"></i></button>-->
 
                             <button class="botoncito">Publicar<i style="padding-left: 4px;" class="fab fa-telegram-plane"></i>
@@ -150,14 +151,16 @@
 
                 <div class="publicacion">
                     <div class="foto-nombre">
-                        <p class="fecha">hace 20h</p>
+                        <p class="fecha">{{ e.fecha|date:"d b"}} a las {{e.tiempo}}</p>
                         <div class="necesario">
                              <p class="nombreperfil">{{e.user}}</p> 
                             <div class="fotoperfil" style="background-image:url({{e.user.foto.url}})"></div>
                         </div>
                     </div>
                     <div class="descripcion-foto">
+                           {% if e.descripcion %}
                             <p>{{e.descripcion | linebreaksbr }}</p>
+                           {% endif %}
                         </div>
                     <div class="contenido-foto">
                      <!--   <img src="{% static "imagenes/bosque0.jpg" %}" alt="">-->
