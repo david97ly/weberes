@@ -134,11 +134,48 @@ def exploblog(request):
    
 
         try:
-            eve = Publicacion.objects.all().order_by("-id")
+            even = Publicacion.objects.all().order_by("-id")
             
+            class event():
+                id = 0
+                user = ""
+                fecha = ""
+                tiempo = ""
+                fechahora = ""
+                descripcion = ""
+                comentarios = ""
+                favoritos = ""
+                foto = ""
+                comentarios = []
+            
+            eve = []
+
+            for e in even:
+                eventos = event()
+                eventos.id = e.id
+                eventos.user = e.user
+                eventos.fecha = e.fecha
+                eventos.fechahora = e.fechahora
+                eventos.descripcion = e.descripcion
+                eventos.comentarios = e.comentarios
+                eventos.favoritos = e.favoritos
+                eventos.foto = e.foto
+
+                try:
+                    print("Esta es la publicacion]: " + str(e.id))
+                    com = Comentario.objects.filter(publicacion=e).order_by("id")
+                    print("Estos son los comentarios")
+                    print(com)
+                    eventos.comentarios = com
+
+                    eve.append(eventos)
+                except Exception as e:
+                    print("Esta publicacion no tiene comentarios o tiene este error: " + str(e) )
+                    pass
 
 
             context['eve'] = eve
+            print(eve)
         except Exception as identifier:
             print("Est es el error: " + str(identifier))
             form = PublicacionForm()
@@ -743,3 +780,44 @@ class Block(TemplateView):
     except Exception as e:
         print ("OCURRIO UN SUPER ERROR Y NO SE PORQUE PERO AQUI ESTA EL MENSAJE DE ERROR")
         print (e.message)
+
+
+
+class MensajeEnviar(TemplateView):
+    try:
+        def get(self,request,*args,**kwargs):
+            texto = request.GET['texto']
+            publicacion = request.GET['p']
+
+         
+            print (texto)
+            print (publicacion)
+        
+
+
+            try:
+                
+                us = User.objects.get(username = request.user)
+                pub = Publicacion.objects.get(pk = publicacion)
+            except Exception as e:
+                print ("lO SIENTO NO HAY CHAT : " + str(e.message))
+            else:
+                try:
+                   com = Comentario()
+                   com.user = us
+                   com.publicacion = pub
+                   com.texto = texto
+                   com.save()
+
+                   fecha = com.fecha.strftime('%d %b')
+                   hora = com.tiempo.strftime("%X %p")
+
+                except Exception as e:
+                    print ("UPS!! OCURRIO ALGO : " + str(e))
+                else:
+                    print ("TODO SALIO BIEN")
+            response = JsonResponse({'texto':texto,'fecha':fecha,'hora':hora})
+            return HttpResponse(response.content)
+
+    except Exception as e:
+        print ("La regue en algo vamos en que: " + str(e))

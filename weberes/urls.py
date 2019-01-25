@@ -58,6 +58,7 @@ urlpatterns = [
     re_path(r'^creardestacamento',login_required(CrearDestacamentoView.as_view(),login_url='login'), name='creardestacamento'),
     re_path(r'^editardestacamento/(?P<iddesta>\d+)$', editardestacamento, name='editardestacamento'),
     re_path(r'^setfechajax/$',login_required(SetFecha.as_view(),login_url='login'),name='setearfecha'),
+    re_path(r'^enviarmajax/$',login_required(MensajeEnviar.as_view(),login_url='login'),name='enviarmajax'),
     re_path(r'^block/$',login_required(Block.as_view(),login_url='login'),name='block'),
 
     #path('',home),

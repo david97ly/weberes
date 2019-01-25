@@ -84,70 +84,44 @@
                 <div class="nuevapublicacion">
                 <button class="nueva">Nueva Publicación</button>
                 </div>
-                <div class="modal">
+              
+
+                
+                
+                {% for e in eve %}
+
+                  <div id="mod{{e.id}}" class="modal">
                  
                     <div class="ventana">
-                        <div id="cerrar" class="cerrar"><i style="cursor: pointer;" class="far fa-times-circle"></i></div>
-                            <!--<div class="modal-publicacion">
-                                <div class="modal-fotonombre">
-                                    <p class="modal-nombreperfil">Eduardo Enrique Granados Matamoros</p>
-                                    <img class="modal-fotoperfil" src="{% static "imagenes/foto-txt.jpg" %}" alt="">
-                                </div> 
-                                <div class="modal-contenidotexto">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non et id sit alias eius accusantium magnam sint maiores dignissimos esse quo sapiente nesciunt quos necessitatibus deserunt odit, quasi omnis quod!    
-                                    </p>
-                                </div>  
-                            </div>-->
-                            <div class="modal-comentario">
+                        <div id="cerrar{{e.id}}" class="cerrar"><i style="cursor: pointer;" class="far fa-times-circle"></i></div>
+                
+                    <div id="zonacom{{e.id}}" class="modal-comentario">
+                            {% for c in e.comentarios %}
+                         
+                            
+                        
                                 <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
+                                    <div class="comentario-foto" style="background-image:url({{c.user.foto.url}})"></div>
                                     <div class="comentario-texto">
-                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
+                                        <div class="nombre-comentario">{{c.user}}</div>
+                                        <p>{{c.texto}}</p>
                                     </div>
                                 </div>
-                                <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
-                                    <div class="comentario-texto">
-                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
-                                    </div>
-                                </div>
-                                <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
-                                    <div class="comentario-texto">
-                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
-                                    </div>
-                                </div>
-                                <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
-                                    <div class="comentario-texto">
-                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
-                                    </div>
-                                </div>
-                                <div class="comentario-indi" >
-                                    <div class="comentario-foto" style="background-image:url({% static "imagenes/foto-txt.jpg" %})"></div>
-                                    <div class="comentario-texto">
-                                        <div class="nombre-comentario">Eduardo Enrique Granados Matamoros</div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas perspiciatis repellat ab explicabo voluptatem atque aperiam distinctio laudantium tenetur fugit impedit vel sequi modi inventore.</p>
-                                    </div>
-                                </div>
-                            </div> 
+                            
+
+                            {% endfor %}
+                    </div> 
+
+
                         <div class="agregar-comentario">
-                                <textarea placeholder="Agregar comentario..."></textarea>
-                                <div class="div-agregar"><button class="agregar"><i class="fab fa-telegram-plane"></i></button></div>
+                                <textarea  id="comen{{e.id}}" placeholder="Agregar comentario...">veamos</textarea>
+                                <div class="div-agregar"><button id="envi{{e.id}}" class="agregar"><i class="fab fa-telegram-plane"></i></button></div>
                         </div> 
                     </div>
                     
                 </div>
 
-                
-                
-                {% for e in eve %}
+
 
                 <div class="publicacion">
                     <div class="foto-nombre">
@@ -162,25 +136,50 @@
                             <p>{{e.descripcion | linebreaksbr }}</p>
                            {% endif %}
                         </div>
-                    <div class="contenido-foto">
-                     <!--   <img src="{% static "imagenes/bosque0.jpg" %}" alt="">-->
+                    
+                        <div class="contenido-foto">
+                            <!--<img src="{% static "imagenes/bosque0.jpg" %}" alt="">-->
                             {% if e.foto %}
-                                 <img  src ="{{ e.foto.url }}">
+                                 <img id="visor"  src ="{{ e.foto.url }}">
                             {% endif %}
-
-                    </div>
+                        </div>
+                    
                     <div class="div-comentarios">
                         <div class="iconos-comentarios">
                             <div class="div-iconos">
                                 <i id="estrella" class="far fa-star iconos color-estrella"></i>
-                                <p>123</p>
+                                <p>{{eve.favoritos}}</p>
                             </div>
                             <div class="div-iconos">
-                                    <a id="abrir" href="#"><i class="far fa-comment iconos color-comentario"></i></a> 
-                                    <p>123</p>
+                                    <a id="abrir{{e.id}}" ><i class="far fa-comment iconos color-comentario"></i></a> 
+                                    <p>{{eve.comentarios}}</p>
                                 </div>
                         </div>
-                        <textarea placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
+                        <textarea id="add{{e.id}}" value="hola como estan" placeholder="Agregar comentario..." class="comentario" type="text"></textarea>
+                    </div>
+                    <div id="comentarios{{e.id}}" class="coments">
+
+
+                        {% for c in e.comentarios %}
+
+                        <div class="comentario-indi1" >
+                            <div class="comentario-texto1">
+                                    <div class="nombre-comentario1">
+                                        <p class="nombreusuario">{{c.user}}</p>
+                                        <p class="fecha">hoy a las 20</p>
+                                    </div>
+                                <p class="txt">{{c.texto}}</p>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                 
+
+
+                 
+                        <div class="vermas">
+                            <p>Ver Más</p>
+                        </div>    
                     </div>
                 </div>
 
@@ -220,6 +219,223 @@
             </div>
         </div>
     </div>    
+
+    <div class="visor">
+            <i style="cursor: pointer;" class=" equis far fa-times-circle"></i>
+        <div class="visor-imagen">
+            <img class="imagen" src="static/imagenes/bosque0.jpg" alt="">
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function(){
+
+
+        //modal nueva publicacion
+
+        var abrir2 = $('#visor'),
+        modal2 = $('.visor'),
+        cerrar2 = $('.equis');
+
+        function abrirmodal2() {
+            abrir2.slideDown();
+        }
+
+        function cerrarmodal2() {
+            abrir2.slideUp('fast');
+        }
+
+
+        abrir2.on('click', function(e){
+            abrirmodal2();
+        });
+
+        cerrar2.on('click', function(e){
+            cerrarmodal2();
+        });
+
+                
+        //modal
+
+           {% for e in eve %}
+
+           
+    var cerrar{{e.id}} = $('#cerrar{{e.id}}'),
+    abrir{{e.id}} = $('#abrir{{e.id}}'),
+    modal{{e.id}} = $('#mod{{e.id}}');
+
+    abrir{{e.id}}.on('click', function(){
+        abrirmodal{{e.id}}();
+    });
+
+    cerrar{{e.id}}.on('click', function(){
+        cerrarmodal{{e.id}}();
+    });
+
+    function abrirmodal{{e.id}}() {
+        modal{{e.id}}.slideDown();
+    }
+
+    function cerrarmodal{{e.id}}() {
+        modal{{e.id}}.slideUp('fast');
+    }
+
+
+    $('#envi{{e.id}}').on('click',mandar{{e.id}});
+
+      function bajar{{e.id}}(){
+         $("#zonacom{{e.id}}").animate({ scrollTop: $("#zonacom{{e.id}}").prop('scrollHeight') }, 300);
+        }
+
+      function mandar{{e.id}}(){
+            console.log("Si ensta entrando a enviar comentario");
+            var text1 = $('#comen{{e.id}}').val();
+            $('#comen{{e.id}}').val('');
+
+            if (text1.trim() != ""){
+
+              $.ajax({
+                  data:{'texto':text1,'p':{{e.id}}},
+                  url:'/enviarmajax/',
+                  type:'get',
+                  success:function(json){
+                  var html = JSON.parse(json);
+                  console.log("Todo salio perfecto" + html.texto);
+
+                /*  t = "<li class='media'><div class='media-body'>" +
+                                          "<div class='media'>" +
+                                             " <div class='talk-bubble2 tri-right left-top pull-right' > " +
+
+                                              "<div class='talktext2'> "+
+                                              " <p> " + html.texto +
+                                                " </p> " +
+                                              " </div> " +
+                                              "  <br />" +
+                                              "  <small style='color: #c48843'>{{user1}}| "+ html.fecha  +" a las " + html.hora +"</small> "+
+                                             "</div>" +
+                                          "</div>" +
+                                       "</div>" +
+                                  "  </li>"*/
+
+                 t =   "<div class='comentario-indi' >" +
+                                    "<div class='comentario-foto' style='background-image:url({{e.user.foto.url}})'></div>" +
+                                    "<div class='comentario-texto'>" +
+                                        "<div class='nombre-comentario'>{{c.user}}</div>" +
+                                        "<p>" + html.texto + "</p>" +
+                                    "</div>" +
+                                "</div>"
+
+                t1 =  "<div class='comentario-indi1' >" +
+                            "<div class='comentario-texto1'>" +
+                                    "<div class='nombre-comentario1'>" +
+                                        "<p class='nombreusuario'>{{e.user}}</p>" +
+                                        "<p class='fecha'>hoy a las 20</p>" +
+                                    "</div>" +
+                                "<p class='txt'>" + html.texto + "</p>" +
+                            "</div>" +
+                        "</div>"
+                  $('#comentarios{{e.id}}').append(t1);
+
+                  $('#zonacom{{e.id}}').append(t);
+
+                
+
+                    bajar{{e.id}}();
+
+              }
+          });
+            }
+}
+
+    {% endfor %}
+    
+
+
+         timer1 = setInterval(function(){
+
+           /* if({{id2}}!=0){
+              revisarmensajes();
+            }*/
+            console.log($('#comen'+150).val())
+
+        }, 1000);
+
+
+    
+            
+        
+
+
+
+          
+/*
+
+function revisarmensajes(){
+
+    var text1 = $('#texto').val();
+
+
+    $.ajax({
+        data:{'reseptor':{{id2}},'yo':{{user.id}}},
+        url:'/recibirmajax/',
+        type:'get',
+        success:function(json){
+        var html = JSON.parse(json);
+        console.log("ya vine de revisar" + html.texto)
+     
+
+          var t = html.texto;
+          if (t !=""){
+
+            t = "<li class='media'><div class='media-body'>" +
+                                    "<div class='media'>"+
+                                      " <a class='pull-left' href='#'>" +
+                                      {% if im == True %}
+                                      " <img class='media-object img-circle' src='{{imagen}}' style='height:auto; width:60px' /> " +
+                                      {% else %}
+                                      " <img class='media-object img-circle' src='/static/usercsdigitalpred20082017.png' style='height:auto; width:60px' /> " +
+
+                                      {% endif %}
+                                       "</a> " +
+                                       " <div class='talk-bubble1 tri-left right-top' > " +
+
+                                        "<div class='talktext1'> "+
+                                        " <p> " + html.texto +
+                                          " </p> " +
+                                        " </div> " +
+                                        "  <br />" +
+                                          "  <small style='color: #45829b'>{{user2}}| "+ html.fecha  +" a las " + html.hora +"</small> "+
+                                       "</div>" +
+                                    "</div>" +
+                                 "</div>" +
+                            "  </li>"
+
+
+
+
+
+                      
+
+              $('#msjt').append(t);
+
+                  bajar();
+
+           
+
+          }
+
+
+
+    }
+});
+}*/
+
+
+
+        });
+
+    </script>
 
 </body>
 </html>

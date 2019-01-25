@@ -20,6 +20,18 @@ flex-direction: column;
 padding: 10px 0px;
 }
 
+.input1{
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+  }
+
+  .input1 a{
+    color: #46cdcf;
+    padding: 4px 0px;
+  }
+
 .inputs{
   display: flex;
   width: 410px;
@@ -323,6 +335,10 @@ option{
     width: 363px;
   }
 
+  .input1{
+    width: 363px;
+  }
+
   .div-subir{
     width: 363px;
   }
@@ -352,6 +368,10 @@ option{
     }
 
     .inputs{
+      width: 312px;
+    }
+
+    .input1{
       width: 312px;
     }
 
@@ -399,6 +419,10 @@ option{
       }
 
       .inputs{
+        width: 242px;
+      }
+
+      .input1{
         width: 242px;
       }
 

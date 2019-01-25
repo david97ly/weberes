@@ -215,6 +215,22 @@ article{
 }
 
 
+
+#inputpubli1::-webkit-scrollbar{
+    height: 4px;
+    width: 4px;
+    background: rgb(0,0,0,0.2);
+    border-radius: 5px;
+
+  }
+
+#inputpubli1::-webkit-scrollbar-thumb{
+    background: rgb(70,205,207,1);
+    border-radius: 5px;
+  }
+
+
+
 @media all and (max-width: 800px){
     .modal1{
         overflow-y: scroll;

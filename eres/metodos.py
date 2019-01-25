@@ -19,29 +19,29 @@ def calculedad(dia,mes,year):
         mesnaci = mes
         dinaci = dia
 
-        if mes == 'enero':
+        if mes == 'Enero':
             mesnaci = 1
-        elif mes == 'febrero':
+        elif mes == 'Febrero':
             mesnaci = 2
-        elif mes == 'marzo':
+        elif mes == 'Marzo':
             mesnaci = 3
-        elif mes == 'abril':
+        elif mes == 'Abril':
             mesnaci = 4
-        elif mes == 'mayo':
+        elif mes == 'Mayo':
             mesnaci = 5
-        elif mes == 'junio':
+        elif mes == 'Junio':
             mesnaci = 6
-        elif mes == 'julio':
+        elif mes == 'Julio':
             mesnaci = 7
-        elif mes == 'agosto':
+        elif mes == 'Agosto':
             mesnaci = 8
-        elif mes == 'septiembre':
+        elif mes == 'Septiembre':
             mesnaci = 9
-        elif mes == 'octubre':
+        elif mes == 'Octubre':
             mesnaci = 10
-        elif mes == 'noviembre':
+        elif mes == 'Noviembre':
             mesnaci = 11
-        elif mes == 'diciembre':
+        elif mes == 'Diciembre':
             mesnaci = 12
         else:
             mesnaci = 1
@@ -50,9 +50,9 @@ def calculedad(dia,mes,year):
         print ("EDAD ANTES: " + str(edad))
         if mesactual > mesnaci:
             pass
-            # "todavia no ha llegado al mes de nacimiento"
+            # "ya llego y sobre paso al mes de nacimiento"
         else:
-            # "ya llego al mes de nacimiento"
+            # "no hay llegado al mes"
             if mesactual == mesnaci:
                 # "El mes de nacimiento es igual"
                 if not diactual >= dinaci:

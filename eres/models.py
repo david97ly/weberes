@@ -145,3 +145,24 @@ class Publicacion(models.Model):
 
     def __str__(self):
         return str(self.descripcion)
+
+class Comentario(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
+    publicacion = models.ForeignKey(Publicacion,null=False,on_delete=models.CASCADE)
+    fecha = models.DateField(auto_now_add=True,null=True,blank=True)
+    tiempo = models.TimeField(auto_now_add=True,null=True,blank=True)
+    fechahora = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    texto = models.CharField(max_length=10000,null=True,blank=True)
+    
+    def __str__(self):
+        return str(self.texto)
+
+class Favorito(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
+    publicacion = models.ForeignKey(Publicacion,null=False,on_delete=models.CASCADE)
+    fecha = models.DateField(auto_now_add=True,null=True,blank=True)
+    tiempo = models.TimeField(auto_now_add=True,null=True,blank=True)
+    fechahora = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+ 
+    def __str__(self):
+        return str(self.user)

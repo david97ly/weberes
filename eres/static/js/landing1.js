@@ -30,26 +30,7 @@ $(document).ready(function(){
     });
 
 
-    //modal
-    var cerrar = $('#cerrar'),
-    abrir = $('#abrir'),
-    modal = $('.modal');
-
-    abrir.on('click', function(e){
-        abrirmodal();
-    });
-
-    cerrar.on('click', function(e){
-        cerrarmodal();
-    });
-
-    function abrirmodal() {
-        modal.slideDown();
-    }
-
-    function cerrarmodal() {
-        modal.slideUp('fast');
-    }
+ 
 
     //modal nueva publicacion
 
