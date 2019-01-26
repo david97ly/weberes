@@ -517,7 +517,15 @@ def admindestacamento(request):
             else:
 
                 try:
-                    destacamento = Destacamento.objects.get(user = request.user)
+                    perf = Perfil.objects.get(usr = us)
+                    permiso = Permisos.objects.get(perfil = perf)
+
+                    if not (Decimal(permiso.cargo.nivel) <= Decimal(5)):
+                        return redirect("perfil")
+                        
+                    destacamento = Destacamento.objects.get(pk = perf.destacamento.id)
+
+
                 except Exception as e:
                     return redirect("/creardestacamento")
                 else:
