@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      {% load static from staticfiles %}
+
+
+<style>
+    body{
+    background-image: url("{% static "/imagenes/bosque7.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-size: cover;
+}
+    .contenedor-tarjeta{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-flow: wrap;
+    padding: 10px 0px;
+    background: rgb(0,0,0,0.5);
+    background-image: url("{% static "/imagenes/bosque7.1.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-size: cover;
+    width: 80%;
+    height: 650px;
+    overflow-y: scroll;
+    margin: 10px 0px;
+}
+
+.tuerquita{
+   position:absolute;
+   z-index:2;
+   color:white;
+   font-size:22px;
+   margin:8px;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/lista.css" %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/titular.css" %}" />
+<link rel="stylesheet" href="{% static "css/menu1.css" %}">
+<script src="{% static "js/all.min.js" %}"></script>
+
+</head>
+<body>
+
+        {% include "menuperfil.html" %}
+
+    <div class="contenedor">
+
+        <div class="titular">
+      
+        </div>
+
+       
+   
+     <form method="post" >
+    {% csrf_token %}
+      <div class="div-buscador">
+       
+         
+          <input name="tex" id="tex" results="3" placeholder="Busque la zona..." class="buscador" type="search">
+          <button type="submit" class="boton-buscador"><p>Buscar</p><i style="padding-left:4px; " class="fas fa-search"></i></button>
+     </div>
+     </form>
+
+     
+       <div class="contenedor-tarjeta">
+
+         
+          
+
+          {% for ex in lista %}
+          
+
+
+          
+            <div id = "{{ex.id}}" class="tarjeta tarjeta-explorador">
+        
+
+              <div class="div-foto">
+             <a href="{% url "zonadestacamentos" ex.idzona %}"> <div style="background-image: url()" class="foto-perfil"></div></a> 
+              </div>
+              <div class="div-datos">
+                  <p class="nombre">{{ex.nombre}} </p>
+                  <p class="otros">{{ex.desta}}</p>
+                  
+                 
+              </div>
+              <div class="div-grupo">
+                <div class="div-botones">
+          
+               
+                
+                </div>
+             <!--     <img class="foto-grupo" src="static/imagenes/4.png" alt="">-->
+              </div>
+          </div>
+         
+          {% endfor %}
+
+        
+
+
+                         </div>
+
+        </div>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-3.2.1.min.js"><\/script>')</script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+        
+
+            {% for ex in destacamentos %}
+
+            $("#block{{ex.id}}").on('click',Bloquear{{ex.id}});
+
+        
+
+
+       
+      
+       
+       function Bloquear{{ex.id}}(){
+       
+        
+
+
+   $.ajax({
+        data:{'idexp':{{ex.id}}},
+        url:'/block/',
+        type:'get',
+        success:function(json){
+        var html = JSON.parse(json);
+         var fl = html.fl;
+         var ide = html.id;
+
+            if(fl){
+                
+                $("#{{ex.id}}").removeClass('bloqueado');
+
+                $("#candado{{ex.id}}").removeClass('fa-lock');
+                $("#candado{{ex.id}}").addClass('fa-lock-open');
+
+                console.log("Esta bloqueado " );
+                
+            }else{
+                 $("#{{ex.id}}").addClass('bloqueado');
+
+                $("#candado{{ex.id}}").removeClass('fa-lock-open');
+                $("#candado{{ex.id}}").addClass('fa-lock');
+                 
+                console.log("Esta desbloqueado " );
+            }
+    
+
+        }
+    });
+}
+
+    {% endfor %}
+    });
+
+    </script>
+
+</body>
+</html>

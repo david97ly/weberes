@@ -63,14 +63,6 @@ class Codigo(models.Model):
     def __str__(self):
         return str(self.user.username) + str(" - ") + str(self.codigo)
 
-class Cargos(models.Model):
-    nombre = models.CharField(max_length=500,null=True,blank=True)
-    codigo = models.IntegerField(blank=True,null=True)
-    nivel = models.IntegerField(blank=True,null=True)
-    usado = models.BooleanField(default=False)
-
-    def __str__(self):
-        return str(self.nombre) + str(" - ") + str(self.nivel) + str(" - ") + str(self.codigo) + str(" - ") + str(self.usado)
 
 
 
@@ -82,16 +74,21 @@ class Zona(models.Model):
     def __str__(self):
         return str(self.nombre)
 
+
 class Destacamento(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
     nombre = models.CharField(max_length=500,unique=True,blank=True,null=True)
     codigo = models.IntegerField(blank=True, null=True)
     iglesia = models.CharField(max_length=500,unique=True,blank=True,null=True)
     pastor = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    tel_pastor = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    comandante_mayor = models.CharField(max_length=500,unique=True,blank=True,null=True)
+    tel_comandante = models.CharField(max_length=500,unique=True,blank=True,null=True)
     direccion = models.CharField(max_length=500,unique=True,blank=True,null=True)
     direccion_GPS = models.CharField(max_length=500,unique=True,blank=True,null=True)
     zona =  models.ForeignKey(Zona,null=True,on_delete=models.SET_NULL)
     foto = models.ImageField(max_length=1000,blank=True, null=True)
+    activo = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre
@@ -107,7 +104,6 @@ class ImagenDestacamento(models.Model):
 
 class Perfil(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
-    cargo = models.ForeignKey(Cargos,null=True,blank=True,on_delete=models.SET_NULL)
     destacamento = models.ForeignKey(Destacamento,null=True,blank=True,on_delete=models.SET_NULL)
     codigo = models.CharField(max_length=500,null=True,blank=True)
     primer_nombre = models.CharField(max_length=500,null=True,blank=True)
@@ -129,6 +125,17 @@ class Perfil(models.Model):
 
     def __str__(self):
         return str(self.primer_nombre)
+
+
+
+
+class Cargos(models.Model):
+    nombre = models.CharField(max_length=500,null=True,blank=True)
+    codigo = models.IntegerField(blank=True,null=True)
+    nivel = models.IntegerField(blank=True,null=True)
+
+    def __str__(self):
+        return str(self.nombre) + str(" - ") + str(self.nivel) + str(" - ") + str(self.codigo)
 
 
 class Publicacion(models.Model):
@@ -153,6 +160,7 @@ class Comentario(models.Model):
     tiempo = models.TimeField(auto_now_add=True,null=True,blank=True)
     fechahora = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     texto = models.CharField(max_length=10000,null=True,blank=True)
+    visto = models.BooleanField(default=True)
     
     def __str__(self):
         return str(self.texto)
@@ -166,3 +174,11 @@ class Favorito(models.Model):
  
     def __str__(self):
         return str(self.user)
+
+
+class Permisos(models.Model):
+    perfil = models.ForeignKey(Perfil,null=False,on_delete=models.CASCADE)
+    cargos = models.ForeignKey(Cargos,null=False,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.perfil) + str(" - ") + str(self.cargos) 

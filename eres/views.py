@@ -155,6 +155,7 @@ def exploblog(request):
                 eventos.id = e.id
                 eventos.user = e.user
                 eventos.fecha = e.fecha
+                eventos.tiempo = e.tiempo
                 eventos.fechahora = e.fechahora
                 eventos.descripcion = e.descripcion
                 eventos.comentarios = e.comentarios
@@ -379,7 +380,7 @@ def destacamento(request):
         print (e)
 
 @login_required(login_url='login')
-def inscripcion(request):
+def inscripcion(request,iddesta):
     try:
         print("Entre a inscripcion")
         us = User.objects.get(pk = request.user.id)
@@ -520,6 +521,283 @@ def admindestacamento(request):
     except Exception as e:
         print ("El error al entrar al admindestacamento es: " + str(e))
         return redirect("/")
+
+
+
+
+
+@login_required(login_url='login')
+def detalledestacamento(request, iddesta):
+    try:
+        print("entre a admin destacamento")
+        us = User.objects.get(pk = request.user.id)
+        cod = Codigo.objects.get(user=us)
+        explo = False
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+        else:
+            try:
+                perfi = Perfil.objects.get(user = us)
+
+                permiso = Permisos.objects.get(perfil=perfi)
+
+                if not (permiso.cargos.nivel <= 2):
+                    return redirect("home")
+                else:
+                    print("Si tienes acceso, felicidades")
+
+            except Exception as e:
+                print("No podemos darle acceso, porque no lo tiene: " + str(e))
+                return redirect("home")
+
+
+            if request.POST:
+                
+                abuscar = request.POST['tex']
+                
+                try:
+                    destacamento = Destacamento.objects.get(pk=iddesta)
+                except Exception as e:
+                    return redirect("/creardestacamento")
+                else:
+                    explo = Perfil.objects.filter(Q(primer_nombre__icontains=abuscar)
+                    | Q(segundo_nombre__icontains=abuscar) | Q(primer_apellido__icontains=abuscar) 
+                    | Q(segundo_apellido__icontains=abuscar) | Q(direccion__icontains=abuscar) 
+                    | Q(telefono__icontains=abuscar) 
+                    | Q(codigo__icontains=abuscar) 
+                    | Q(departamento__icontains=abuscar),destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
+
+              
+            else:
+
+                try:
+                    destacamento = Destacamento.objects.get(pk = iddesta)
+                except Exception as e:
+                    return redirect("/creardestacamento")
+                else:
+                    explo = Perfil.objects.filter(destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
+
+                   
+            try:
+                lisexplo = []
+                class Exp():
+                    id = 0
+                    activo = 0
+                    nombre = ""
+                    direc = ""
+                    foto = ""
+                    edad = 0
+                    cargo = ""
+                    codigo = ""
+                print ("atnes de llegar a la carga a ala lista")
+                for ex in explo:
+                    l = Exp()
+                    if ex.primer_nombre != None:
+                        l.nombre += ex.primer_nombre
+
+                    if ex.segundo_nombre != None:
+                        l.nombre += str(" ") + str(ex.segundo_nombre)
+
+                    if ex.primer_apellido != None:
+                        l.nombre += str(" ") + str(ex.primer_apellido)
+
+                    if ex.segundo_apellido != None:
+                        l.nombre += str(" ") + str(ex.segundo_apellido)
+
+
+                    l.direc = ex.direccion
+                    l.id = ex.id
+                    l.activo = ex.activo
+                    l.foto = ex.foto.url
+                    l.codigo = ex.codigo
+                    ed = calculedad(ex.dia,ex.mes,ex.year)
+                    l.edad = ed
+                    print("VEAMOS LA EDAD: " + str(ed))
+
+                    
+                    if ed > 0 and ed <= 7:
+                        ex.departamento = "Navegantes"
+                        ex.save()
+                    elif ed > 7 and ed <= 10:
+                        ex.departamento = "Pioneros"
+                        ex.save()
+                    elif ed > 10 and ed <= 13:
+                        ex.departamento = "Seguidores de la senda"
+                        ex.save()
+                    elif ed > 13 and ed <= 17:
+                        ex.departamento = "Exploradores"
+                        ex.save()
+                    else:
+                        ex.departamento = "Lideres"
+                        ex.save()
+
+
+                    lisexplo.append(l) 
+
+            except Exception as e:
+                pass
+
+
+            context = {'us':us,'destacamento':destacamento,'lisexplo':lisexplo,'iddesta':iddesta}
+            template ="listazonadestacamento.html"
+            print("apunto de llegar a profiles")
+
+            return render(request,template,context)
+    except Exception as e:
+        print ("El error al entrar al admindestacamento es: " + str(e))
+        return redirect("/")
+
+
+
+@login_required(login_url='login')
+def zonadestacamentos(request,idzona):
+    try:
+        print("entre a admin destacamento")
+        us = User.objects.get(pk = request.user.id)
+        cod = Codigo.objects.get(user=us)
+        
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+        else:
+            try:
+                perfi = Perfil.objects.get(user = us)
+
+                permiso = Permisos.objects.get(perfil=perfi)
+                nivel = permiso.cargos.nivel
+                if not (nivel <= 2):
+                    return redirect("home")
+                else:
+                    print("Si tienes acceso, felicidades")
+
+            except Exception as e:
+                print("No podemos darle acceso, porque no lo tiene: " + str(e))
+                return redirect("home")
+
+            if request.POST:
+                
+                abuscar = request.POST['tex']
+                
+                try:
+                    destacamento = Destacamento.objects.get(user = request.user)
+                except Exception as e:
+                    return redirect("/creardestacamento")
+                else:
+                    explo = Perfil.objects.filter(Q(primer_nombre__icontains=abuscar)
+                    | Q(segundo_nombre__icontains=abuscar) | Q(primer_apellido__icontains=abuscar) 
+                    | Q(segundo_apellido__icontains=abuscar) | Q(direccion__icontains=abuscar) 
+                    | Q(telefono__icontains=abuscar) 
+                    | Q(codigo__icontains=abuscar) 
+                    | Q(departamento__icontains=abuscar),destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
+
+              
+            else:
+
+                try:
+                    zona = Zona.objects.get(pk = idzona)
+                    destacamentos = Destacamento.objects.filter(zona = zona)
+                    
+                except Exception as e:
+                    print("AQUI OCURRIO UN ERRO EN LA ZONA: " + str(e))
+                    return redirect("home")
+               
+                   
+                   
+
+
+            context = {'destacamentos':destacamentos,'zona':zona,}
+            template ="listazona.html"
+            print("apunto de llegar a profiles")
+
+            return render(request,template,context)
+    except Exception as e:
+        print ("El error al entrar al admindestacamento es: " + str(e))
+        raise
+        #return redirect("/")
+
+
+@login_required(login_url='login')
+def zonas(request):
+    try:
+        print("entre a admin destacamento")
+        us = User.objects.get(pk = request.user.id)
+        cod = Codigo.objects.get(user=us)
+        
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+        else:
+            try:
+                perfi = Perfil.objects.get(user = us)
+
+                permiso = Permisos.objects.get(perfil=perfi)
+
+                if not (permiso.cargos.nivel == 1):
+                    return redirect("home")
+                else:
+                    print("Si tienes acceso, felicidades")
+            except Exception as e:
+                print("Lo siento pero no tienes acceso: " + str(e))
+                return redirect("home")
+
+            if request.POST:
+                
+                abuscar = request.POST['tex']
+                
+                try:
+                    destacamento = Destacamento.objects.get(user = request.user)
+                except Exception as e:
+                    return redirect("/creardestacamento")
+                else:
+                    explo = Perfil.objects.filter(Q(primer_nombre__icontains=abuscar)
+                    | Q(segundo_nombre__icontains=abuscar) | Q(primer_apellido__icontains=abuscar) 
+                    | Q(segundo_apellido__icontains=abuscar) | Q(direccion__icontains=abuscar) 
+                    | Q(telefono__icontains=abuscar) 
+                    | Q(codigo__icontains=abuscar) 
+                    | Q(departamento__icontains=abuscar),destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
+
+              
+            else:
+
+                try:
+                    lista = []
+                    class ZonaClass():
+                        idzona = 0
+                        nombre = ""
+                        desta = 0
+
+                    zonas = Zona.objects.all().order_by("numero")
+                    print("Estas son las zonas: " + str(zonas))
+                    for z in zonas:
+                        zon = ZonaClass()
+                        zon.nombre = z.nombre
+                        zon.idzona = z.id
+                        try:
+                            zon.desta = Destacamento.objects.filter(zona = z).count()
+                            lista.append(zon)
+                        except Exception as e:
+                            print("Esta zona no tiene destacamentos: "+ str(e))
+                            pass
+
+                    
+                except Exception as e:
+                    print("AQUI OCURRIO UN ERRO EN LA ZONA: " + str(e))
+                    return redirect("home")
+               
+                   
+                   
+
+
+            context = {'lista': lista}
+            template ="zonas.html"
+            print("apunto de llegar a profiles")
+
+            return render(request,template,context)
+    except Exception as e:
+        print ("El error al entrar al admindestacamento es: " + str(e))
+        raise
+        #return redirect("/")
 
 
 @login_required(login_url='login')
@@ -821,3 +1099,4 @@ class MensajeEnviar(TemplateView):
 
     except Exception as e:
         print ("La regue en algo vamos en que: " + str(e))
+
