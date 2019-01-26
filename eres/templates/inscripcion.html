@@ -34,48 +34,51 @@
                 <div class="datos-inscripcion">DATOS DE INSCRIPCIÓN</div>
                 <div class="div-datos">
                     <p class="titulo-dato">Destacamento:</p>
-                    <p class="dato">Bufalos</p>
+                    <p class="dato">{{destacamento.nombre}}</p>
                 </div>
                 <div class="div-datos">
                     <p class="titulo-dato">Código:</p>
-                    <p class="dato">7</p>
+                    <p class="dato">{{destacamento.codigo}}</p>
                 </div>
                 <div class="div-datos">
                     <p class="titulo-dato">Iglesia:</p>
-                    <p class="dato">Aguas Vivas</p>
+                    <p class="dato">{{destacamento.iglesia}}</p>
                 </div>
                 <div class="div-datos">
                     <p class="titulo-dato">Pastor:</p>
-                    <p class="dato">Victor Manuel Herrera Herrera</p>
+                    <p class="dato">{{destacamento.pastor}}</p>
                 </div>
                 <div class="div-datos">
                     <p class="titulo-dato">Tel. Pastor:</p>
-                    <p class="dato">24370650</p>
+                    <p class="dato">{{destacamento.tel_pastor}}</p>
                 </div>
                 <div class="div-datos">
                     <p class="titulo-dato">Comandante Mayor:</p>
-                    <p class="dato">Jose Enrique Herrera Diaz</p>
+                    <p class="dato">{{destacamento.comandante_mayor}}</p>
                 </div>  
                 <div class="div-datos">
                         <p class="titulo-dato">Tel. Comandante:</p>
-                        <p class="dato">24370651</p>
+                        <p class="dato">{{destacamento.tel_comandante}}</p>
                     </div>
                 <div class="div-datos">
                     <p class="titulo-dato">Zona:</p>
-                    <p class="dato">Ahuachapan</p>
+                    <p class="dato">{{destacamento.zona}}</p>
                 </div>  
                 <div class="div-datos">
                     <p class="titulo-dato">Distrito:</p>
-                    <p class="dato">Cara Sucia</p>
+                    <p class="dato">{{destacamento.direccion}}</p>
                 </div>   
             </div>
 
             <div class="div-info">
-                    <div class="datos-inscripcion">DATOS lideres</div>    
+                    <div class="datos-inscripcion">DATOS lideres</div>   
+
+                    {% for l in Lider %}
+
                     <div class="div-lideres">
                         <div class="datos-lideres">        
                             <p class="titulo-dato">Nombre Completo:</p>
-                            <p class="dato">Jorge Eduardo Romero Garcia</p>
+                            <p class="dato">{{l.nombre}}</p>
                         </div>
                         <div class="datos-lideres">        
                             <p class="titulo-dato">Cargo:</p>
@@ -86,48 +89,9 @@
                             <p class="dato">24370850</p>
                         </div>
                     </div>
-                    <div class="div-lideres">
-                            <div class="datos-lideres">        
-                                <p class="titulo-dato">Nombre Completo:</p>
-                                <p class="dato">Jorge Eduardo Romero Garcia</p>
-                            </div>
-                            <div class="datos-lideres">        
-                                <p class="titulo-dato">Cargo:</p>
-                                <p class="dato">El Castigador de Destacamento</p>
-                            </div>
-                            <div class="datos-lideres">        
-                                 <p class="titulo-dato">Tel:</p>
-                                <p class="dato">24370850</p>
-                            </div>
-                    </div>
-                    <div class="div-lideres">
-                            <div class="datos-lideres">        
-                                <p class="titulo-dato">Nombre Completo:</p>
-                                <p class="dato">Jorge Eduardo Romero Garcia</p>
-                            </div>
-                            <div class="datos-lideres">        
-                                <p class="titulo-dato">Cargo:</p>
-                                <p class="dato">El Castigador de Destacamento</p>
-                            </div>
-                            <div class="datos-lideres">        
-                                 <p class="titulo-dato">Tel:</p>
-                                <p class="dato">24370850</p>
-                            </div>
-                        </div>
-                        <div class="div-lideres">
-                                <div class="datos-lideres">        
-                                    <p class="titulo-dato">Nombre Completo:</p>
-                                    <p class="dato">Jorge Eduardo Romero Garcia</p>
-                                </div>
-                                <div class="datos-lideres">        
-                                    <p class="titulo-dato">Cargo:</p>
-                                    <p class="dato">El Castigador de Destacamento</p>
-                                </div>
-                                <div class="datos-lideres">        
-                                     <p class="titulo-dato">Tel:</p>
-                                    <p class="dato">24370850</p>
-                                </div>
-                            </div>
+
+                    {% endfor %}
+                
             </div>
             <div class="div-info">
                 <div class="datos-inscripcion">Detalles de Inscripción</div>
@@ -135,9 +99,9 @@
                     <div class="datos-departamentos">  
                         <p class="titulo-dato">Navegantes:</p>
                         <div class="otrodiv">
-                            <p class="dato">1000</p>
+                            <p class="dato">{{navegantes}}</p>
                             <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
+                            <p class="dato">${{navegantes|floatformat:2}}</p>
                         </div>      
                     </div>
                 </div>
@@ -145,9 +109,9 @@
                     <div class="datos-departamentos">  
                         <p class="titulo-dato">Pioneros:</p>
                         <div class="otrodiv">
-                            <p class="dato">1000</p>
+                            <p class="dato">{{pioneros}}</p>
                             <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
+                            <p class="dato">${{pioneros|floatformat:2}}</p>
                         </div>      
                     </div>
                 </div>
@@ -155,29 +119,20 @@
                     <div class="datos-departamentos">  
                         <p class="titulo-dato">Seguidores:</p>
                         <div class="otrodiv">
-                            <p class="dato">1000</p>
+                            <p class="dato">{{seguidores}}</p>
                             <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
+                            <p class="dato">${{seguidores|floatformat:2}}</p>
                         </div>      
                     </div>
                 </div>
-                <div class="div-lideres">
-                    <div class="datos-departamentos">  
-                        <p class="titulo-dato">Señoritas:</p>
-                        <div class="otrodiv">
-                            <p class="dato">1000</p>
-                            <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
-                        </div>      
-                    </div>
-                </div>
+             
                 <div class="div-lideres">
                     <div class="datos-departamentos">  
                         <p class="titulo-dato">Exploradores:</p>
                         <div class="otrodiv">
-                            <p class="dato">1000</p>
+                            <p class="dato">{{exploradores}}</p>
                             <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
+                            <p class="dato">${{exploradores|floatformat:2}}</p>
                         </div>      
                     </div>
                 </div>
@@ -185,9 +140,9 @@
                     <div class="datos-departamentos">  
                         <p class="titulo-dato">Lideres:</p>
                         <div class="otrodiv">
-                            <p class="dato">1000</p>
+                            <p class="dato">{{lideres}}</p>
                             <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
+                            <p class="dato">${{tlideres|floatformat:2}}</p>
                         </div>      
                     </div>
                 </div>
@@ -195,9 +150,9 @@
                     <div class="datos-departamentos">  
                         <p class="titulo-dato">Consejeros:</p>
                         <div class="otrodiv">
-                            <p class="dato">1000</p>
+                            <p class="dato">1</p>
                             <p class="igual">=</p>
-                            <p class="dato">$ 30000</p>
+                            <p class="dato">$1.00 </p>
                         </div>      
                     </div>
                 </div>

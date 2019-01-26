@@ -199,6 +199,7 @@ def utilierrorcodigo(request):
         template = "errorcodigo1.html"
         return render(request,template,context)
     except Exception as e:
+        print("Aqui paso algo: "+ str(e))
         pass
 
 @login_required(login_url='login')
@@ -222,9 +223,7 @@ def codigo(request):
         if request.POST:
             form = CodigoForm(request.POST,instance = us)
             if form.is_valid():
-                codigo = form.save(commit=False)
-
-
+              
                 try:
                     cod = form.cleaned_data['codigo']#capturo el codigo
 
@@ -257,7 +256,7 @@ def codigo(request):
                         codn.user = us
                         codn.save()
                         
-                        form.save()
+                       # form.save()
 
                         return redirect("perfil")
                         print("lo guarde el CODIGO")
@@ -371,6 +370,25 @@ def destacamento(request):
         if cod.codigo == None:
             return redirect("codigo")
         else:
+            try:
+                perfi = Perfil.objects.get(user = us)
+
+                permiso = Permisos.objects.get(perfil=perfi)
+                print("ESTE ES EL PERMISO: " + str(permiso.cargos.nivel))
+                if permiso.cargos.nivel <= 2:
+                    print("me voy a ver las zonas")
+                    return redirect("zonas")
+                elif permiso.cargos.nivel == 5:
+                    print("me voy a ver el destacamento")
+                    return redirect("admindestacamento")
+                else:
+                    print("Si tienes acceso, felicidades")
+                    return redirect("perfil")
+
+            except Exception as e:
+                print("No podemos darle acceso, porque no lo tiene: " + str(e))
+                return redirect("home")
+
             context = {'us':us}
             template ="crear-destacamento.html"
             print("apunto de llegar a profiles")
@@ -390,7 +408,60 @@ def inscripcion(request,iddesta):
         if cod.codigo == None:
             return redirect("codigo")
         else:
-            context = {'us':us}
+            try:
+                perfi = Perfil.objects.get(user = us)
+
+                permiso = Permisos.objects.get(perfil=perfi)
+
+                if not (permiso.cargos.nivel <= 5):
+                    return redirect("home")
+                else:
+                    print("Si tienes acceso, felicidades")
+
+            except Exception as e:
+                print("No podemos darle acceso, porque no lo tiene: " + str(e))
+                return redirect("home")
+
+            try:
+                destacamento = Destacamento.objects.get(pk = iddesta)
+                navegantes = Perfil.objects.filter(destacamento = destacamento,departamento='Navegantes').count()
+                pioneros = Perfil.objects.filter(destacamento = destacamento,departamento='Pioneros').count()
+                seguidores = Perfil.objects.filter(destacamento = destacamento,departamento='Seguidores de la senda').count()
+                exploradores = Perfil.objects.filter(destacamento = destacamento,departamento='Exploradores').count()
+                lideres = Perfil.objects.filter(destacamento = destacamento,departamento='Lideres').count()
+                tlideres = lideres * 3
+                Lider = Perfil.objects.filter(destacamento = destacamento,departamento='Lideres')
+
+                lisexplo = []
+                class Exp():
+                    id = 0
+                    nombre = ""
+                  
+                print ("atnes de llegar a la carga a ala lista")
+                for ex in Lider:
+                    l = Exp()
+                    if ex.primer_nombre != None:
+                        l.nombre += ex.primer_nombre
+
+                    if ex.segundo_nombre != None:
+                        l.nombre += str(" ") + str(ex.segundo_nombre)
+
+                    if ex.primer_apellido != None:
+                        l.nombre += str(" ") + str(ex.primer_apellido)
+
+                    if ex.segundo_apellido != None:
+                        l.nombre += str(" ") + str(ex.segundo_apellido)
+
+                    lisexplo.append(l)
+
+            except Exception as identifier:
+                print("Ocurrio un error razon: " + str(identifier))
+                raise
+
+           
+            
+
+            context = {'us':us,'destacamento':destacamento,'navegantes':navegantes,'pioneros':pioneros,'seguidores':seguidores,'exploradores':exploradores,'lideres':lideres,'Lider':lisexplo,'tlideres':tlideres}
             template ="inscripcion.html"
             
 
@@ -669,6 +740,12 @@ def zonadestacamentos(request,idzona):
                 if not (nivel <= 2):
                     return redirect("home")
                 else:
+                    print("ESTA SON LAS ZONAS: "+ str(idzona) + "  -  " + str(perfi.destacamento.zona.id))
+                    if nivel == 2:
+                        if Decimal(idzona) != Decimal(perfi.destacamento.zona.id):
+                            print("Son diferentes asi que al home")
+                            return redirect("home")
+
                     print("Si tienes acceso, felicidades")
 
             except Exception as e:
@@ -733,7 +810,7 @@ def zonas(request):
 
                 permiso = Permisos.objects.get(perfil=perfi)
 
-                if not (permiso.cargos.nivel == 1):
+                if not (permiso.cargos.nivel <= 2):
                     return redirect("home")
                 else:
                     print("Si tienes acceso, felicidades")
