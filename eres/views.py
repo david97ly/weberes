@@ -26,6 +26,7 @@ from django.db.models import Q
 from datetime import *
 from django.template.defaultfilters import slugify
 import sys
+import json
 
 # Create your views here.
 
@@ -69,9 +70,9 @@ class UserRegisterView(CreateView):
         user = form.save()
         user.set_password(form.cleaned_data['password'])
         #enviar_email()
-        cod = Codigo()
-        cod.user = user
-        cod.save()
+        #cod = Codigo()
+        #cod.user = user
+        #cod.save()
 
         return super(UserRegisterView,self).form_valid(form)
 
@@ -210,9 +211,9 @@ def codigo(request):
 
         try:
 
-            per = Perfil.objects.get(user = us)
+            cod = Codigo.objects.get(user=us)
 
-            if per:
+            if cod:
                 return redirect("/perfil")
             else:
                 pass
@@ -289,7 +290,9 @@ def perfil(request):
         try:
             us = User.objects.get(pk = request.user.id)
             cod = Codigo.objects.get(user=us)
+            print("SE SUPONE QUE ESTO TIENE CODIGO PERO COMO ES POSIBLE ESO")
         except Exception as e:
+            print("NO TIENE REGISTRADO CODIGO")
             return redirect("codigo")
 
         print ("esto tiene codigo " + str(cod.codigo))
@@ -315,6 +318,17 @@ def perfil(request):
             template ="profile.html"
             print("apunto de llegar a profiles")
             return render(request,template,context)
+    except Exception as e:
+        print ("Este es el erro porque no entra al perfil id usuario: " + str(us.id) + " " + str(e))
+        return redirect("home")
+
+@login_required(login_url='login')
+def asignarcargo(request):
+    try:
+        template = "asignarcargos.html"
+        context = {'nombre':"David Cortez"}
+
+        return render(request,template,context)
     except Exception as e:
         print (e)
         return redirect("home")
@@ -372,15 +386,14 @@ def destacamento(request):
         else:
             try:
                 perfi = Perfil.objects.get(user = us)
-
-                permiso = Permisos.objects.get(perfil=perfi)
-                print("ESTE ES EL PERMISO: " + str(permiso.cargos.nivel))
-                if permiso.cargos.nivel <= 2:
+                
+                print("ESTE ES EL PERMISO: " + str(perfi.permiso.nombre))
+                if perfi.permiso.cargos.nivel <= 2:
                     print("me voy a ver las zonas")
                     return redirect("zonas")
-                elif permiso.cargos.nivel == 5:
+                elif perfi.permiso.cargos.nivel == 5:
                     print("me voy a ver el destacamento")
-                    return redirect("admindestacamento")
+                    return redirect("admindestacamento",perfi.destacamento.id)
                 else:
                     print("Si tienes acceso, felicidades")
                     return redirect("perfil")
@@ -486,7 +499,7 @@ class CrearDestacamentoView(CreateView):
 
 
 @login_required(login_url='login')
-def admindestacamento(request):
+def admindestacamento(request,iddesta):
     try:
         print("entre a admin destacamento")
         us = User.objects.get(pk = request.user.id)
@@ -501,36 +514,34 @@ def admindestacamento(request):
                 
                 abuscar = request.POST['tex']
                 
-                try:
-                    destacamento = Destacamento.objects.get(user = request.user)
-                except Exception as e:
-                    return redirect("/creardestacamento")
-                else:
-                    explo = Perfil.objects.filter(Q(primer_nombre__icontains=abuscar)
+                explo = Perfil.objects.filter(Q(primer_nombre__icontains=abuscar)
                     | Q(segundo_nombre__icontains=abuscar) | Q(primer_apellido__icontains=abuscar) 
                     | Q(segundo_apellido__icontains=abuscar) | Q(direccion__icontains=abuscar) 
                     | Q(telefono__icontains=abuscar) 
                     | Q(codigo__icontains=abuscar) 
-                    | Q(departamento__icontains=abuscar),destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
+                    | Q(departamento__icontains=abuscar),destacamento=iddesta).exclude(primer_nombre=' ').order_by('primer_nombre')
 
+                destacamento = Destacamento.objects.get(pk= iddesta)
               
             else:
 
                 try:
-                    perf = Perfil.objects.get(usr = us)
-                    permiso = Permisos.objects.get(perfil = perf)
+                    perf = Perfil.objects.get(user = us)
+                   
 
-                    if not (Decimal(permiso.cargo.nivel) <= Decimal(5)):
+                    if not (Decimal(perf.permiso.cargos.nivel) <= Decimal(5)):
                         return redirect("perfil")
                         
-                    destacamento = Destacamento.objects.get(pk = perf.destacamento.id)
+                    destacamento = Destacamento.objects.get(pk = iddesta)
 
 
                 except Exception as e:
+
+                    print("Este es el error segundo " + str(e))
                     return redirect("/creardestacamento")
                 else:
                     explo = Perfil.objects.filter(destacamento=destacamento).exclude(primer_nombre=' ').order_by('primer_nombre')
-
+                    
                    
             try:
                 lisexplo = []
@@ -545,6 +556,7 @@ def admindestacamento(request):
                     codigo = ""
                 print ("atnes de llegar a la carga a ala lista")
                 for ex in explo:
+                    print(ex.primer_nombre)
                     l = Exp()
                     if ex.primer_nombre != None:
                         l.nombre += ex.primer_nombre
@@ -559,17 +571,21 @@ def admindestacamento(request):
                         l.nombre += str(" ") + str(ex.segundo_apellido)
 
 
-                    l.direc = ex.direccion
-                    l.id = ex.id
-                    l.activo = ex.activo
-                    l.foto = ex.foto.url
-                    l.codigo = ex.codigo
-                    ed = calculedad(ex.dia,ex.mes,ex.year)
-                    l.edad = ed
+                    try:
+                        l.direc = ex.direccion
+                        l.id = ex.id
+                        l.activo = ex.activo
+                        l.foto = ex.foto.url
+                        l.codigo = ex.codigo
+                        ed = calculedad(ex.dia,ex.mes,ex.year)
+                        l.edad = ed
+                    except Exception as e:
+                        print("Aqui ocurrio un error quiero ver cual es: " + str(e))
+                   
                     print("VEAMOS LA EDAD: " + str(ed))
 
                     
-                    if ed > 0 and ed <= 7:
+                    if ed >= 0 and ed <= 7:
                         ex.departamento = "Navegantes"
                         ex.save()
                     elif ed > 7 and ed <= 10:
@@ -592,7 +608,7 @@ def admindestacamento(request):
                 pass
 
 
-            context = {'us':us,'destacamento':destacamento,'lisexplo':lisexplo,'iddesta':destacamento.id}
+            context = {'us':us,'destacamento':destacamento,'lisexplo':lisexplo,'iddesta':iddesta}
             template ="lista.html"
             print("apunto de llegar a profiles")
 
@@ -608,6 +624,7 @@ def admindestacamento(request):
 @login_required(login_url='login')
 def detalledestacamento(request, iddesta):
     try:
+        iddesta = iddesta
         print("entre a admin destacamento")
         us = User.objects.get(pk = request.user.id)
         cod = Codigo.objects.get(user=us)
@@ -1024,6 +1041,56 @@ def editarexplorador(request,iddesta,idexplo):
         raise
 
 
+@login_required(login_url='login')
+def permisoeditarexplorador(request,iddesta,idexplo):
+    try:
+        if request.POST:
+            return redirect("admindestacamento",iddesta)
+
+        us = User.objects.get(pk = request.user.id)
+        cod = Codigo.objects.get(user=us)
+        
+        print ("esto tiene codigo " + str(cod.codigo))
+        if cod.codigo == None:
+            return redirect("codigo")
+
+        auto = Perfil.objects.get(user = request.user)
+        nivel = auto.permiso.cargos.nivel
+
+        
+
+        print("ESTE ES EL NIVEL: " + str(nivel))
+
+        perf = Perfil.objects.get(pk=idexplo)
+
+        try:
+            print("ESTOS SON LOS NIVELES: " + str(nivel) + "  - " + str(perf.permiso.cargos.nivel))
+            if nivel >= perf.permiso.cargos.nivel:
+                return redirect("admindestacamento",iddesta)
+        except Exception as e:
+            print("Ocurrio un error al comparar niveles razon: " + str(e))
+
+        permis = Permisos.objects.all().order_by("id")
+
+        lista = []
+
+        for i in permis:
+            if i.cargos.nivel > nivel:
+                lista.append(i)
+                print(str(i.nombre) + " " + str(i.cargos.nivel))
+
+        
+
+        template = 'permisoexplo.html'
+
+        context = {'perf':perf,'idexplo': idexplo,'iddesta':iddesta,'listacargos':lista}
+
+        return render(request,template,context)
+
+    except Exception as e:
+        print(e)
+        return redirect("home")
+
 
 
 @login_required(login_url='login')
@@ -1108,6 +1175,32 @@ class SetFecha(TemplateView):
         print (e.message)
 
 
+class BuscarExplo(TemplateView):
+    print ("SIQUIERA ENTRE AQUI AL AJAS DE BUSCAR EXPLORADOR")
+    try:
+        def get(self,request,*args,**kwargs):
+            print ("YA ENTRE AL METODO HABER QUE PASA AQUI EN BUSCAR EXPLORADOR")
+           
+            explo = request.GET['explo']
+         
+            print("ESTE ES EL NOMBRE QUE VIENE: " + explo)
+
+            perfiles = Perfil.objects.filter(Q(primer_nombre__icontains = explo) | Q(segundo_nombre__icontains=explo) | Q(segundo_nombre__icontains=explo) | Q(segundo_apellido__icontains=explo) )
+            print(perfiles)
+
+        
+
+
+            lista = [{ 'codigo': per.id, 'nombre1': per.primer_nombre, 'nombre2': per.segundo_nombre,'apellido1': per.primer_apellido,'apellido2': per.segundo_apellido, 'direccion':per.direccion,'telefono': per.telefono,'foto': per.foto.url} for per in perfiles]
+            
+            
+
+            response = JsonResponse({'per':lista})
+            return HttpResponse(response.content)
+    except Exception as e:
+        print ("OCURRIO AL TRATAR DE MANDAR LA LISTA")
+        print (e.message)
+
 
 class Block(TemplateView):
     print ("SIQUIERA ENTRE AQUI AL AJAX")
@@ -1144,6 +1237,43 @@ class Block(TemplateView):
         print ("OCURRIO UN SUPER ERROR Y NO SE PORQUE PERO AQUI ESTA EL MENSAJE DE ERROR")
         print (e.message)
 
+
+class CargoAjax(TemplateView):
+    print ("SIQUIERA ENTRE AQUI AL AJAX")
+    try:
+        def get(self,request,*args,**kwargs):
+           
+        
+            id = request.GET['idexp']
+            print("El id es: " + str(id))
+            idpermi = request.GET['idpermi']
+            per = Perfil.objects.get(pk = id)
+
+            try:
+                permiso = Permisos.objects.get(pk = idpermi)
+                per.permiso = permiso
+            except Exception as e:
+                per.permiso = None
+            
+            
+            
+            
+            
+            
+            
+            per.save()
+           
+            fl = True
+
+
+         
+
+
+            response = JsonResponse({'fl':fl})
+            return HttpResponse(response.content)
+    except Exception as e:
+        print ("OCURRIO UN SUPER ERROR Y NO SE PORQUE PERO AQUI ESTA EL MENSAJE DE ERROR")
+        print (e.message)
 
 
 class MensajeEnviar(TemplateView):

@@ -74,7 +74,7 @@
 
       <a href="{% url "registroexplorador" destacamento.id %}"> <button class="guardar" type="submit" name="button"><p class="textbtn">Agregar Explorador</p></button></a>
    
-     <form method="post" action="{% url "admindestacamento" %}">
+     <form method="post" action="{% url "admindestacamento" iddesta %}">
     {% csrf_token %}
       <div class="div-buscador">
        
@@ -89,7 +89,7 @@
 
           {% for ex in lisexplo %}
 
-          {% if ex.edad > 0 and ex.edad <= 7  %}
+          {% if ex.edad >= 0 and ex.edad <= 7  %}
 
                 {% if ex.activo %}
             <div id = "{{ex.id}}" class="tarjeta tarjeta-navegante">
@@ -113,6 +113,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                  <a href="{% url "editarexplorador" iddesta ex.id %}">   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a>
+                 <a  href="{% url "permisoeditarexplorador" iddesta ex.id %}">   <button  class="boton-cargo" type="button" name="button"><i  class="fas fa-medal"></i></button></a>
 
                        {% if ex.activo %}
                          <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
@@ -121,11 +122,10 @@
                          <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock"></i></button>
 
                         {% endif %}
-
-                  
+                      
 
                 </div>
-                  <img class="foto-grupo" src="static/imagenes/1.png" alt="">
+                  <img class="foto-grupo" src="{% static "imagenes/1.png" %}" alt="">
               </div>
           </div>
           {% endif %}
@@ -153,6 +153,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                <a href="{% url "editarexplorador" iddesta ex.id %}">    <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a> 
+               <a href="{% url "permisoeditarexplorador" iddesta ex.id %}">   <button class="boton-cargo" type="button" name="button"><i class="fas fa-medal"></i></button></a>
                   
                      {% if ex.activo %}
                          <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
@@ -164,7 +165,7 @@
 
 
                 </div>
-                  <img class="foto-grupo" src="static/imagenes/2.png" alt="">
+                  <img class="foto-grupo" src="{% static "imagenes/2.png" %}" alt="">
               </div>
           </div>
           {% endif %}
@@ -193,6 +194,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
                <a href="{% url "editarexplorador" iddesta ex.id %}">   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button> </a> 
+               <a href="{% url "permisoeditarexplorador" iddesta ex.id %}">   <button class="boton-cargo" type="button" name="button"><i class="fas fa-medal"></i></button></a>
                  
                   {% if ex.activo %}
                          <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
@@ -204,7 +206,7 @@
 
                 
                 </div>
-                  <img class="foto-grupo" src="static/imagenes/3.png" alt="">
+                  <img class="foto-grupo" src="{% static "imagenes/3.png" %}" alt="">
               </div>
           </div>
           {% endif %}
@@ -234,6 +236,7 @@
               <div class="div-grupo">
                 <div class="div-botones">
               <a href="{% url "editarexplorador" iddesta ex.id %}">     <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a> 
+              <a href="{% url "permisoeditarexplorador" iddesta ex.id %}">   <button class="boton-cargo" type="button" name="button"><i class="fas fa-medal"></i></button></a>
                 
                    {% if ex.activo %}
                          <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
@@ -245,7 +248,7 @@
 
                 
                 </div>
-                  <img class="foto-grupo" src="static/imagenes/4.png" alt="">
+                  <img class="foto-grupo" src="{% static "imagenes/4.png" %}" alt="">
               </div>
           </div>
           {% endif %}
@@ -272,6 +275,7 @@
               <div class="div-grupo">
                   <div class="div-botones">
                   <a href="{% url "editarexplorador" iddesta ex.id %}">   <button class="boton-editar" type="button" name="button"><i class="fas fa-user-edit"></i></button></a> 
+                  <a href="{% url "permisoeditarexplorador" iddesta ex.id %}">   <button class="boton-cargo" type="button" name="button"><i class="fas fa-medal"></i></button></a>
                  
                     {% if ex.activo %}
                          <button id="block{{ex.id}}" value='{{ex.id}}' class="boton-suspender" type="button" name="button"><i id="candado{{ex.id}}" class="fas fa-lock-open"></i></button>
@@ -283,7 +287,7 @@
 
                  
                   </div>
-                  <img class="foto-grupo" src="static/imagenes/Royal_Rangers.svg.png" alt="">
+                  <img class="foto-grupo" src="{% static "imagenes/Royal_Rangers.svg.png" %}" alt="">
               </div>
 
           </div>

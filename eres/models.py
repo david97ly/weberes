@@ -101,6 +101,21 @@ class ImagenDestacamento(models.Model):
     def __str__(self):
         return self.destacamento.nombre
 
+class Cargos(models.Model):
+    nombre = models.CharField(max_length=500,null=True,blank=True)
+    codigo = models.IntegerField(blank=True,null=True)
+    nivel = models.IntegerField(blank=True,null=True)
+
+    def __str__(self):
+        return str(self.nombre)
+
+
+class Permisos(models.Model):
+    cargos = models.ForeignKey(Cargos,null=False,on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=10000,null=True,blank=True)
+
+    def __str__(self):
+        return str(self.nombre)
 
 class Perfil(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,on_delete=models.CASCADE)
@@ -121,21 +136,16 @@ class Perfil(models.Model):
     foto = models.ImageField(upload_to='avatares',default="static/imagenes/usuario.png",blank=True, null=True)
     activo = models.BooleanField(default=True)
     departamento = models.CharField(max_length=500,null=True,blank=True)
+    permiso = models.ForeignKey(Permisos,null=True,blank=True,on_delete=models.SET_NULL)
 
 
     def __str__(self):
-        return str(self.primer_nombre)
+        return str(self.primer_nombre) + str(" - ") + str(self.user) 
 
 
 
 
-class Cargos(models.Model):
-    nombre = models.CharField(max_length=500,null=True,blank=True)
-    codigo = models.IntegerField(blank=True,null=True)
-    nivel = models.IntegerField(blank=True,null=True)
 
-    def __str__(self):
-        return str(self.nombre) + str(" - ") + str(self.nivel) + str(" - ") + str(self.codigo)
 
 
 class Publicacion(models.Model):
@@ -176,9 +186,3 @@ class Favorito(models.Model):
         return str(self.user)
 
 
-class Permisos(models.Model):
-    perfil = models.ForeignKey(Perfil,null=False,on_delete=models.CASCADE)
-    cargos = models.ForeignKey(Cargos,null=False,on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.perfil) + str(" - ") + str(self.cargos) 

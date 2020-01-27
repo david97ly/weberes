@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      {% load static from staticfiles %}
+
+
+<style>
+    body{
+    background-image: url("{% static "/imagenes/bosque7.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-size: cover;
+}
+    .contenedor-tarjeta{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-flow: wrap;
+    padding: 10px 0px;
+    background: rgb(0,0,0,0.5);
+    background-image: url("{% static "/imagenes/bosque7.1.jpg" %}");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position:50% 50%;
+    background-size: cover;
+    width: 80%;
+    height: 650px;
+    overflow-y: scroll;
+    margin: 10px 0px;
+}
+
+.tuerquita{
+   position:absolute;
+   z-index:2;
+   color:white;
+   font-size:22px;
+   margin:8px;
+}
+
+</style>
+
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/lista.css" %}" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% static "css/titular.css" %}" />
+<link rel="stylesheet" href="{% static "css/menu1.css" %}">
+<script src="{% static "js/all.min.js" %}"></script>
+
+</head>
+<body>
+
+        {% include "menuperfil.html" %}
+
+    <div class="contenedor">
+
+        <div class="titular">
+            <a href="" >    <i class="fas fa-cog tuerquita"></i></a>
+            <div class="nombre-destacamento">
+                <p id ="nomprueba" class="nombresito">NIVEL DE PERMISO</p>
+            </div>
+            <div class="foto-destacamento">
+
+                
+                <img class="fotito" src="" alt="">
+                
+            </div>
+        </div>
+
+       
+   
+  <form >
+           
+         <div class="div-buscador">
+       
+         
+          <input name="tex" id="busexplo" results="3" placeholder="Buscar destacamento o un integrantes..." class="buscador" type="search">
+          <button type="submit" class="boton-buscador"><p>Buscar</p><i style="padding-left:4px; " class="fas fa-search"></i></button>
+     </div>
+     </form>
+
+     
+       <div  id="contenedor" class="contenedor-tarjeta">
+            
+         
+           
+         
+       
+        
+
+        
+
+
+   
+
+         
+
+   
+
+        
+
+          
+
+
+
+
+         </div>
+
+        </div>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-3.2.1.min.js"><\/script>')</script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+            var explorador = "";
+
+            $("#busexplo").keyup(function(){
+               
+                
+                explorador = $(this).val();
+             
+              
+
+            
+
+
+
+                
+   $.ajax({
+        data:{'explo':explorador},
+        url:'/buscarexplo/',
+        type:'get',
+        success:function(json){
+
+        
+        
+        var html = JSON.parse(json);
+        var contador = 0;
+        $("#contenedor").empty();
+        for(var clave in html.per){
+            console.log(html.per[clave].codigo + " " + html.per[clave].nombre);
+            contador += 1;
+
+            console.log(contador);
+            
+        var ht = "<div id = '1' class='tarjeta tarjeta-explorador'>" +
+             
+              " <div class='div-foto'>" 
+             + "<a href=''> <div style='background-image: url(" + html.per[clave].foto  + ")' class='foto-perfil'></div></a> " 
+             + " </div> " 
+               + " <div class='div-datos'> " 
+                 + " <p class='nombre'> Nombre: " + html.per[clave].nombre1 + " "+ html.per[clave].nombre2 + " " + html.per[clave].apellido1+ " "+ html.per[clave].apellido2 + "</p> " 
+                 + " <p class='otros'>Direccion: "+  html.per[clave].destacamento +"</p> " 
+                 + " <p class='otros'>Telefono: " + html.per[clave].direccion +  "</p> " 
+              
+                 
+              + " </div> " 
+              + " <div class='div-grupo'> " 
+               + " <div class='div-botones'> " 
+          
+                  + "   <a href=''>     <button class='boton-editar' type='button' name='button'><i class='fas fa-user-edit'></i></button></a> " 
+                  
+                     + " <button id='block' value='' class='boton-suspender' type='button' name='button'><i id='candado' class='fas fa-lock'></i></button> " 
+
+
+                
+              + "  </div> " 
+            
+             + " </div> " 
+         + " </div> " 
+
+         $("#contenedor").append(ht);
+        }            
+
+        
+        
+    
+
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+                
+            })
+
+          
+
+            });
+
+    </script>
+
+</body>
+</html>

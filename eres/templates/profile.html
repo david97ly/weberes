@@ -91,7 +91,15 @@ body{
           <p>{{nombre}}</p>
           </div>
             <div class="div-datos">
-              <div class="datos"> <p class="cosa">Cargo: </p> <p class="cosita"> Soon</p></div>
+
+                {% if per.permiso %}
+
+              <div class="datos"> <p class="cosa">Cargo: </p> <p class="cosita"> {{per.permiso}}</p></div>
+
+                {% else %}
+              <div class="datos"> <p class="cosa">Cargo: </p> <p class="cosita"> Miembro del destacamento</p></div>
+                {% endif %}
+              
               {% if not email  == 0 %}
               <div class="datos"> <p class="cosa">E-mail: </p> <p class="cosita"> {{email}}</p></div>
               {% endif %}

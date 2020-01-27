@@ -162,7 +162,7 @@ class DestacamentoForm(forms.ModelForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        exclude = ("departamento","user","activo",'destacamento','cargo','codigo',"direccion_GPS",'year','mes','dia','sexo',)
+        exclude = ("departamento","user","activo",'destacamento','permiso','codigo',"direccion_GPS",'year','mes','dia','sexo',)
         widgets = {
             'primer_nombre' : forms.TextInput( attrs = {'name' : 'nombrep',
             'required' : 'True',
@@ -211,6 +211,68 @@ class PerfilForm(forms.ModelForm):
              'foto' : forms.ClearableFileInput( attrs = { 'class': 'mybutton perusuario',
             'style' : 'cursor:pointer;'
              } ),
+
+
+        }
+
+class PermisoForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        exclude = ("departamento","user","activo",'destacamento','codigo',"direccion_GPS",'year','mes','dia','sexo',)
+        widgets = {
+            'primer_nombre' : forms.TextInput( attrs = {'name' : 'nombrep',
+            'required' : 'True',
+            'id': 'nombre1',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Primer Nombre'
+              } ),
+
+            'segundo_nombre' : forms.TextInput( attrs = {'name' : 'nombres',
+            'id': 'nombre2',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Segundo Nombre'
+              } ),
+
+            'primer_apellido' : forms.TextInput( attrs = {'name' : 'apellidop',
+            'required' : 'True',
+            'id': 'ape1',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Primer Apellido'
+              } ),
+
+            'segundo_apellido' : forms.TextInput( attrs = {'name' : 'apellidos',
+            'id': 'ape2',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Segundo Apellido'
+              } ),
+
+            'telefono' : forms.TextInput( attrs = {'name' : 'telefono',
+            'id': 'telefono',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Telefono'
+              } ),
+
+            'direccion' : forms.TextInput( attrs = {'name' : 'direccion',
+            'id': 'direccion',
+            'class': 'entrada',
+            'value' : '',
+            'placeholder': 'Direccion'
+              } ),
+
+             'foto' : forms.ClearableFileInput( attrs = { 'class': 'mybutton perusuario',
+            'style' : 'cursor:pointer;'
+             } ),
+
+            'permiso' : forms.Select( attrs = {'name' : 'permi',
+            'required' : 'True',
+            'id': 'permi',
+            'style':'width: 100%;font-size:16px;margin-bottom: 10px ;',
+              } ),
 
 
         }
