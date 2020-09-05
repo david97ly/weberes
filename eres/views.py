@@ -1040,7 +1040,6 @@ def editarexplorador(request,iddesta,idexplo):
     except Exception as e:
         raise
 
-
 @login_required(login_url='login')
 def permisoeditarexplorador(request,iddesta,idexplo):
     try:
