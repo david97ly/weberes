@@ -289,10 +289,22 @@ def perfil(request):
     try:
         try:
             us = User.objects.get(pk = request.user.id)
+            cod = Codigo.objects.filter(user=us)
+
+            for c in cod:
+                if c.codigo == None:
+                    c.delete()
+                    
             cod = Codigo.objects.get(user=us)
+<<<<<<< HEAD
             print("SE SUPONE QUE ESTO TIENE CODIGO PERO COMO ES POSIBLE ESO")
         except Exception as e:
             print("NO TIENE REGISTRADO CODIGO")
+=======
+
+        except Exception as e:
+            print("Ocurrio un error razon: " + str(e))
+>>>>>>> 70f184115ce14cab125583c5a5a3bf10d3f57198
             return redirect("codigo")
 
         print ("esto tiene codigo " + str(cod.codigo))
@@ -526,10 +538,20 @@ def admindestacamento(request,iddesta):
             else:
 
                 try:
+<<<<<<< HEAD
                     perf = Perfil.objects.get(user = us)
                    
 
                     if not (Decimal(perf.permiso.cargos.nivel) <= Decimal(5)):
+=======
+                    print("Veamos que pasa aqui")
+                    print(us)
+                    perf = Perfil.objects.get(user = us)
+                    print(perf)
+                    permiso = Permisos.objects.get(perfil = perf)
+                    print("tenemos los respectivos permisos")
+                    if not (Decimal(permiso.cargos.nivel) <= Decimal(5)):
+>>>>>>> 70f184115ce14cab125583c5a5a3bf10d3f57198
                         return redirect("perfil")
                         
                     destacamento = Destacamento.objects.get(pk = iddesta)
@@ -964,8 +986,9 @@ def registroexplorador(request,iddesta):
         else:
             tp = ''
             n = 1910
-            form = PerfilForm(instance=perf)
             template = 'Sign_Up.html'
+            form = PerfilForm(instance=perf)
+            
 
             context = {'form':form,'n':n,'tp':tp,'perf':perf}
 
