@@ -12,7 +12,7 @@ django-suit==0.2.26
 djrill==2.1.0
 html5lib==1.0.1
 idna==2.8
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.0
 oauthlib==2.1.0
 packaging==18.0
