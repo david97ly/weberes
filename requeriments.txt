@@ -22,7 +22,7 @@ pisa==3.0.33
 psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 pycparser==2.19
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyOpenSSL==18.0.0
 pyparsing==2.3.0
 pyPdf==1.13
